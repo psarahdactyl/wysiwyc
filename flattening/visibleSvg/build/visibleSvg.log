@@ -1,0 +1,179 @@
+﻿  flatten.cpp
+c:\dev\cgal-4.12\include\cgal\arr_dcel_base.h(52): warning C4245: 'initializing': conversion from 'int' to '::size_t', signed/unsigned mismatch
+c:\dev\cgal-4.12\include\cgal\boolean_set_operations_2\gps_default_dcel.h(78): warning C4245: 'initializing': conversion from 'int' to '::size_t', signed/unsigned mismatch
+c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(34): warning C4239: nonstandard extension used: 'argument': conversion from 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<Point>>>' to 'Point_iterator &'
+  c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(34): note: A non-const reference may only be bound to an lvalue
+c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(58): warning C4239: nonstandard extension used: 'argument': conversion from 'CGAL::internal::In_place_list_iterator<T,Alloc>' to 'CGAL::internal::In_place_list_iterator<T,Alloc> &'
+          with
+          [
+              T=CGAL::Arrangement_on_surface_with_history_2<Traits_2,CGAL::Arr_bounded_planar_topology_traits_2<Traits_2,CGAL::Arr_default_dcel<Traits_2>>>::Curve_halfedges,
+              Alloc=std::allocator<CGAL::Arrangement_on_surface_with_history_2<Traits_2,CGAL::Arr_bounded_planar_topology_traits_2<Traits_2,CGAL::Arr_default_dcel<Traits_2>>>::Curve_halfedges>
+          ]
+  c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(58): note: A non-const reference may only be bound to an lvalue
+  c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(65): note: see reference to function template instantiation 'auto find_comparable_shapes::<lambda_b9d3c254f046db7f84afbe21ef255161>::operator ()<Edge_container>(Edge_container,Shape_indices &) const' being compiled
+c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(113): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(215): warning C4239: nonstandard extension used: 'argument': conversion from 'CGAL::internal::In_place_list_iterator<T,Alloc>' to 'CGAL::internal::In_place_list_iterator<T,Alloc> &'
+          with
+          [
+              T=CGAL::Arrangement_on_surface_with_history_2<Traits_2,CGAL::Arr_bounded_planar_topology_traits_2<Traits_2,CGAL::Arr_default_dcel<Traits_2>>>::Curve_halfedges,
+              Alloc=std::allocator<CGAL::Arrangement_on_surface_with_history_2<Traits_2,CGAL::Arr_bounded_planar_topology_traits_2<Traits_2,CGAL::Arr_default_dcel<Traits_2>>>::Curve_halfedges>
+          ]
+  c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(215): note: A non-const reference may only be bound to an lvalue
+c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(228): warning C4239: nonstandard extension used: 'argument': conversion from 'CGAL::internal::In_place_list_iterator<T,Alloc>' to 'CGAL::internal::In_place_list_iterator<T,Alloc> &'
+          with
+          [
+              T=CGAL::Arrangement_on_surface_with_history_2<Traits_2,CGAL::Arr_bounded_planar_topology_traits_2<Traits_2,CGAL::Arr_default_dcel<Traits_2>>>::Curve_halfedges,
+              Alloc=std::allocator<CGAL::Arrangement_on_surface_with_history_2<Traits_2,CGAL::Arr_bounded_planar_topology_traits_2<Traits_2,CGAL::Arr_default_dcel<Traits_2>>>::Curve_halfedges>
+          ]
+  c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(228): note: A non-const reference may only be bound to an lvalue
+c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(229): warning C4189: 'hole_color': local variable is initialized but not referenced
+c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(253): warning C4100: 'handles': unreferenced formal parameter
+c:\dev\cgal-4.12\include\cgal\arr_geometry_traits\bezier_cache.h(499): warning C4456: declaration of 's' hides previous local declaration
+  c:\dev\cgal-4.12\include\cgal\arr_geometry_traits\bezier_cache.h(463): note: see declaration of 's'
+  c:\dev\cgal-4.12\include\cgal\arr_geometry_traits\bezier_cache.h(330): note: while compiling class template member function 'const std::list<CGAL::_Bezier_cache<CGAL::CORE_algebraic_number_traits>::Intersection_point_2,std::allocator<_Ty>> &CGAL::_Bezier_cache<CGAL::CORE_algebraic_number_traits>::get_intersections(const CGAL::_Bezier_cache<CGAL::CORE_algebraic_number_traits>::Curve_id &,const CORE::Polynomial<CORE::BigInt> &,const CORE::BigInt &,const CORE::Polynomial<CORE::BigInt> &,const CORE::BigInt &,const CGAL::_Bezier_cache<CGAL::CORE_algebraic_number_traits>::Curve_id &,const CORE::Polynomial<CORE::BigInt> &,const CORE::BigInt &,const CORE::Polynomial<CORE::BigInt> &,const CORE::BigInt &,bool &)'
+          with
+          [
+              _Ty=CGAL::_Bezier_cache<CGAL::CORE_algebraic_number_traits>::Intersection_point_2
+          ]
+  c:\dev\cgal-4.12\include\cgal\arr_geometry_traits\bezier_x_monotone_2.h(992): note: see reference to function template instantiation 'const std::list<CGAL::_Bezier_cache<CGAL::CORE_algebraic_number_traits>::Intersection_point_2,std::allocator<_Ty>> &CGAL::_Bezier_cache<CGAL::CORE_algebraic_number_traits>::get_intersections(const CGAL::_Bezier_cache<CGAL::CORE_algebraic_number_traits>::Curve_id &,const CORE::Polynomial<CORE::BigInt> &,const CORE::BigInt &,const CORE::Polynomial<CORE::BigInt> &,const CORE::BigInt &,const CGAL::_Bezier_cache<CGAL::CORE_algebraic_number_traits>::Curve_id &,const CORE::Polynomial<CORE::BigInt> &,const CORE::BigInt &,const CORE::Polynomial<CORE::BigInt> &,const CORE::BigInt &,bool &)' being compiled
+          with
+          [
+              _Ty=CGAL::_Bezier_cache<CGAL::CORE_algebraic_number_traits>::Intersection_point_2
+          ]
+  c:\dev\cgal-4.12\include\cgal\arr_geometry_traits\bezier_x_monotone_2.h(736): note: while compiling class template member function 'CGAL::Comparison_result CGAL::_Bezier_x_monotone_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<RatKernel_>>::point_position(const CGAL::_Bezier_point_2<RatKernel_,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<RatKernel_>> &,CGAL::_Bezier_cache<CGAL::CORE_algebraic_number_traits> &) const'
+          with
+          [
+              RatKernel_=Rat_kernel
+          ]
+  c:\dev\cgal-4.12\include\cgal\arr_bezier_curve_traits_2.h(346): note: see reference to function template instantiation 'CGAL::Comparison_result CGAL::_Bezier_x_monotone_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<RatKernel_>>::point_position(const CGAL::_Bezier_point_2<RatKernel_,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<RatKernel_>> &,CGAL::_Bezier_cache<CGAL::CORE_algebraic_number_traits> &) const' being compiled
+          with
+          [
+              RatKernel_=Rat_kernel
+          ]
+  c:\dev\cgal-4.12\include\cgal\arr_bezier_curve_traits_2.h(107): note: see reference to class template instantiation 'CGAL::_Bezier_x_monotone_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<RatKernel_>>' being compiled
+          with
+          [
+              RatKernel_=Rat_kernel
+          ]
+  c:\users\sak\source\repos\wysiwyc\visiblesvg\include\helper.h(35): note: see reference to class template instantiation 'CGAL::Arr_Bezier_curve_traits_2<Rat_kernel,Alg_kernel,Nt_traits,CGAL::Bezier_bounding_rational_traits<RatKernel_>>' being compiled
+          with
+          [
+              RatKernel_=Rat_kernel
+          ]
+c:\dev\cgal-4.12\include\cgal\arr_geometry_traits\bezier_cache.h(500): warning C4456: declaration of 't' hides previous local declaration
+  c:\dev\cgal-4.12\include\cgal\arr_geometry_traits\bezier_cache.h(463): note: see declaration of 't'
+c:\dev\cgal-4.12\include\cgal\arr_geometry_traits\bezier_point_2.h(1591): warning C4456: declaration of 'nt_traits' hides previous local declaration
+  c:\dev\cgal-4.12\include\cgal\arr_geometry_traits\bezier_point_2.h(1553): note: see declaration of 'nt_traits'
+  c:\dev\cgal-4.12\include\cgal\arr_geometry_traits\bezier_point_2.h(1548): note: while compiling class template member function 'void CGAL::_Bezier_point_2_rep<RatKernel_,AlgKernel_,NtTraits_,BoundingTraits_>::_make_exact(CGAL::_Bezier_cache<CGAL::CORE_algebraic_number_traits> &)'
+          with
+          [
+              RatKernel_=CGAL::Cartesian<Rational>,
+              AlgKernel_=CGAL::Cartesian<Algebraic>,
+              NtTraits_=CGAL::CORE_algebraic_number_traits,
+              BoundingTraits_=CGAL::Bezier_bounding_rational_traits<Rat_kernel>
+          ]
+  c:\dev\cgal-4.12\include\cgal\arr_geometry_traits\bezier_point_2.h(1188): note: see reference to function template instantiation 'void CGAL::_Bezier_point_2_rep<RatKernel_,AlgKernel_,NtTraits_,BoundingTraits_>::_make_exact(CGAL::_Bezier_cache<CGAL::CORE_algebraic_number_traits> &)' being compiled
+          with
+          [
+              RatKernel_=CGAL::Cartesian<Rational>,
+              AlgKernel_=CGAL::Cartesian<Algebraic>,
+              NtTraits_=CGAL::CORE_algebraic_number_traits,
+              BoundingTraits_=CGAL::Bezier_bounding_rational_traits<Rat_kernel>
+          ]
+c:\dev\cgal-4.12\include\cgal\arrangement_2\arrangement_on_surface_2_impl.h(4790): warning C4456: declaration of 'hh' hides previous local declaration
+  c:\dev\cgal-4.12\include\cgal\arrangement_2\arrangement_on_surface_2_impl.h(4426): note: see declaration of 'hh'
+  c:\dev\cgal-4.12\include\cgal\arrangement_2\arrangement_on_surface_2_impl.h(4200): note: while compiling class template member function 'CGAL::Arr_face<V,H,F> *CGAL::Arrangement_on_surface_2<CGAL::Arr_consolidated_curve_data_traits_2<GeomTraits_,CGAL::_Bezier_curve_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<RatKernel_>> *>,CGAL::Arr_bounded_planar_topology_traits_2<T,D>>::_remove_edge(CGAL::Arr_halfedge<V,H,F> *,bool,bool)'
+          with
+          [
+              V=CGAL::Arr_vertex_base<CGAL::_Bezier_point_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<Rat_kernel>>>,
+              H=CGAL::Arr_halfedge_base<CGAL::_Curve_data_ex<CGAL::_Bezier_x_monotone_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<Rat_kernel>>,CGAL::_Unique_list<CGAL::_Bezier_curve_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<Rat_kernel>> *>>>,
+              F=CGAL::Arr_face_base,
+              GeomTraits_=Traits_2,
+              RatKernel_=Rat_kernel,
+              T=CGAL::Arr_consolidated_curve_data_traits_2<Traits_2,CGAL::_Bezier_curve_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<Rat_kernel>> *>,
+              D=CGAL::Arr_default_dcel<CGAL::Arr_consolidated_curve_data_traits_2<Traits_2,CGAL::_Bezier_curve_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<Rat_kernel>> *>>
+          ]
+  c:\dev\cgal-4.12\include\cgal\arrangement_2\arrangement_on_surface_2_impl.h(1802): note: see reference to function template instantiation 'CGAL::Arr_face<V,H,F> *CGAL::Arrangement_on_surface_2<CGAL::Arr_consolidated_curve_data_traits_2<GeomTraits_,CGAL::_Bezier_curve_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<RatKernel_>> *>,CGAL::Arr_bounded_planar_topology_traits_2<T,D>>::_remove_edge(CGAL::Arr_halfedge<V,H,F> *,bool,bool)' being compiled
+          with
+          [
+              V=CGAL::Arr_vertex_base<CGAL::_Bezier_point_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<Rat_kernel>>>,
+              H=CGAL::Arr_halfedge_base<CGAL::_Curve_data_ex<CGAL::_Bezier_x_monotone_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<Rat_kernel>>,CGAL::_Unique_list<CGAL::_Bezier_curve_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<Rat_kernel>> *>>>,
+              F=CGAL::Arr_face_base,
+              GeomTraits_=Traits_2,
+              RatKernel_=Rat_kernel,
+              T=CGAL::Arr_consolidated_curve_data_traits_2<Traits_2,CGAL::_Bezier_curve_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<Rat_kernel>> *>,
+              D=CGAL::Arr_default_dcel<CGAL::Arr_consolidated_curve_data_traits_2<Traits_2,CGAL::_Bezier_curve_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<Rat_kernel>> *>>
+          ]
+  c:\dev\cgal-4.12\include\cgal\arrangement_2\arr_on_surface_with_history_2_impl.h(53): note: while compiling class template member function 'CGAL::Arrangement_on_surface_with_history_2<GeomTraits_,CGAL::Arr_bounded_planar_topology_traits_2<GeomTraits,Dcel>>::Arrangement_on_surface_with_history_2(const CGAL::Arrangement_on_surface_with_history_2<GeomTraits_,CGAL::Arr_bounded_planar_topology_traits_2<GeomTraits,Dcel>> &)'
+          with
+          [
+              GeomTraits_=Traits_2,
+              GeomTraits=Traits_2,
+              Dcel=CGAL::Arr_default_dcel<Traits_2>
+          ]
+  c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(203): note: see reference to function template instantiation 'CGAL::Arrangement_on_surface_with_history_2<GeomTraits_,CGAL::Arr_bounded_planar_topology_traits_2<GeomTraits,Dcel>>::Arrangement_on_surface_with_history_2(const CGAL::Arrangement_on_surface_with_history_2<GeomTraits_,CGAL::Arr_bounded_planar_topology_traits_2<GeomTraits,Dcel>> &)' being compiled
+          with
+          [
+              GeomTraits_=Traits_2,
+              GeomTraits=Traits_2,
+              Dcel=CGAL::Arr_default_dcel<Traits_2>
+          ]
+  c:\dev\cgal-4.12\include\cgal\arrangement_with_history_2.h(53): note: see reference to class template instantiation 'CGAL::Arrangement_on_surface_with_history_2<GeomTraits_,CGAL::Arr_bounded_planar_topology_traits_2<GeomTraits,Dcel>>' being compiled
+          with
+          [
+              GeomTraits_=Traits_2,
+              GeomTraits=Traits_2,
+              Dcel=CGAL::Arr_default_dcel<Traits_2>
+          ]
+  c:\users\sak\source\repos\wysiwyc\visiblesvg\include\helper.h(41): note: see reference to class template instantiation 'CGAL::Arrangement_with_history_2<Traits_2,CGAL::Arr_default_dcel<GeomTraits_>>' being compiled
+          with
+          [
+              GeomTraits_=Traits_2
+          ]
+c:\dev\cgal-4.12\include\cgal\arrangement_2\arrangement_on_surface_2_impl.h(4969): warning C4456: declaration of 'hh' hides previous local declaration
+  c:\dev\cgal-4.12\include\cgal\arrangement_2\arrangement_on_surface_2_impl.h(4426): note: see declaration of 'hh'
+c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(277): warning C4456: declaration of 'sc' hides previous local declaration
+  c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(260): note: see declaration of 'sc'
+  c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(204): note: while compiling class template member function 'void CGAL::Surface_sweep_2::Surface_sweep_2<Visitor>::_handle_right_curves(void)'
+  c:\dev\cgal-4.12\include\cgal\surface_sweep_2_algorithms.h(133): note: see reference to class template instantiation 'CGAL::Surface_sweep_2::Surface_sweep_2<Visitor>' being compiled
+  c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(259): note: see reference to function template instantiation 'OutputIterator CGAL::compute_intersection_points<CGAL::internal::In_place_list_iterator<T,Alloc>,std::back_insert_iterator<Point_set>,Traits_2>(CurveInputIterator,CurveInputIterator,OutputIterator,bool,Traits &)' being compiled
+          with
+          [
+              OutputIterator=std::back_insert_iterator<Point_set>,
+              T=CGAL::Arrangement_on_surface_with_history_2<Traits_2,CGAL::Arr_bounded_planar_topology_traits_2<Traits_2,CGAL::Arr_default_dcel<Traits_2>>>::Curve_halfedges,
+              Alloc=std::allocator<CGAL::Arrangement_on_surface_with_history_2<Traits_2,CGAL::Arr_bounded_planar_topology_traits_2<Traits_2,CGAL::Arr_default_dcel<Traits_2>>>::Curve_halfedges>,
+              CurveInputIterator=CGAL::internal::In_place_list_iterator<CGAL::Arrangement_on_surface_with_history_2<Traits_2,CGAL::Arr_bounded_planar_topology_traits_2<Traits_2,CGAL::Arr_default_dcel<Traits_2>>>::Curve_halfedges,std::allocator<CGAL::Arrangement_on_surface_with_history_2<Traits_2,CGAL::Arr_bounded_planar_topology_traits_2<Traits_2,CGAL::Arr_default_dcel<Traits_2>>>::Curve_halfedges>>,
+              Traits=Traits_2
+          ]
+c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(590): warning C4456: declaration of 'ps_x1' hides previous local declaration
+  c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(542): note: see declaration of 'ps_x1'
+  c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(407): note: while compiling class template member function 'void CGAL::Surface_sweep_2::Surface_sweep_2<Visitor>::_intersect(CGAL::Surface_sweep_2::Default_subcurve<GeometryTraits_2,Event_,Allocator_,CGAL::Default> *,CGAL::Surface_sweep_2::Default_subcurve<GeometryTraits_2,Event_,Allocator_,CGAL::Default> *,CGAL::Surface_sweep_2::Default_event<GeometryTraits_2,Allocator_> *)'
+          with
+          [
+              GeometryTraits_2=Traits_2,
+              Event_=CGAL::Surface_sweep_2::Default_event<Traits_2,std::allocator<int>>,
+              Allocator_=std::allocator<int>
+          ]
+  c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(267): note: see reference to function template instantiation 'void CGAL::Surface_sweep_2::Surface_sweep_2<Visitor>::_intersect(CGAL::Surface_sweep_2::Default_subcurve<GeometryTraits_2,Event_,Allocator_,CGAL::Default> *,CGAL::Surface_sweep_2::Default_subcurve<GeometryTraits_2,Event_,Allocator_,CGAL::Default> *,CGAL::Surface_sweep_2::Default_event<GeometryTraits_2,Allocator_> *)' being compiled
+          with
+          [
+              GeometryTraits_2=Traits_2,
+              Event_=CGAL::Surface_sweep_2::Default_event<Traits_2,std::allocator<int>>,
+              Allocator_=std::allocator<int>
+          ]
+  c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(41): note: while compiling class template member function 'void CGAL::Surface_sweep_2::Surface_sweep_2<Visitor>::_init_structures(void)'
+c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(593): warning C4456: declaration of 'ps_y1' hides previous local declaration
+  c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(545): note: see declaration of 'ps_y1'
+c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(596): warning C4456: declaration of 'ps_x2' hides previous local declaration
+  c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(548): note: see declaration of 'ps_x2'
+c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(599): warning C4456: declaration of 'ps_y2' hides previous local declaration
+  c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(551): note: see declaration of 'ps_y2'
+c:\dev\cgal-4.12\include\cgal\arr_bounded_planar_topology_traits_2.h(486): warning C4702: unreachable code
+c:\dev\cgal-4.12\include\cgal\arrangement_2\arr_traits_adaptor_2.h(1348): warning C4702: unreachable code
+c:\dev\cgal-4.12\include\cgal\arr_geometry_traits\bezier_x_monotone_2.h(1421): warning C4702: unreachable code
+c:\dev\cgal-4.12\include\cgal\arr_geometry_traits\bezier_x_monotone_2.h(1785): warning C4702: unreachable code
+c:\dev\cgal-4.12\include\cgal\arrangement_2\arr_traits_adaptor_2.h(1243): warning C4702: unreachable code
+c:\dev\cgal-4.12\include\cgal\arr_geometry_traits\bezier_point_2.h(1352): warning C4702: unreachable code
+c:\dev\cgal-4.12\include\cgal\arrangement_2\arr_traits_adaptor_2.h(1050): warning C4702: unreachable code
+c:\dev\cgal-4.12\include\cgal\arrangement_2\arr_traits_adaptor_2.h(622): warning C4702: unreachable code
+  visibleSvg.vcxproj -> C:\Users\sak\source\repos\wysiwyc\visibleSvg\build\build\visibleSvg.exe
