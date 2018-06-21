@@ -29,6 +29,24 @@ Arrangement_2::Curve_iterator find_curve(Arrangement_2::Curve_iterator& first,
 	return last;
 }
 
+Arrangement_2::Halfedge_iterator find_edge(Arrangement_2::Halfedge_iterator& first,
+	Arrangement_2::Halfedge_iterator& last,
+	const Arrangement_2::Halfedge& e)
+{
+	Bezier_cache c;
+	while (first != last)
+	{
+		Point first_source = first->source()->point();
+		Point first_target = first->target()->point();
+		Point edge_source = e.source()->point();
+		Point edge_target = e.target()->point();
+		if (first_source.equals(edge_source, c) && first_target.equals(edge_target, c))
+			return first;
+		++first;
+	}
+	return last;
+}
+
 bool vertex_is_intersection(const Point& p, Point_set& intersections)
 {
 	return find_point(intersections.begin(), intersections.end(), p) != intersections.end();
@@ -250,6 +268,97 @@ void handle_isolated_and_holes(const Shape_set& shapes, const Shape_indices& ind
 	}
 }
 
+void find_shape_index_from_edge(Arrangement_2& arr, 
+	const Arrangement_2::Halfedge& edge,
+	const Shape_set& shapes, 
+	const Shape_indices& indices, 
+	int& shape_index)
+{
+	Arrangement_2::Halfedge_iterator edge_handle = find_edge(arr.halfedges_begin(), arr.halfedges_end(), edge);
+	int curve_index = std::abs(std::distance(find_curve(arr.curves_begin(), arr.curves_end(), edge_handle->curve().supporting_curve()), arr.curves_begin()));
+	shape_index = indices[curve_index];
+}
+
+/*
+template <typename event_type>
+struct test_visitor : public boost::default_bfs_visitor {
+	using event_filter = event_type;
+
+	void operator()(Vertex, Graph const&) const {
+		std::cout << __PRETTY_FUNCTION__ << std::endl;
+	}
+};
+*/
+
+void assign_winding_numbers(Arrangement_2& arr, const Shape_set& shapes, const Shape_indices& indices)
+{
+	/*
+	Dual_arrangement dual(arr);
+	std::vector<Vertex> distance_map(arr.number_of_faces());
+	//distance_map[Foo] = Foo;
+
+	Face_index_map index_map(arr);
+	boost::breadth_first_search(dual, arr.unbounded_face(),
+		boost::vertex_index_map(index_map).visitor(
+			boost::make_bfs_visitor(
+				std::make_pair(
+					boost::record_distances(distance_map, boost::on_tree_edge()),
+					test_visitor<boost::on_discover_vertex>()
+				)
+			)
+		)
+	);
+	*/
+
+	Arrangement_2::Hole_const_iterator inner_ccb;
+	Arrangement_2::Face_const_iterator fit = arr.unbounded_face();
+
+	std::cout << "number of inner ccbs: " << fit->number_of_inner_ccbs() << std::endl;
+	std::cout << "number of holes: " << fit->number_of_holes() << std::endl;
+
+	// going through inner ccbs in the unbounded face (ONE, IN THE CASE OF TWO RECTANGLES)
+	for (inner_ccb = fit->holes_begin(); inner_ccb != fit->holes_end(); ++inner_ccb)
+	{
+		Ccb_const_circulator ccb = *inner_ccb;
+		Ccb_edge_container ccb_edges(ccb);
+		Ccb_edge_container::iterator edge = ccb_edges.begin();
+		
+		//Arrangement_2::Halfedge_const_iterator edge = ccb->ccb();
+		//Arrangement_2::Halfedge_const_iterator edge_twin = edge->twin();
+
+		// find the first bounded face (face in a closed shape)
+		for (edge; !(edge->twin()->face()->is_unbounded()); ++edge)
+		{
+			if (!edge->twin()->face()->is_unbounded())
+				break;
+		}
+
+		// traverse this face's outer ccb
+		Arrangement_2::Face_const_handle face = edge->twin()->face();
+		Ccb_const_circulator outer_ccb = face->outer_ccb();
+		Ccb_edge_container face_edges(outer_ccb);
+		Ccb_edge_container::iterator face_edge;
+
+		for (face_edge = face_edges.begin(); face_edge != face_edges.end(); ++face_edge)
+		{
+			Arrangement_2::Halfedge_const_handle face_edge_twin = face_edge->twin();
+			// if both faces are not unbounded
+			if (!face_edge->face()->is_unbounded() && !face_edge_twin->face()->is_unbounded())
+			{
+				Arrangement_2::Halfedge h = *face_edge;
+				Arrangement_2::Halfedge h_twin = *(face_edge->twin());
+
+				int first_shape_index, second_shape_index;
+				find_shape_index_from_edge(arr, h, shapes, indices, first_shape_index);
+				find_shape_index_from_edge(arr, h_twin, shapes, indices, second_shape_index);
+				std::cout << first_shape_index << ", " << second_shape_index << std::endl;
+			}
+		}
+
+	}
+	
+}
+
 void flatten(Arrangement_2& arr, Shape_set& shapes, Handle_set& handles, Shape_indices& indices)
 {
 	Traits_2 tr;
@@ -263,9 +372,11 @@ void flatten(Arrangement_2& arr, Shape_set& shapes, Handle_set& handles, Shape_i
 
 	for (ipit = int_pts.begin(); ipit != int_pts.end(); ++ipit)
 		std::cout << *ipit << std::endl;
-	
 
-	//std::cout << "curve colors: " << std::endl;
+	Arrangement_2::Face_const_iterator fit = arr.unbounded_face();
+	assign_winding_numbers(arr, shapes, indices);
+	
+	/*
 	Arrangement_2::Curve_iterator cit;
 
 	Edge_handle_set removable;
@@ -304,7 +415,9 @@ void flatten(Arrangement_2& arr, Shape_set& shapes, Handle_set& handles, Shape_i
 			
 		}
 	}
+	*/
 
+	/*
 	std::cout << "-------" << std::endl;
 
 	
@@ -313,4 +426,5 @@ void flatten(Arrangement_2& arr, Shape_set& shapes, Handle_set& handles, Shape_i
 
 
 	std::cout << "-------" << std::endl;
+	*/
 }

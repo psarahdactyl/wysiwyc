@@ -1,5 +1,42 @@
 #include "print_arrangement.h"
 
+void print_ccb(Arrangement_2::Ccb_halfedge_const_circulator circ)
+{
+	Arrangement_2::Ccb_halfedge_const_circulator curr = circ;
+	std::cout << "(" << curr->source()->point() << ")";
+	do {
+		Arrangement_2::Halfedge_const_handle he = curr->ccb();
+		std::cout << " [" << he->curve() << "] "
+			<< "(" << he->target()->point() << ")";
+	} while (++curr != circ);
+	std::cout << std::endl;
+}
+
+void print_face(Arrangement_2::Face_const_handle f)
+{
+	// Print the outer boundary.
+	if (f->is_unbounded())
+		std::cout << "Unbounded face. " << std::endl;
+	else {
+		std::cout << "Outer boundary: ";
+		print_ccb(f->outer_ccb());
+	}
+	// Print the boundary of each of the holes.
+	Arrangement_2::Hole_const_iterator hi;
+	int index = 1;
+	for (hi = f->holes_begin(); hi != f->holes_end(); ++hi, ++index) {
+		std::cout << " Hole #" << index << ": ";
+		print_ccb(*hi);
+	}
+	// Print the isolated vertices.
+	Arrangement_2::Isolated_vertex_const_iterator iv;
+	for (iv = f->isolated_vertices_begin(), index = 1;
+		iv != f->isolated_vertices_end(); ++iv, ++index) {
+		std::cout << " Isolated vertex #" << index << ": "
+			<< "(" << iv->point() << ")" << std::endl;
+	}
+}
+
 void print_arrangement(Arrangement_2& arr)
 {
 	// --------------- PRINTING ---------------

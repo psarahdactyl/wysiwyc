@@ -134,7 +134,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>C:\Users\sak\source\repos\wysiwyc\visibleSvg\include;C:\dev\CGAL-4.12\include;C:\dev\CGAL-4.12\build\include;C:\glfw\include;C:\dev\CGAL-4.12\auxiliary\gmp\include;C:\local\boost_1_67_0;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sak\source\repos\wysiwyc\visibleSvg\include;C:\dev\CGAL-4.12\include;C:\dev\CGAL-4.12\build\include;C:\glfw\include;C:\dev\CGAL-4.12\auxiliary\gmp\include;C:\local\boost_1_67_0;C:\local\eigen-git-mirror-master\Eigen</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -198,7 +198,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <Optimization>Full</Optimization>
-      <AdditionalIncludeDirectories>C:\Users\sak\source\repos\wysiwyc\visibleSvg\include;C:\dev\CGAL-4.12\include;C:\dev\CGAL-4.12\build\include;C:\glfw\include;C:\dev\CGAL-4.12\auxiliary\gmp\include;C:\local\boost_1_67_0;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sak\source\repos\wysiwyc\visibleSvg\include;C:\dev\CGAL-4.12\include;C:\dev\CGAL-4.12\build\include;C:\glfw\include;C:\dev\CGAL-4.12\auxiliary\gmp\include;C:\local\boost_1_67_0;C:\local\eigen-git-mirror-master\Eigen</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
