@@ -68,18 +68,9 @@ void find_shape_index_from_edge(Arrangement_2& arr,
 	Arrangement_2::Curve_const_iterator found_curve;
 	found_curve = find_curve(arr.curves_begin(), arr.curves_end(), edge->curve().supporting_curve());
 
-	int curve_index = get_index_in_arrangement<Arrangement_2::Curve_const_iterator>(found_curve, begin_curves) % (arr.number_of_curves()-1);
+	int curve_index = get_index_in_arrangement<Arrangement_2::Curve_const_iterator>(found_curve, begin_curves);
 
 	shape_index = indices[curve_index];
-}
-
-void find_face_in_arrangement(Arrangement_2& arr, const Arrangement_2::Face_const_handle& face, int& face_index)
-{
-	Arrangement_2::Face_iterator begin = arr.faces_begin();
-	//Arrangement_2::Face_iterator end = arr.faces_end();
-	//Arrangement_2::Face_iterator found;
-	//found = find_face(begin, end, face);
-	face_index = get_index_in_arrangement<Arrangement_2::Face_const_iterator>(face, begin) % (arr.number_of_faces()-1);
 }
 
 void mark_as_visited(const int& index, std::vector<int>& visited)
@@ -94,11 +85,12 @@ bool has_been_visited(const int& index, std::vector<int>& visited)
 	return false;
 }
 
+
 void assign_winding_numbers(Arrangement_2& arr, 
 	const Shape_set& shapes, 
 	const Shape_indices& indices, 
 	std::vector<int>& visited,
-	Eigen::SparseMatrix<int>& winding_numbers)
+	Eigen::SparseMatrix<int, Eigen::RowMajor>& winding_numbers)
 {
 	std::stack<Arrangement_2::Face_const_iterator> stack;
 	std::stack<int> parents; // ints are indices to faces in arrangement
@@ -118,8 +110,7 @@ void assign_winding_numbers(Arrangement_2& arr,
 		int parent_face_index = parents.top();
 		parents.pop();
 
-		int first_face_index;
-		find_face_in_arrangement(arr, current_face, first_face_index);
+		int first_face_index = current_face->data();
 
 		if (!has_been_visited(first_face_index, visited))
 		{
@@ -139,12 +130,12 @@ void assign_winding_numbers(Arrangement_2& arr,
 					{
 						Arrangement_2::Face_const_handle face;
 						face = edge->twin()->face();
-						int face_index;
-						find_face_in_arrangement(arr, face, face_index);
+						int face_index = face->data();
 
 						if (!has_been_visited(face_index, visited))
 						{
 							// add face to stack
+							std::cout << "pushing face " << face_index << std::endl;
 							stack.push(face);
 							parents.push(first_face_index);
 						}
@@ -162,37 +153,54 @@ void assign_winding_numbers(Arrangement_2& arr,
 				Ccb_edge_container::iterator edge = face_edges.begin();
 
 				// face index
-				int face_index;
-				find_face_in_arrangement(arr, edge->face(), face_index);
-
+				int face_index = edge->face()->data();
+				
 				// for edges in face
-				for (edge; edge != face_edges.end(); ++edge)
+				for (edge = face_edges.begin(); edge != face_edges.end(); ++edge)
 				{
 					Arrangement_2::Halfedge_const_handle edge_twin = edge->twin();
 
 					// if both faces are not unbounded
 					if (!(edge->face()->is_unbounded()) && !(edge_twin->face()->is_unbounded()))
 					{
-						int edge_face_index;
-						find_face_in_arrangement(edge_twin->face(), edge_face_index);
+						int edge_face_index = edge_twin->face()->data();
 
 						if (!has_been_visited(edge_face_index, visited))
 						{
+							std::cout << "pushing face " << edge_face_index << std::endl;
 							stack.push(edge_twin->face());
 							parents.push(face_index);
-
 						}
 					}
 				}
-				for (edge; edge != face_edges.end(); ++edge)
+				for (edge = face_edges.begin(); edge != face_edges.end(); ++edge)
 				{
+					Arrangement_2::Halfedge_const_handle edge_twin = edge->twin();
+
+					int edge_face_index = edge_twin->face()->data();
+
 					if(parent_face_index == edge_face_index)
 					{
 						int shape_index;
 						find_shape_index_from_edge(arr, edge_twin, shapes, indices, shape_index);
-						// copy row from winding_number.row(parent_face_index) to winding_number.row(face_index)
-						winding_numbers.block(parent_face_index, 0, 1, shapes.size()) = winding_numbers.block(face_index, 0, 1, shapes.size());
+
+						// copy row from parent_face's row to current face's row
+						winding_numbers.row(face_index) = winding_numbers.row(parent_face_index);
+						std::cout << "after copying row " << parent_face_index << " to row " << face_index << std::endl;
+						for (int k = 0; k < winding_numbers.rows(); k++)
+						{
+							auto row = winding_numbers.row(k);
+							std::cout << row << std::endl;
+						}
+
+						// flip current face's shape bit
 						winding_numbers.coeffRef(face_index, shape_index) = !winding_numbers.coeffRef(face_index, shape_index);
+						std::cout << "after flipping bit " << face_index << ", " << shape_index << std::endl;
+						for (int k = 0; k < winding_numbers.rows(); k++)
+						{
+							auto row = winding_numbers.row(k);
+							std::cout << row << std::endl;
+						}
 
 						break;
 					}
@@ -202,7 +210,7 @@ void assign_winding_numbers(Arrangement_2& arr,
 		}
 	}
 	
-
+	std::cout << "FINAL MATRIX:" << std::endl;
 	for (int k = 0; k < winding_numbers.rows(); k++)
 	{
 		auto row = winding_numbers.row(k);
@@ -216,7 +224,7 @@ void flatten(Arrangement_2& arr, Shape_set& shapes, Handle_set& handles, Shape_i
 	// visited vector is the size (number of faces), all zeros -- change to one if visited 
 	std::vector<int> visited(arr.number_of_faces(), 0);
 	// winding number matrix is the size (number of faces x number of shapes)
-	Eigen::SparseMatrix<int> winding_numbers(arr.number_of_faces(), shapes.size());
+	Eigen::SparseMatrix<int, Eigen::RowMajor> winding_numbers(arr.number_of_faces(), shapes.size());
 	assign_winding_numbers(arr, shapes, indices, visited, winding_numbers);
 	
 

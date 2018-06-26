@@ -14,4 +14,4 @@
 #include "helper.h"
 
 
-void make_arrangement(Arrangement_2& arr, Bezier_set& curves, Handle_set& handles);
+void make_arrangement(Arrangement_2& arr, Face_index_observer& obs, Bezier_set& curves, Handle_set& handles);

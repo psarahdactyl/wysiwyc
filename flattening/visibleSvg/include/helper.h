@@ -24,6 +24,8 @@
 #include <CGAL/Arr_face_index_map.h>
 #include <CGAL/graph_traits_Dual_Arrangement_2.h>
 #include <CGAL/boost/graph/Dual.h>
+#include <CGAL/Arr_observer.h>
+#include <CGAL/Arr_extended_dcel.h>
 
 // boost includes
 #include <boost/graph/breadth_first_search.hpp>
@@ -47,7 +49,8 @@ typedef Alg_kernel::Point_2									Alg_point_2;
 typedef Traits_2::Curve_2									Bezier_curve_2;
 typedef Traits_2::X_monotone_curve_2						X_monotone_curve_2;
 
-typedef CGAL::Arrangement_with_history_2<Traits_2>			Arrangement_2;
+typedef CGAL::Arr_face_extended_dcel<Traits_2, int>			Dcel;
+typedef CGAL::Arrangement_with_history_2<Traits_2, Dcel>	Arrangement_2;
 typedef CGAL::Dual<Arrangement_2>							Dual_arrangement;
 
 typedef Traits_2::Point_2									Point;
@@ -69,6 +72,30 @@ typedef std::vector<Curve_handle>							Handle_set;
 typedef std::vector<Edge_handle>							Edge_handle_set;
 typedef std::vector<Point>									Point_set;
 
+// An arrangement observer, used to receive notifications of face splits and
+// to update the indices of the newly created faces.
+class Face_index_observer : public CGAL::Arr_observer<Arrangement_2>
+{
+private:
+	int n_faces;          // The current number of faces.
+public:
+	Face_index_observer(Arrangement_2& arr) :
+		CGAL::Arr_observer<Arrangement_2>(arr),
+		n_faces(0)
+	{
+		CGAL_precondition(arr.is_empty());
+		arr.unbounded_face()->set_data(0);
+		n_faces++;
+	}
+	virtual void after_split_face(Face_handle /* old_face */,
+		Face_handle new_face, bool)
+	{
+		// Assign index to the new face.
+		new_face->set_data(n_faces);
+		n_faces++;
+	}
+};
+
 // my typedefs
 typedef std::vector<NSVGshape*>		Shape_set;
 typedef std::vector<int>			Shape_indices;
@@ -79,6 +106,7 @@ void remove_duplicate(std::vector<Type> vec) {
 	std::sort(vec.begin(), vec.end());
 	vec.erase(unique(vec.begin(), vec.end()), vec.end());
 }
+
 
 // finds the index of a given iterator in its list
 template <class Iterator>

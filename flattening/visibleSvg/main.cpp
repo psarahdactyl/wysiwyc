@@ -28,6 +28,7 @@ int main(int argc, char *argv[])
 	// Bezier_shape in a Bezier_set
 	// Construct the arrangement.
 	Arrangement_2 arr;
+	Face_index_observer obs(arr);
 	Handle_set handles;
 	Shape_set shapes;
 	Bezier_set curves;
@@ -35,7 +36,7 @@ int main(int argc, char *argv[])
 
 	// Reads in an svg file and fills the shape and Bezier sets
 	read_svg(filename, shapes, curves, indices);
-	make_arrangement(arr, curves, handles);
+	make_arrangement(arr, obs, curves, handles);
 	print_arrangement(arr);
 
 	std::cout << "number of shapes total: " << shapes.size() << std::endl;
