@@ -101,16 +101,23 @@ void assign_winding_numbers(Arrangement_2& arr,
 	Eigen::SparseMatrix<int>& winding_numbers)
 {
 	std::stack<Arrangement_2::Face_const_iterator> stack;
+	std::stack<int> parents; // ints are indices to faces in arrangement
 
 	Arrangement_2::Hole_const_iterator inner_ccb;
 	Arrangement_2::Face_const_iterator fit = arr.unbounded_face();
 
 	stack.push(fit);
+	parents.push(-1);
 
 	while (!stack.empty())
 	{
 		std::cout << "-------" << std::endl;
+
 		Arrangement_2::Face_const_iterator current_face = stack.top();
+		stack.pop();
+		int parent_face_index = parents.top();
+		parents.pop();
+
 		int first_face_index;
 		find_face_in_arrangement(arr, current_face, first_face_index);
 
@@ -118,56 +125,45 @@ void assign_winding_numbers(Arrangement_2& arr,
 		{
 			mark_as_visited(first_face_index, visited);
 
-			stack.pop();
-
-			Ccb_const_circulator ccb;
-			Arrangement_2::Face_const_handle face;
-
 			if (current_face->is_unbounded())
 			{
 				// going through inner ccbs 
 				for (inner_ccb = current_face->holes_begin(); inner_ccb != current_face->holes_end(); ++inner_ccb)
 				{
-					ccb = *inner_ccb;
+					Ccb_const_circulator ccb = *inner_ccb;
 					Ccb_edge_container ccb_edges(ccb);
 					Ccb_edge_container::iterator edge = ccb_edges.begin();
 
-					// find the first bounded face (face in a closed shape)
+					// 
 					for (edge; edge != ccb_edges.end(); ++edge)
 					{
-						if (!(edge->twin()->face()->is_unbounded()))
-							break;
-					}
-					// this will be the face we use
-					face = edge->twin()->face();
-					int face_index;
-					find_face_in_arrangement(arr, face, face_index);
-					if (!has_been_visited(face_index, visited))
-					{
-						// add face to stack
-						stack.push(face);
+						Arrangement_2::Face_const_handle face;
+						face = edge->twin()->face();
+						int face_index;
+						find_face_in_arrangement(arr, face, face_index);
+
+						if (!has_been_visited(face_index, visited))
+						{
+							// add face to stack
+							stack.push(face);
+							parents.push(first_face_index);
+						}
+						
 					}
 				}
 			}
 			else
 			{
-				face = current_face;
+				Arrangement_2::Face_const_handle face = current_face;
 
 				// traverse the face's outer ccb
 				Ccb_const_circulator outer_ccb = face->outer_ccb();
 				Ccb_edge_container face_edges(outer_ccb);
 				Ccb_edge_container::iterator edge = face_edges.begin();
 
-				// shape index
-				int crossed_edge_shape_index;
-				find_shape_index_from_edge(arr, edge->twin(), shapes, indices, crossed_edge_shape_index);
-
 				// face index
-				int crossed_face_index;
-				find_face_in_arrangement(arr, edge->face(), crossed_face_index);
-
-				// update winding number
-				winding_numbers.coeffRef(crossed_face_index, crossed_edge_shape_index) = 1;
+				int face_index;
+				find_face_in_arrangement(arr, edge->face(), face_index);
 
 				// for edges in face
 				for (edge; edge != face_edges.end(); ++edge)
@@ -177,26 +173,28 @@ void assign_winding_numbers(Arrangement_2& arr,
 					// if both faces are not unbounded
 					if (!(edge->face()->is_unbounded()) && !(edge_twin->face()->is_unbounded()))
 					{
-						int face_edge_shape_index;
-						find_shape_index_from_edge(arr, edge_twin, shapes, indices, face_edge_shape_index);
+						int edge_face_index;
+						find_face_in_arrangement(edge_twin->face(), edge_face_index);
 
-						if (crossed_edge_shape_index != face_edge_shape_index)
+						if (!has_been_visited(edge_face_index, visited))
 						{
-							int new_face_index;
-							find_face_in_arrangement(arr, edge_twin->face(), new_face_index);
+							stack.push(edge_twin->face());
+							parents.push(face_index);
 
-							// update winding number
-							winding_numbers.coeffRef(new_face_index, face_edge_shape_index) = 1;
-
-							if (!has_been_visited(new_face_index, visited))
-							{
-								std::cout << "crossed edge shape index: " << crossed_edge_shape_index << std::endl;
-								std::cout << "face edge shape index: " << face_edge_shape_index << std::endl;
-
-								// update stack
-								stack.push(edge_twin->face());
-							}
 						}
+					}
+				}
+				for (edge; edge != face_edges.end(); ++edge)
+				{
+					if(parent_face_index == edge_face_index)
+					{
+						int shape_index;
+						find_shape_index_from_edge(arr, edge_twin, shapes, indices, shape_index);
+						// copy row from winding_number.row(parent_face_index) to winding_number.row(face_index)
+						winding_numbers.block(parent_face_index, 0, 1, shapes.size()) = winding_numbers.block(face_index, 0, 1, shapes.size());
+						winding_numbers.coeffRef(face_index, shape_index) = !winding_numbers.coeffRef(face_index, shape_index);
+
+						break;
 					}
 				}
 			}
