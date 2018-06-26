@@ -1,56 +1,5 @@
 #include "flatten.h"
 
-typedef std::_Vector_iterator<std::_Vector_val<std::_Simple_types<Point>>> Point_iterator;
-
-Point_iterator find_point(Point_iterator& first, 
-	Point_iterator& last, 
-	const Point& p)
-{
-	Bezier_cache c;
-	while (first != last)
-	{
-		if ((*first).equals(p, c))
-			return first;
-		++first;
-	}
-	return last;
-}
-
-Arrangement_2::Curve_iterator find_curve(Arrangement_2::Curve_iterator& first, 
-	Arrangement_2::Curve_iterator& last, 
-	const Bezier_curve_2& c)
-{
-	while (first != last)
-	{
-		if ((*first).is_same(c))
-			return first;
-		++first;
-	}
-	return last;
-}
-
-Arrangement_2::Halfedge_iterator find_edge(Arrangement_2::Halfedge_iterator& first,
-	Arrangement_2::Halfedge_iterator& last,
-	const Arrangement_2::Halfedge& e)
-{
-	Bezier_cache c;
-	while (first != last)
-	{
-		Point first_source = first->source()->point();
-		Point first_target = first->target()->point();
-		Point edge_source = e.source()->point();
-		Point edge_target = e.target()->point();
-		if (first_source.equals(edge_source, c) && first_target.equals(edge_target, c))
-			return first;
-		++first;
-	}
-	return last;
-}
-
-bool vertex_is_intersection(const Point& p, Point_set& intersections)
-{
-	return find_point(intersections.begin(), intersections.end(), p) != intersections.end();
-}
 
 void find_comparable_shapes(const Vertex_handle& first,
 	const Vertex_handle& second,
@@ -73,7 +22,13 @@ void find_comparable_shapes(const Vertex_handle& first,
 			X_monotone_curve_2 curve = iheit->curve();
 			Bezier_curve_2 b_curve = curve.supporting_curve();
 
-			int incident_curve_index = std::distance(find_curve(arr.curves_begin(), arr.curves_end(), iheit->curve().supporting_curve()), cit);
+			Arrangement_2::Curve_iterator begin = arr.curves_begin();
+			Arrangement_2::Curve_iterator end = arr.curves_end();
+			Arrangement_2::Curve_const_iterator found;
+
+			found = find_curve(begin, end, b_curve);
+
+			int incident_curve_index = get_index_in_arrangement<Arrangement_2::Curve_const_iterator>(found, cit) % (arr.number_of_curves()-1);
 			int shape_index = indices[incident_curve_index];
 			comparable_indices.push_back(shape_index);
 		}
@@ -87,177 +42,11 @@ void find_comparable_shapes(const Vertex_handle& first,
 	
 }
 
-bool should_remove_compare_shapes(const int& shape_index, const int& c_index, const Shape_set& shapes, Arrangement_2 arr)
-{
-	NSVGshape* s = shapes[shape_index];
-	NSVGshape* c = shapes[c_index];
-
-	unsigned int stroke_color = s->stroke.color;
-	unsigned int fill_color = s->fill.color;
-	std::cout << "\t stroke color id " << stroke_color << " from shape " << shape_index << std::endl;
-	std::cout << "\t fill color id " << fill_color << " from shape " << shape_index << std::endl;
-
-	if (c_index < shape_index)
-	// if shape we're comparing (c_index) is in front of the shape that the edge belongs to (shape_index)
-	{
-		if (c->fill.color != 0)
-		// if shape we're comparing is opaque
-		{
-			return true;
-		}
-		return false;
-	}
-	else
-	// if shape we're comparing (c_index) is in behind the shape that the edge belongs to (shape_index)
-	{
-		if (s->fill.color == 0)
-		// if shape edge belongs to is transparent
-		{
-			return true;
-		}
-		return false;
-	}
-}
-
-void check_edge_removability(const Edge_handle& eh,
-	Point_set& intersections,
-	const Arrangement_2::Curve_iterator& cit,
-	const Shape_set& shapes,
-	const Shape_indices& indices,
-	Arrangement_2& arr,
-	Edge_handle_set& removable)
-{
-	// must mod by the number of curves so that distance is in correct range
-	int curve_index = std::distance(cit, arr.curves_begin()) % arr.number_of_curves(); 
-	int shape_index = indices[curve_index];
-
-	int intersection_count = 0;
-	std::vector<bool> should_remove_edge;
-
-	Hole_container ccb(eh->ccb());
-	Hole_container::iterator ccit = ccb.begin();
-
-	// go through connected component boundary collecting links
-
-	// until we are "out" of the intersection points
-	// i.e. the target vertex of an edge is not an intersection 
-	// !(vertex_is_intersection(ccit->target()->point(), intersections))
-	for (ccit = ccb.begin(); ccit != ccb.end(); ++ccit)
-	{
-		Vertex_handle first = eh->source();
-		Vertex_handle second = eh->target();
-		Point v1 = first->point();
-		Point v2 = second->point();
-
-		// if target is intersection
-		if (vertex_is_intersection(v2, intersections) && intersection_count == 0)
-		{
-			std::cout << "START THE CHAIN" << std::endl;
-			intersection_count++;
-		}
-
-		if ( (vertex_is_intersection(v1, intersections) || vertex_is_intersection(v2, intersections))
-			&& intersection_count > 0)
-		{
-			intersection_count++;
-		}
-
-		if (intersection_count > 0 && intersection_count <= 2)
-		{
-			// find all comparable shapes adjacent to each vertex of the edge
-			Shape_indices source_comparable_indices;
-			Shape_indices target_comparable_indices;
-			Shape_indices comparable_indices;
-
-			find_comparable_shapes(first, second, cit, indices, arr,
-				source_comparable_indices, target_comparable_indices);
-
-			std::cout << "source COMPARABLE INDICES SIZE: " << source_comparable_indices.size() << std::endl;
-			std::cout << "target COMPARABLE INDICES SIZE: " << target_comparable_indices.size() << std::endl;
-
-			std::sort(source_comparable_indices.begin(), source_comparable_indices.end());
-			std::sort(target_comparable_indices.begin(), target_comparable_indices.end());
-
-			// union of source and target vertex comparable shapes
-			std::set_union(source_comparable_indices.begin(),
-				source_comparable_indices.end(),
-				target_comparable_indices.begin(),
-				target_comparable_indices.end(),
-				std::back_inserter(comparable_indices));
-
-			std::cout << "COMPARABLE INDICES SIZE: " <<comparable_indices.size() << std::endl;
-
-			auto it = std::adjacent_find(comparable_indices.begin(), comparable_indices.end());
-			Shape_indices common_indices;
-			while (it != comparable_indices.end())
-			{
-				int i = std::distance(comparable_indices.begin(), it);
-				std::cout << "adjacent find at index " << i << std::endl;
-				common_indices.push_back(comparable_indices[i]);
-				it = std::adjacent_find(comparable_indices.begin(), comparable_indices.end(), std::greater<int>());
-			}
-			std::cout << "COMMON INDICES SIZE: " << common_indices.size() << std::endl;
-
-			// compare with all comparable shapes
-			for (int c_index : comparable_indices)
-				should_remove_edge.push_back(should_remove_compare_shapes(shape_index, c_index, shapes, arr));
-
-			// if any of the shapes are opaque and blocking the current edge, we should remove it
-			if (std::any_of(should_remove_edge.begin(), should_remove_edge.end(), [](bool v) { return v; }))
-				removable.push_back(eh);
-		}
-
-		// if source is intersection
-		if ((vertex_is_intersection(v1, intersections) || vertex_is_intersection(v2, intersections))
-			&& intersection_count == 2)
-		{
-			std::cout << "END THE CHAIN" << std::endl << std::endl;
-			intersection_count = 0;
-			break;
-		}
-		
-	}
-
-}
-
-void handle_isolated_and_holes(const Shape_set& shapes, const Shape_indices& indices, Arrangement_2& arr)
+void handle_isolated_vertices(Arrangement_2& arr)
 {
 	Arrangement_2::Face_iterator fit;
 	for (fit = arr.faces_begin(); fit != arr.faces_end(); ++fit)
 	{
-		if (fit->number_of_holes() > 0) // there is a hole in the face
-		{
-			// find face color
-			Hole_container outer(fit->outer_ccb());
-			Hole_container::iterator outer_hcit = outer.begin();
-			int face_curve_index = std::abs(std::distance(find_curve(arr.curves_begin(), arr.curves_end(), outer_hcit->curve().supporting_curve()), arr.curves_begin()));
-			unsigned int face_color = shapes[indices[face_curve_index]]->fill.color;
-
-			if (face_color != 0) // if face color is not transparent
-			{
-				Arrangement_2::Hole_iterator hit;
-				// handle the holes
-				for (hit = fit->holes_begin(); hit != fit->holes_end(); ++hit)
-				{
-					// find inner ccb face color
-					Hole_circulator hc = *hit;
-					Hole_container hole_edges(hc);
-					Hole_container::iterator hcit = hole_edges.begin();
-					int hole_curve_index = std::abs(std::distance(find_curve(arr.curves_begin(), arr.curves_end(), hcit->curve().supporting_curve()), arr.curves_begin()));
-					unsigned int hole_color = shapes[indices[hole_curve_index]]->fill.color;
-
-					if (hole_curve_index > face_curve_index) // if the hole is behind the face
-					{
-						for (hcit = hole_edges.begin(); hcit != hole_edges.end(); ++hcit)
-						{
-							Edge_handle edge_to_remove = hcit->twin();
-							arr.remove_edge(edge_to_remove);
-						}
-					}
-				}
-			}
-		}
-
 		if (fit->number_of_isolated_vertices() > 0)
 		{
 			Arrangement_2::Isolated_vertex_iterator ivit;
@@ -269,160 +58,176 @@ void handle_isolated_and_holes(const Shape_set& shapes, const Shape_indices& ind
 }
 
 void find_shape_index_from_edge(Arrangement_2& arr, 
-	const Arrangement_2::Halfedge& edge,
+	const Arrangement_2::Halfedge_const_handle& edge,
 	const Shape_set& shapes, 
 	const Shape_indices& indices, 
 	int& shape_index)
 {
-	Arrangement_2::Halfedge_iterator edge_handle = find_edge(arr.halfedges_begin(), arr.halfedges_end(), edge);
-	int curve_index = std::abs(std::distance(find_curve(arr.curves_begin(), arr.curves_end(), edge_handle->curve().supporting_curve()), arr.curves_begin()));
+	Arrangement_2::Curve_const_iterator begin_curves = arr.curves_begin();
+	Arrangement_2::Curve_const_iterator end_curves = arr.curves_end();
+	Arrangement_2::Curve_const_iterator found_curve;
+	found_curve = find_curve(arr.curves_begin(), arr.curves_end(), edge->curve().supporting_curve());
+
+	int curve_index = get_index_in_arrangement<Arrangement_2::Curve_const_iterator>(found_curve, begin_curves) % (arr.number_of_curves()-1);
+
 	shape_index = indices[curve_index];
 }
 
-/*
-template <typename event_type>
-struct test_visitor : public boost::default_bfs_visitor {
-	using event_filter = event_type;
-
-	void operator()(Vertex, Graph const&) const {
-		std::cout << __PRETTY_FUNCTION__ << std::endl;
-	}
-};
-*/
-
-void assign_winding_numbers(Arrangement_2& arr, const Shape_set& shapes, const Shape_indices& indices)
+void find_face_in_arrangement(Arrangement_2& arr, const Arrangement_2::Face_const_handle& face, int& face_index)
 {
-	/*
-	Dual_arrangement dual(arr);
-	std::vector<Vertex> distance_map(arr.number_of_faces());
-	//distance_map[Foo] = Foo;
+	Arrangement_2::Face_iterator begin = arr.faces_begin();
+	//Arrangement_2::Face_iterator end = arr.faces_end();
+	//Arrangement_2::Face_iterator found;
+	//found = find_face(begin, end, face);
+	face_index = get_index_in_arrangement<Arrangement_2::Face_const_iterator>(face, begin) % (arr.number_of_faces()-1);
+}
 
-	Face_index_map index_map(arr);
-	boost::breadth_first_search(dual, arr.unbounded_face(),
-		boost::vertex_index_map(index_map).visitor(
-			boost::make_bfs_visitor(
-				std::make_pair(
-					boost::record_distances(distance_map, boost::on_tree_edge()),
-					test_visitor<boost::on_discover_vertex>()
-				)
-			)
-		)
-	);
-	*/
+void mark_as_visited(const int& index, std::vector<int>& visited)
+{
+	visited[index] = 1;
+}
+
+bool has_been_visited(const int& index, std::vector<int>& visited)
+{
+	if (visited[index] == 1)
+		return true;
+	return false;
+}
+
+void assign_winding_numbers(Arrangement_2& arr, 
+	const Shape_set& shapes, 
+	const Shape_indices& indices, 
+	std::vector<int>& visited,
+	Eigen::SparseMatrix<int>& winding_numbers)
+{
+	std::stack<Arrangement_2::Face_const_iterator> stack;
 
 	Arrangement_2::Hole_const_iterator inner_ccb;
 	Arrangement_2::Face_const_iterator fit = arr.unbounded_face();
 
-	std::cout << "number of inner ccbs: " << fit->number_of_inner_ccbs() << std::endl;
-	std::cout << "number of holes: " << fit->number_of_holes() << std::endl;
+	stack.push(fit);
 
-	// going through inner ccbs in the unbounded face (ONE, IN THE CASE OF TWO RECTANGLES)
-	for (inner_ccb = fit->holes_begin(); inner_ccb != fit->holes_end(); ++inner_ccb)
+	while (!stack.empty())
 	{
-		Ccb_const_circulator ccb = *inner_ccb;
-		Ccb_edge_container ccb_edges(ccb);
-		Ccb_edge_container::iterator edge = ccb_edges.begin();
-		
-		//Arrangement_2::Halfedge_const_iterator edge = ccb->ccb();
-		//Arrangement_2::Halfedge_const_iterator edge_twin = edge->twin();
+		std::cout << "-------" << std::endl;
+		Arrangement_2::Face_const_iterator current_face = stack.top();
+		int first_face_index;
+		find_face_in_arrangement(arr, current_face, first_face_index);
 
-		// find the first bounded face (face in a closed shape)
-		for (edge; !(edge->twin()->face()->is_unbounded()); ++edge)
+		if (!has_been_visited(first_face_index, visited))
 		{
-			if (!edge->twin()->face()->is_unbounded())
-				break;
-		}
+			mark_as_visited(first_face_index, visited);
 
-		// traverse this face's outer ccb
-		Arrangement_2::Face_const_handle face = edge->twin()->face();
-		Ccb_const_circulator outer_ccb = face->outer_ccb();
-		Ccb_edge_container face_edges(outer_ccb);
-		Ccb_edge_container::iterator face_edge;
+			stack.pop();
 
-		for (face_edge = face_edges.begin(); face_edge != face_edges.end(); ++face_edge)
-		{
-			Arrangement_2::Halfedge_const_handle face_edge_twin = face_edge->twin();
-			// if both faces are not unbounded
-			if (!face_edge->face()->is_unbounded() && !face_edge_twin->face()->is_unbounded())
+			Ccb_const_circulator ccb;
+			Arrangement_2::Face_const_handle face;
+
+			if (current_face->is_unbounded())
 			{
-				Arrangement_2::Halfedge h = *face_edge;
-				Arrangement_2::Halfedge h_twin = *(face_edge->twin());
+				// going through inner ccbs 
+				for (inner_ccb = current_face->holes_begin(); inner_ccb != current_face->holes_end(); ++inner_ccb)
+				{
+					ccb = *inner_ccb;
+					Ccb_edge_container ccb_edges(ccb);
+					Ccb_edge_container::iterator edge = ccb_edges.begin();
 
-				int first_shape_index, second_shape_index;
-				find_shape_index_from_edge(arr, h, shapes, indices, first_shape_index);
-				find_shape_index_from_edge(arr, h_twin, shapes, indices, second_shape_index);
-				std::cout << first_shape_index << ", " << second_shape_index << std::endl;
+					// find the first bounded face (face in a closed shape)
+					for (edge; edge != ccb_edges.end(); ++edge)
+					{
+						if (!(edge->twin()->face()->is_unbounded()))
+							break;
+					}
+					// this will be the face we use
+					face = edge->twin()->face();
+					int face_index;
+					find_face_in_arrangement(arr, face, face_index);
+					if (!has_been_visited(face_index, visited))
+					{
+						// add face to stack
+						stack.push(face);
+					}
+				}
 			}
-		}
+			else
+			{
+				face = current_face;
 
+				// traverse the face's outer ccb
+				Ccb_const_circulator outer_ccb = face->outer_ccb();
+				Ccb_edge_container face_edges(outer_ccb);
+				Ccb_edge_container::iterator edge = face_edges.begin();
+
+				// shape index
+				int crossed_edge_shape_index;
+				find_shape_index_from_edge(arr, edge->twin(), shapes, indices, crossed_edge_shape_index);
+
+				// face index
+				int crossed_face_index;
+				find_face_in_arrangement(arr, edge->face(), crossed_face_index);
+
+				// update winding number
+				winding_numbers.coeffRef(crossed_face_index, crossed_edge_shape_index) = 1;
+
+				// for edges in face
+				for (edge; edge != face_edges.end(); ++edge)
+				{
+					Arrangement_2::Halfedge_const_handle edge_twin = edge->twin();
+
+					// if both faces are not unbounded
+					if (!(edge->face()->is_unbounded()) && !(edge_twin->face()->is_unbounded()))
+					{
+						int face_edge_shape_index;
+						find_shape_index_from_edge(arr, edge_twin, shapes, indices, face_edge_shape_index);
+
+						if (crossed_edge_shape_index != face_edge_shape_index)
+						{
+							int new_face_index;
+							find_face_in_arrangement(arr, edge_twin->face(), new_face_index);
+
+							// update winding number
+							winding_numbers.coeffRef(new_face_index, face_edge_shape_index) = 1;
+
+							if (!has_been_visited(new_face_index, visited))
+							{
+								std::cout << "crossed edge shape index: " << crossed_edge_shape_index << std::endl;
+								std::cout << "face edge shape index: " << face_edge_shape_index << std::endl;
+
+								// update stack
+								stack.push(edge_twin->face());
+							}
+						}
+					}
+				}
+			}
+
+		}
 	}
 	
+
+	for (int k = 0; k < winding_numbers.rows(); k++)
+	{
+		auto row = winding_numbers.row(k);
+		std::cout << row << std::endl;
+	}
 }
 
 void flatten(Arrangement_2& arr, Shape_set& shapes, Handle_set& handles, Shape_indices& indices)
 {
-	Traits_2 tr;
-	Point_set int_pts;
 
-	// compute intersection points in the arrangement
-	CGAL::compute_intersection_points(arr.curves_begin(), arr.curves_end(), std::back_inserter(int_pts), false, tr);
-	std::cout << "correct number of intersections: " << int_pts.size() << std::endl;
-
-	Point_set::iterator ipit;
-
-	for (ipit = int_pts.begin(); ipit != int_pts.end(); ++ipit)
-		std::cout << *ipit << std::endl;
-
-	Arrangement_2::Face_const_iterator fit = arr.unbounded_face();
-	assign_winding_numbers(arr, shapes, indices);
+	// visited vector is the size (number of faces), all zeros -- change to one if visited 
+	std::vector<int> visited(arr.number_of_faces(), 0);
+	// winding number matrix is the size (number of faces x number of shapes)
+	Eigen::SparseMatrix<int> winding_numbers(arr.number_of_faces(), shapes.size());
+	assign_winding_numbers(arr, shapes, indices, visited, winding_numbers);
 	
-	/*
-	Arrangement_2::Curve_iterator cit;
-
-	Edge_handle_set removable;
-
-	// go through each curve in the arrangement
-	for (cit = arr.curves_begin(); cit != arr.curves_end(); ++cit)
-	{
-		std::cout << "-------" << std::endl;
-
-		if (arr.number_of_induced_edges(cit) > 1) // if the number of induced edges is more than one, then we care about it.
-												  // it was split by an intersection
-		{
-			//std::cout << "curve id: " << cit->id() << std::endl;
-			Arrangement_2::Induced_edge_iterator ieit;
-
-			// go through each induced edge
-			for (ieit = arr.induced_edges_begin(cit); ieit != arr.induced_edges_end(cit); ++ieit)
-			{
-				Edge_handle eh = *ieit;
-
-				// checks if an edge, or a link of edges is removable, populates the removable vector
-				check_edge_removability(eh, int_pts, cit, shapes, indices, arr, removable);
-
-			}
-
-			
-			std::cout << "-------" << std::endl;
-			std::cout << "removing " << removable.size() << " edges from the arrangement" << std::endl;
-
-			for (int i = 0; i < removable.size(); i++)
-			{
-				CGAL::remove_edge(arr, removable[i]);
-			}
-
-			removable.clear();
-			
-		}
-	}
-	*/
 
 	/*
 	std::cout << "-------" << std::endl;
 
 	
 
-	std::cout << "cleaning up isolated vertices and holes" << std::endl;
+	std::cout << "cleaning up isolated vertices" << std::endl;
 
 
 	std::cout << "-------" << std::endl;

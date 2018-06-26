@@ -11,7 +11,7 @@
 //#define NANOSVG_IMPLEMENTATION
 #include "nanosvg.h"
 
-// CGAL includes and typedefs
+// CGAL includes
 #include <CGAL/Cartesian.h>
 #include <CGAL/CORE_algebraic_number_traits.h>
 #include <CGAL/CORE_BigRat.h>
@@ -30,11 +30,10 @@
 #include <boost/graph/visitors.hpp>
 
 // Eigen includes
-//#include <Eigen/Dense>
+#include <Eigen/Dense>
+#include <Eigen/Sparse>
 
-//typedef boost::graph_traits<Graph>							Graph;
-//typedef boost::graph_traits<Graph>::vertex_descriptor		Vertex;
-
+// CGAL typedefs
 typedef CGAL::CORE_algebraic_number_traits					Nt_traits;
 typedef Nt_traits::Rational									Rational;
 typedef Nt_traits::Algebraic								Algebraic;
@@ -70,56 +69,37 @@ typedef std::vector<Curve_handle>							Handle_set;
 typedef std::vector<Edge_handle>							Edge_handle_set;
 typedef std::vector<Point>									Point_set;
 
-
-// A property map that reads/writes the information to/from the extended
-// face.
-template <typename Arrangement, class Type> class Extended_face_property_map {
-public:
-	typedef typename Arrangement::Face_handle       Face_handle;
-	// Boost property type definitions.
-	typedef boost::read_write_property_map_tag      category;
-	typedef Type                                    value_type;
-	typedef value_type&                             reference;
-	typedef Face_handle                             key_type;
-	// The get function is required by the property map concept.
-	friend reference get(const Extended_face_property_map& /* map */,
-		key_type key)
-	{
-		return key->data();
-	}
-	// The put function is required by the property map concept.
-	friend void put(Extended_face_property_map /* map */,
-		key_type key, value_type val)
-	{
-		key->set_data(val);
-	}
-};
-
 // my typedefs
 typedef std::vector<NSVGshape*>		Shape_set;
 typedef std::vector<int>			Shape_indices;
 
-// Flattens a vector of vectors (https://tinyurl.com/ycdwpz4r)
-template <template<typename...> class R = std::vector,
-	typename Top,
-	typename Sub = typename Top::value_type>
-	R<typename Sub::value_type> flatten_vector(Top const& all)
-{
-	using std::begin;
-	using std::end;
-
-	R<typename Sub::value_type> accum;
-
-	for (auto& sub : all)
-		accum.insert(end(accum), begin(sub), end(sub));
-
-	return accum;
-}
-
-
+// removes duplicates from a vector
 template <typename Type>
 void remove_duplicate(std::vector<Type> vec) {
 	std::sort(vec.begin(), vec.end());
 	vec.erase(unique(vec.begin(), vec.end()), vec.end());
 }
 
+// finds the index of a given iterator in its list
+template <class Iterator>
+int get_index_in_arrangement(Iterator object, Iterator begin)
+{
+	typedef typename Iterator::value_type T;
+	return std::abs(std::distance(object, begin));
+}
+
+typedef std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<Point>>> Point_const_iterator;
+
+Point_const_iterator find_point(Point_const_iterator& first,
+	Point_const_iterator& last,
+	const Point& p);
+
+Arrangement_2::Curve_iterator find_curve(Arrangement_2::Curve_iterator& first,
+	Arrangement_2::Curve_iterator& last,
+	const Bezier_curve_2& c);
+
+Arrangement_2::Face_iterator find_face(Arrangement_2::Face_iterator& first,
+	Arrangement_2::Face_iterator& last,
+	const Arrangement_2::Face_const_handle& f);
+
+bool vertex_is_intersection(const Point& p, Arrangement_2& arr);

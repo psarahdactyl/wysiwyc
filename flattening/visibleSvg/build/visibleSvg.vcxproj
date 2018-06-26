@@ -134,7 +134,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>C:\Users\sak\source\repos\wysiwyc\visibleSvg\include;C:\dev\CGAL-4.12\include;C:\dev\CGAL-4.12\build\include;C:\glfw\include;C:\dev\CGAL-4.12\auxiliary\gmp\include;C:\local\boost_1_67_0;C:\local\eigen-git-mirror-master\Eigen</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sak\source\repos\wysiwyc\flattening\visibleSvg\include;C:\dev\CGAL-4.12\include;C:\dev\CGAL-4.12\build\include;C:\glfw\include;C:\dev\CGAL-4.12\auxiliary\gmp\include;C:\local\boost_1_67_0;C:\local\eigen-git-mirror-master</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -198,7 +198,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <Optimization>Full</Optimization>
-      <AdditionalIncludeDirectories>C:\Users\sak\source\repos\wysiwyc\visibleSvg\include;C:\dev\CGAL-4.12\include;C:\dev\CGAL-4.12\build\include;C:\glfw\include;C:\dev\CGAL-4.12\auxiliary\gmp\include;C:\local\boost_1_67_0;C:\local\eigen-git-mirror-master\Eigen</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sak\source\repos\wysiwyc\flattening\visibleSvg\include;C:\dev\CGAL-4.12\include;C:\dev\CGAL-4.12\build\include;C:\glfw\include;C:\dev\CGAL-4.12\auxiliary\gmp\include;C:\local\boost_1_67_0;C:\local\eigen-git-mirror-master</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
@@ -240,11 +240,11 @@
     <ClInclude Include="..\include\make_arrangement.h" />
     <ClInclude Include="..\include\make_monotone.h" />
     <ClInclude Include="..\include\print_arrangement.h" />
-    <ClInclude Include="C:\Users\sak\source\repos\wysiwyc\visibleSvg\include\stb_image_write.h" />
-    <ClInclude Include="C:\Users\sak\source\repos\wysiwyc\visibleSvg\include\nanosvg.h" />
-    <ClInclude Include="C:\Users\sak\source\repos\wysiwyc\visibleSvg\include\nanosvgrast.h" />
-    <ClInclude Include="C:\Users\sak\source\repos\wysiwyc\visibleSvg\include\compute_subcurves.h" />
-    <ClInclude Include="C:\Users\sak\source\repos\wysiwyc\visibleSvg\include\read_svg.h" />
+    <ClInclude Include="..\include\stb_image_write.h" />
+    <ClInclude Include="..\include\nanosvg.h" />
+    <ClInclude Include="..\include\nanosvgrast.h" />
+    <ClInclude Include="..\include\compute_subcurves.h" />
+    <ClInclude Include="..\include\read_svg.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\intersect_bezier.cpp" />
@@ -252,9 +252,10 @@
     <ClCompile Include="..\src\make_monotone.cpp" />
     <ClCompile Include="..\src\print_arrangement.cpp" />
     <ClCompile Include="..\src\flatten.cpp" />
-    <ClCompile Include="C:\Users\sak\source\repos\wysiwyc\visibleSvg\src\read_svg.cpp" />
-    <ClCompile Include="C:\Users\sak\source\repos\wysiwyc\visibleSvg\src\compute_subcurves.cpp" />
-    <ClCompile Include="C:\Users\sak\source\repos\wysiwyc\visibleSvg\main.cpp" />
+    <ClCompile Include="..\src\read_svg.cpp" />
+    <ClCompile Include="..\src\compute_subcurves.cpp" />
+    <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="helper.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

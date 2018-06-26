@@ -13,7 +13,7 @@
 
 #include "read_svg.h"
 #include "make_arrangement.h"
-//#include "print_arrangement.h"
+#include "print_arrangement.h"
 //#include "make_monotone.h"
 #include "compute_subcurves.h"
 #include "flatten.h"
@@ -22,7 +22,7 @@
 int main(int argc, char *argv[])
 {
 
-	const char* filename = (argc > 1) ? argv[1] : "C:/Users/sak/source/repos/wysiwyc/visibleSvg/files/svg-curves-two-intersections.svg"; //"svg-shapes-filled.svg";
+	const char* filename = (argc > 1) ? argv[1] : "C:/Users/sak/source/repos/wysiwyc/flattening/visibleSvg/files/svg-shapes-two-rectangles.svg"; //"svg-shapes-filled.svg";
 
 	// Each NSVGshape in the Shape_set has a corresponding (index-wise) 
 	// Bezier_shape in a Bezier_set
@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 	// Reads in an svg file and fills the shape and Bezier sets
 	read_svg(filename, shapes, curves, indices);
 	make_arrangement(arr, curves, handles);
-	//print_arrangement(arr);
+	print_arrangement(arr);
 
 	std::cout << "number of shapes total: " << shapes.size() << std::endl;
 

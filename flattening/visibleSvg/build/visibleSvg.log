@@ -1,51 +1,15 @@
 ﻿  flatten.cpp
 c:\dev\cgal-4.12\include\cgal\arr_dcel_base.h(52): warning C4245: 'initializing': conversion from 'int' to '::size_t', signed/unsigned mismatch
 c:\dev\cgal-4.12\include\cgal\boolean_set_operations_2\gps_default_dcel.h(78): warning C4245: 'initializing': conversion from 'int' to '::size_t', signed/unsigned mismatch
-c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(52): warning C4239: nonstandard extension used: 'argument': conversion from 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<Point>>>' to 'Point_iterator &'
-  c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(52): note: A non-const reference may only be bound to an lvalue
-c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(76): warning C4239: nonstandard extension used: 'argument': conversion from 'CGAL::internal::In_place_list_iterator<T,Alloc>' to 'CGAL::internal::In_place_list_iterator<T,Alloc> &'
+c:\users\sak\source\repos\wysiwyc\flattening\visiblesvg\src\flatten.cpp(69): warning C4239: nonstandard extension used: 'argument': conversion from 'CGAL::internal::In_place_list_iterator<T,Alloc>' to 'CGAL::internal::In_place_list_iterator<T,Alloc> &'
           with
           [
               T=CGAL::Arrangement_on_surface_with_history_2<Traits_2,CGAL::Arr_bounded_planar_topology_traits_2<Traits_2,CGAL::Arr_default_dcel<Traits_2>>>::Curve_halfedges,
               Alloc=std::allocator<CGAL::Arrangement_on_surface_with_history_2<Traits_2,CGAL::Arr_bounded_planar_topology_traits_2<Traits_2,CGAL::Arr_default_dcel<Traits_2>>>::Curve_halfedges>
           ]
-  c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(76): note: A non-const reference may only be bound to an lvalue
-  c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(83): note: see reference to function template instantiation 'auto find_comparable_shapes::<lambda_b9d3c254f046db7f84afbe21ef255161>::operator ()<Edge_container>(Edge_container,Shape_indices &) const' being compiled
-c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(131): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(233): warning C4239: nonstandard extension used: 'argument': conversion from 'CGAL::internal::In_place_list_iterator<T,Alloc>' to 'CGAL::internal::In_place_list_iterator<T,Alloc> &'
-          with
-          [
-              T=CGAL::Arrangement_on_surface_with_history_2<Traits_2,CGAL::Arr_bounded_planar_topology_traits_2<Traits_2,CGAL::Arr_default_dcel<Traits_2>>>::Curve_halfedges,
-              Alloc=std::allocator<CGAL::Arrangement_on_surface_with_history_2<Traits_2,CGAL::Arr_bounded_planar_topology_traits_2<Traits_2,CGAL::Arr_default_dcel<Traits_2>>>::Curve_halfedges>
-          ]
-  c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(233): note: A non-const reference may only be bound to an lvalue
-c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(246): warning C4239: nonstandard extension used: 'argument': conversion from 'CGAL::internal::In_place_list_iterator<T,Alloc>' to 'CGAL::internal::In_place_list_iterator<T,Alloc> &'
-          with
-          [
-              T=CGAL::Arrangement_on_surface_with_history_2<Traits_2,CGAL::Arr_bounded_planar_topology_traits_2<Traits_2,CGAL::Arr_default_dcel<Traits_2>>>::Curve_halfedges,
-              Alloc=std::allocator<CGAL::Arrangement_on_surface_with_history_2<Traits_2,CGAL::Arr_bounded_planar_topology_traits_2<Traits_2,CGAL::Arr_default_dcel<Traits_2>>>::Curve_halfedges>
-          ]
-  c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(246): note: A non-const reference may only be bound to an lvalue
-c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(247): warning C4189: 'hole_color': local variable is initialized but not referenced
-c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(277): warning C4239: nonstandard extension used: 'argument': conversion from 'CGAL::I_Filtered_iterator<CGAL::internal::In_place_list_iterator<T,Alloc>,CGAL::Arrangement_on_surface_2<CGAL::Arr_consolidated_curve_data_traits_2<GeomTraits_,CGAL::_Bezier_curve_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<RatKernel_>> *>,CGAL::Arr_bounded_planar_topology_traits_2<CGAL::Arr_consolidated_curve_data_traits_2<GeomTraits_,CGAL::_Bezier_curve_2<RatKernel_,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<RatKernel_>> *>,D>>::_Is_valid_halfedge,CGAL::Arrangement_on_surface_2<CGAL::Arr_consolidated_curve_data_traits_2<GeomTraits_,CGAL::_Bezier_curve_2<RatKernel_,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<RatKernel_>> *>,CGAL::Arr_bounded_planar_topology_traits_2<CGAL::Arr_consolidated_curve_data_traits_2<GeomTraits_,CGAL::_Bezier_curve_2<RatKernel_,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<RatKernel_>> *>,D>>::Halfedge,__int64,std::bidirectional_iterator_tag>' to 'CGAL::I_Filtered_iterator<CGAL::internal::In_place_list_iterator<T,Alloc>,CGAL::Arrangement_on_surface_2<CGAL::Arr_consolidated_curve_data_traits_2<GeomTraits_,CGAL::_Bezier_curve_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<RatKernel_>> *>,CGAL::Arr_bounded_planar_topology_traits_2<CGAL::Arr_consolidated_curve_data_traits_2<GeomTraits_,CGAL::_Bezier_curve_2<RatKernel_,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<RatKernel_>> *>,D>>::_Is_valid_halfedge,CGAL::Arrangement_on_surface_2<CGAL::Arr_consolidated_curve_data_traits_2<GeomTraits_,CGAL::_Bezier_curve_2<RatKernel_,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<RatKernel_>> *>,CGAL::Arr_bounded_planar_topology_traits_2<CGAL::Arr_consolidated_curve_data_traits_2<GeomTraits_,CGAL::_Bezier_curve_2<RatKernel_,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<RatKernel_>> *>,D>>::Halfedge,__int64,std::bidirectional_iterator_tag> &'
-          with
-          [
-              T=CGAL::Arr_halfedge<CGAL::Arr_vertex_base<CGAL::_Bezier_point_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<Rat_kernel>>>,CGAL::Arr_halfedge_base<CGAL::_Curve_data_ex<CGAL::_Bezier_x_monotone_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<Rat_kernel>>,CGAL::_Unique_list<CGAL::_Bezier_curve_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<Rat_kernel>> *>>>,CGAL::Arr_face_base>,
-              Alloc=std::allocator<CGAL::Arr_halfedge<CGAL::Arr_vertex_base<CGAL::_Bezier_point_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<Rat_kernel>>>,CGAL::Arr_halfedge_base<CGAL::_Curve_data_ex<CGAL::_Bezier_x_monotone_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<Rat_kernel>>,CGAL::_Unique_list<CGAL::_Bezier_curve_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<Rat_kernel>> *>>>,CGAL::Arr_face_base>>,
-              GeomTraits_=Traits_2,
-              RatKernel_=Rat_kernel,
-              D=CGAL::Arr_default_dcel<CGAL::Arr_consolidated_curve_data_traits_2<Traits_2,CGAL::_Bezier_curve_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<Rat_kernel>> *>>
-          ]
-  c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(277): note: A non-const reference may only be bound to an lvalue
-c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(278): warning C4239: nonstandard extension used: 'argument': conversion from 'CGAL::internal::In_place_list_iterator<T,Alloc>' to 'CGAL::internal::In_place_list_iterator<T,Alloc> &'
-          with
-          [
-              T=CGAL::Arrangement_on_surface_with_history_2<Traits_2,CGAL::Arr_bounded_planar_topology_traits_2<Traits_2,CGAL::Arr_default_dcel<Traits_2>>>::Curve_halfedges,
-              Alloc=std::allocator<CGAL::Arrangement_on_surface_with_history_2<Traits_2,CGAL::Arr_bounded_planar_topology_traits_2<Traits_2,CGAL::Arr_default_dcel<Traits_2>>>::Curve_halfedges>
-          ]
-  c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(278): note: A non-const reference may only be bound to an lvalue
-c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(273): warning C4100: 'shapes': unreferenced formal parameter
-c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(362): warning C4100: 'handles': unreferenced formal parameter
+  c:\users\sak\source\repos\wysiwyc\flattening\visiblesvg\src\flatten.cpp(69): note: A non-const reference may only be bound to an lvalue
+c:\users\sak\source\repos\wysiwyc\flattening\visiblesvg\src\flatten.cpp(62): warning C4100: 'shapes': unreferenced formal parameter
+c:\users\sak\source\repos\wysiwyc\flattening\visiblesvg\src\flatten.cpp(215): warning C4100: 'handles': unreferenced formal parameter
 c:\dev\cgal-4.12\include\cgal\arr_geometry_traits\bezier_cache.h(499): warning C4456: declaration of 's' hides previous local declaration
   c:\dev\cgal-4.12\include\cgal\arr_geometry_traits\bezier_cache.h(463): note: see declaration of 's'
   c:\dev\cgal-4.12\include\cgal\arr_geometry_traits\bezier_cache.h(330): note: while compiling class template member function 'const std::list<CGAL::_Bezier_cache<CGAL::CORE_algebraic_number_traits>::Intersection_point_2,std::allocator<_Ty>> &CGAL::_Bezier_cache<CGAL::CORE_algebraic_number_traits>::get_intersections(const CGAL::_Bezier_cache<CGAL::CORE_algebraic_number_traits>::Curve_id &,const CORE::Polynomial<CORE::BigInt> &,const CORE::BigInt &,const CORE::Polynomial<CORE::BigInt> &,const CORE::BigInt &,const CGAL::_Bezier_cache<CGAL::CORE_algebraic_number_traits>::Curve_id &,const CORE::Polynomial<CORE::BigInt> &,const CORE::BigInt &,const CORE::Polynomial<CORE::BigInt> &,const CORE::BigInt &,bool &)'
@@ -73,7 +37,7 @@ c:\dev\cgal-4.12\include\cgal\arr_geometry_traits\bezier_cache.h(499): warning C
           [
               RatKernel_=Rat_kernel
           ]
-  c:\users\sak\source\repos\wysiwyc\visiblesvg\include\helper.h(48): note: see reference to class template instantiation 'CGAL::Arr_Bezier_curve_traits_2<Rat_kernel,Alg_kernel,Nt_traits,CGAL::Bezier_bounding_rational_traits<RatKernel_>>' being compiled
+  c:\users\sak\source\repos\wysiwyc\flattening\visiblesvg\include\helper.h(47): note: see reference to class template instantiation 'CGAL::Arr_Bezier_curve_traits_2<Rat_kernel,Alg_kernel,Nt_traits,CGAL::Bezier_bounding_rational_traits<RatKernel_>>' being compiled
           with
           [
               RatKernel_=Rat_kernel
@@ -98,99 +62,403 @@ c:\dev\cgal-4.12\include\cgal\arr_geometry_traits\bezier_point_2.h(1591): warnin
               NtTraits_=CGAL::CORE_algebraic_number_traits,
               BoundingTraits_=CGAL::Bezier_bounding_rational_traits<Rat_kernel>
           ]
-c:\dev\cgal-4.12\include\cgal\arrangement_2\arrangement_on_surface_2_impl.h(4790): warning C4456: declaration of 'hh' hides previous local declaration
-  c:\dev\cgal-4.12\include\cgal\arrangement_2\arrangement_on_surface_2_impl.h(4426): note: see declaration of 'hh'
-  c:\dev\cgal-4.12\include\cgal\arrangement_2\arrangement_on_surface_2_impl.h(4200): note: while compiling class template member function 'CGAL::Arr_face<V,H,F> *CGAL::Arrangement_on_surface_2<CGAL::Arr_consolidated_curve_data_traits_2<GeomTraits_,CGAL::_Bezier_curve_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<RatKernel_>> *>,CGAL::Arr_bounded_planar_topology_traits_2<T,D>>::_remove_edge(CGAL::Arr_halfedge<V,H,F> *,bool,bool)'
+c:\local\eigen-git-mirror-master\eigen\src\core\cwisenullaryop.h(138): warning C4127: conditional expression is constant
+  c:\local\eigen-git-mirror-master\eigen\src\core\cwisenullaryop.h(138): note: consider using 'if constexpr' statement instead
+  c:\local\eigen-git-mirror-master\eigen\src\core\cwisenullaryop.h(198): note: see reference to function template instantiation 'const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<int>,Eigen::Array<int,-1,1,0,-1,1>> Eigen::DenseBase<Derived>::NullaryExpr<Eigen::internal::scalar_constant_op<int>>(Eigen::EigenBase<Derived>::Index,const CustomNullaryOp &)' being compiled
           with
           [
-              V=CGAL::Arr_vertex_base<CGAL::_Bezier_point_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<Rat_kernel>>>,
-              H=CGAL::Arr_halfedge_base<CGAL::_Curve_data_ex<CGAL::_Bezier_x_monotone_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<Rat_kernel>>,CGAL::_Unique_list<CGAL::_Bezier_curve_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<Rat_kernel>> *>>>,
-              F=CGAL::Arr_face_base,
-              GeomTraits_=Traits_2,
-              RatKernel_=Rat_kernel,
-              T=CGAL::Arr_consolidated_curve_data_traits_2<Traits_2,CGAL::_Bezier_curve_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<Rat_kernel>> *>,
-              D=CGAL::Arr_default_dcel<CGAL::Arr_consolidated_curve_data_traits_2<Traits_2,CGAL::_Bezier_curve_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<Rat_kernel>> *>>
+              Derived=Eigen::Array<int,-1,1,0,-1,1>,
+              CustomNullaryOp=Eigen::internal::scalar_constant_op<int>
           ]
-  c:\dev\cgal-4.12\include\cgal\arrangement_2\arrangement_on_surface_2_impl.h(1802): note: see reference to function template instantiation 'CGAL::Arr_face<V,H,F> *CGAL::Arrangement_on_surface_2<CGAL::Arr_consolidated_curve_data_traits_2<GeomTraits_,CGAL::_Bezier_curve_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<RatKernel_>> *>,CGAL::Arr_bounded_planar_topology_traits_2<T,D>>::_remove_edge(CGAL::Arr_halfedge<V,H,F> *,bool,bool)' being compiled
+  c:\local\eigen-git-mirror-master\eigen\src\core\cwisenullaryop.h(198): note: see reference to function template instantiation 'const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<int>,Eigen::Array<int,-1,1,0,-1,1>> Eigen::DenseBase<Derived>::NullaryExpr<Eigen::internal::scalar_constant_op<int>>(Eigen::EigenBase<Derived>::Index,const CustomNullaryOp &)' being compiled
           with
           [
-              V=CGAL::Arr_vertex_base<CGAL::_Bezier_point_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<Rat_kernel>>>,
-              H=CGAL::Arr_halfedge_base<CGAL::_Curve_data_ex<CGAL::_Bezier_x_monotone_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<Rat_kernel>>,CGAL::_Unique_list<CGAL::_Bezier_curve_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<Rat_kernel>> *>>>,
-              F=CGAL::Arr_face_base,
-              GeomTraits_=Traits_2,
-              RatKernel_=Rat_kernel,
-              T=CGAL::Arr_consolidated_curve_data_traits_2<Traits_2,CGAL::_Bezier_curve_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<Rat_kernel>> *>,
-              D=CGAL::Arr_default_dcel<CGAL::Arr_consolidated_curve_data_traits_2<Traits_2,CGAL::_Bezier_curve_2<CGAL::Cartesian<Rational>,CGAL::Cartesian<Algebraic>,CGAL::CORE_algebraic_number_traits,CGAL::Bezier_bounding_rational_traits<Rat_kernel>> *>>
+              Derived=Eigen::Array<int,-1,1,0,-1,1>,
+              CustomNullaryOp=Eigen::internal::scalar_constant_op<int>
           ]
-  c:\dev\cgal-4.12\include\cgal\arrangement_2\arr_on_surface_with_history_2_impl.h(53): note: while compiling class template member function 'CGAL::Arrangement_on_surface_with_history_2<GeomTraits_,CGAL::Arr_bounded_planar_topology_traits_2<GeomTraits,Dcel>>::Arrangement_on_surface_with_history_2(const CGAL::Arrangement_on_surface_with_history_2<GeomTraits_,CGAL::Arr_bounded_planar_topology_traits_2<GeomTraits,Dcel>> &)'
+  c:\local\eigen-git-mirror-master\eigen\src\core\cwisenullaryop.h(197): note: while compiling class template member function 'const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<int>,Eigen::Array<int,-1,1,0,-1,1>> Eigen::DenseBase<Derived>::Constant(Eigen::EigenBase<Derived>::Index,const int &)'
           with
           [
-              GeomTraits_=Traits_2,
-              GeomTraits=Traits_2,
-              Dcel=CGAL::Arr_default_dcel<Traits_2>
+              Derived=Eigen::Array<int,-1,1,0,-1,1>
           ]
-  c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(221): note: see reference to function template instantiation 'CGAL::Arrangement_on_surface_with_history_2<GeomTraits_,CGAL::Arr_bounded_planar_topology_traits_2<GeomTraits,Dcel>>::Arrangement_on_surface_with_history_2(const CGAL::Arrangement_on_surface_with_history_2<GeomTraits_,CGAL::Arr_bounded_planar_topology_traits_2<GeomTraits,Dcel>> &)' being compiled
+  c:\local\eigen-git-mirror-master\eigen\src\sparsecore\sparsematrix.h(1242): note: see reference to function template instantiation 'const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<int>,Eigen::Array<int,-1,1,0,-1,1>> Eigen::DenseBase<Derived>::Constant(Eigen::EigenBase<Derived>::Index,const int &)' being compiled
           with
           [
-              GeomTraits_=Traits_2,
-              GeomTraits=Traits_2,
-              Dcel=CGAL::Arr_default_dcel<Traits_2>
+              Derived=Eigen::Array<int,-1,1,0,-1,1>
           ]
-  c:\dev\cgal-4.12\include\cgal\arrangement_with_history_2.h(53): note: see reference to class template instantiation 'CGAL::Arrangement_on_surface_with_history_2<GeomTraits_,CGAL::Arr_bounded_planar_topology_traits_2<GeomTraits,Dcel>>' being compiled
+  c:\local\eigen-git-mirror-master\eigen\src\core\arraybase.h(41): note: see reference to class template instantiation 'Eigen::DenseBase<Derived>' being compiled
           with
           [
-              GeomTraits_=Traits_2,
-              GeomTraits=Traits_2,
-              Dcel=CGAL::Arr_default_dcel<Traits_2>
+              Derived=Eigen::Array<int,-1,1,0,-1,1>
           ]
-  c:\users\sak\source\repos\wysiwyc\visiblesvg\include\helper.h(56): note: see reference to class template instantiation 'CGAL::Arrangement_with_history_2<Traits_2,CGAL::Arr_default_dcel<GeomTraits_>>' being compiled
+  c:\local\eigen-git-mirror-master\eigen\src\core\plainobjectbase.h(100): note: see reference to class template instantiation 'Eigen::ArrayBase<Eigen::Array<int,-1,1,0,-1,1>>' being compiled
+  c:\local\eigen-git-mirror-master\eigen\src\core\array.h(47): note: see reference to class template instantiation 'Eigen::PlainObjectBase<Eigen::Array<int,-1,1,0,-1,1>>' being compiled
+  c:\local\eigen-git-mirror-master\eigen\src\sparsecore\sparsematrix.h(1242): note: see reference to class template instantiation 'Eigen::Array<int,-1,1,0,-1,1>' being compiled
+  c:\local\eigen-git-mirror-master\eigen\src\sparsecore\sparsematrix.h(1130): note: while compiling class template member function 'int &Eigen::SparseMatrix<int,0,int>::insert(Eigen::EigenBase<Derived>::Index,Eigen::EigenBase<Derived>::Index)'
           with
           [
-              GeomTraits_=Traits_2
+              Derived=Eigen::SparseMatrix<int,0,int>
           ]
-c:\dev\cgal-4.12\include\cgal\arrangement_2\arrangement_on_surface_2_impl.h(4969): warning C4456: declaration of 'hh' hides previous local declaration
-  c:\dev\cgal-4.12\include\cgal\arrangement_2\arrangement_on_surface_2_impl.h(4426): note: see declaration of 'hh'
-c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(277): warning C4456: declaration of 'sc' hides previous local declaration
-  c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(260): note: see declaration of 'sc'
-  c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(204): note: while compiling class template member function 'void CGAL::Surface_sweep_2::Surface_sweep_2<Visitor>::_handle_right_curves(void)'
-  c:\dev\cgal-4.12\include\cgal\surface_sweep_2_algorithms.h(133): note: see reference to class template instantiation 'CGAL::Surface_sweep_2::Surface_sweep_2<Visitor>' being compiled
-  c:\users\sak\source\repos\wysiwyc\visiblesvg\src\flatten.cpp(368): note: see reference to function template instantiation 'OutputIterator CGAL::compute_intersection_points<CGAL::internal::In_place_list_iterator<T,Alloc>,std::back_insert_iterator<Point_set>,Traits_2>(CurveInputIterator,CurveInputIterator,OutputIterator,bool,Traits &)' being compiled
+  c:\local\eigen-git-mirror-master\eigen\src\sparsecore\sparsematrix.h(217): note: see reference to function template instantiation 'int &Eigen::SparseMatrix<int,0,int>::insert(Eigen::EigenBase<Derived>::Index,Eigen::EigenBase<Derived>::Index)' being compiled
           with
           [
-              OutputIterator=std::back_insert_iterator<Point_set>,
-              T=CGAL::Arrangement_on_surface_with_history_2<Traits_2,CGAL::Arr_bounded_planar_topology_traits_2<Traits_2,CGAL::Arr_default_dcel<Traits_2>>>::Curve_halfedges,
-              Alloc=std::allocator<CGAL::Arrangement_on_surface_with_history_2<Traits_2,CGAL::Arr_bounded_planar_topology_traits_2<Traits_2,CGAL::Arr_default_dcel<Traits_2>>>::Curve_halfedges>,
-              CurveInputIterator=CGAL::internal::In_place_list_iterator<CGAL::Arrangement_on_surface_with_history_2<Traits_2,CGAL::Arr_bounded_planar_topology_traits_2<Traits_2,CGAL::Arr_default_dcel<Traits_2>>>::Curve_halfedges,std::allocator<CGAL::Arrangement_on_surface_with_history_2<Traits_2,CGAL::Arr_bounded_planar_topology_traits_2<Traits_2,CGAL::Arr_default_dcel<Traits_2>>>::Curve_halfedges>>,
-              Traits=Traits_2
+              Derived=Eigen::SparseMatrix<int,0,int>
           ]
-c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(590): warning C4456: declaration of 'ps_x1' hides previous local declaration
-  c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(542): note: see declaration of 'ps_x1'
-  c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(407): note: while compiling class template member function 'void CGAL::Surface_sweep_2::Surface_sweep_2<Visitor>::_intersect(CGAL::Surface_sweep_2::Default_subcurve<GeometryTraits_2,Event_,Allocator_,CGAL::Default> *,CGAL::Surface_sweep_2::Default_subcurve<GeometryTraits_2,Event_,Allocator_,CGAL::Default> *,CGAL::Surface_sweep_2::Default_event<GeometryTraits_2,Allocator_> *)'
+  c:\users\sak\source\repos\wysiwyc\flattening\visiblesvg\src\flatten.cpp(170): note: see reference to class template instantiation 'Eigen::SparseMatrix<int,0,int>' being compiled
+c:\local\eigen-git-mirror-master\eigen\src\core\util\memory.h(414): warning C4127: conditional expression is constant
+  c:\local\eigen-git-mirror-master\eigen\src\core\util\memory.h(414): note: consider using 'if constexpr' statement instead
+  c:\local\eigen-git-mirror-master\eigen\src\core\densestorage.h(542): note: see reference to function template instantiation 'void Eigen::internal::conditional_aligned_delete_auto<T,true>(T *,::size_t)' being compiled
           with
           [
-              GeometryTraits_2=Traits_2,
-              Event_=CGAL::Surface_sweep_2::Default_event<Traits_2,std::allocator<int>>,
-              Allocator_=std::allocator<int>
+              T=int
           ]
-  c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(267): note: see reference to function template instantiation 'void CGAL::Surface_sweep_2::Surface_sweep_2<Visitor>::_intersect(CGAL::Surface_sweep_2::Default_subcurve<GeometryTraits_2,Event_,Allocator_,CGAL::Default> *,CGAL::Surface_sweep_2::Default_subcurve<GeometryTraits_2,Event_,Allocator_,CGAL::Default> *,CGAL::Surface_sweep_2::Default_event<GeometryTraits_2,Allocator_> *)' being compiled
+  c:\local\eigen-git-mirror-master\eigen\src\core\densestorage.h(542): note: while compiling class template member function 'Eigen::DenseStorage<int,-1,-1,1,0>::~DenseStorage(void)'
+  c:\users\sak\source\repos\wysiwyc\flattening\visiblesvg\src\flatten.cpp(236): note: see reference to function template instantiation 'Eigen::DenseStorage<int,-1,-1,1,0>::~DenseStorage(void)' being compiled
+  c:\local\eigen-git-mirror-master\eigen\src\core\plainobjectbase.h(139): note: see reference to class template instantiation 'Eigen::DenseStorage<int,-1,-1,1,0>' being compiled
+  c:\local\eigen-git-mirror-master\eigen\src\core\matrix.h(180): note: see reference to class template instantiation 'Eigen::PlainObjectBase<Eigen::Matrix<int,-1,1,0,-1,1>>' being compiled
+  c:\local\eigen-git-mirror-master\eigen\src\core\map.h(24): note: see reference to class template instantiation 'Eigen::Matrix<int,-1,1,0,-1,1>' being compiled
+  c:\local\eigen-git-mirror-master\eigen\src\core\util\forwarddeclarations.h(32): note: see reference to class template instantiation 'Eigen::internal::traits<Derived>' being compiled
           with
           [
-              GeometryTraits_2=Traits_2,
-              Event_=CGAL::Surface_sweep_2::Default_event<Traits_2,std::allocator<int>>,
-              Allocator_=std::allocator<int>
+              Derived=Eigen::Map<const Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>
           ]
-  c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(41): note: while compiling class template member function 'void CGAL::Surface_sweep_2::Surface_sweep_2<Visitor>::_init_structures(void)'
-c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(593): warning C4456: declaration of 'ps_y1' hides previous local declaration
-  c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(545): note: see declaration of 'ps_y1'
-c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(596): warning C4456: declaration of 'ps_x2' hides previous local declaration
-  c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(548): note: see declaration of 'ps_x2'
-c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(599): warning C4456: declaration of 'ps_y2' hides previous local declaration
-  c:\dev\cgal-4.12\include\cgal\surface_sweep_2\surface_sweep_2_impl.h(551): note: see declaration of 'ps_y2'
-c:\dev\cgal-4.12\include\cgal\arr_bounded_planar_topology_traits_2.h(486): warning C4702: unreachable code
-c:\dev\cgal-4.12\include\cgal\arrangement_2\arr_traits_adaptor_2.h(1348): warning C4702: unreachable code
-c:\dev\cgal-4.12\include\cgal\arr_geometry_traits\bezier_x_monotone_2.h(1785): warning C4702: unreachable code
-c:\dev\cgal-4.12\include\cgal\arrangement_2\arr_traits_adaptor_2.h(1243): warning C4702: unreachable code
-c:\dev\cgal-4.12\include\cgal\arr_geometry_traits\bezier_point_2.h(1352): warning C4702: unreachable code
-c:\dev\cgal-4.12\include\cgal\arrangement_2\arr_traits_adaptor_2.h(1050): warning C4702: unreachable code
-c:\dev\cgal-4.12\include\cgal\arrangement_2\arr_traits_adaptor_2.h(622): warning C4702: unreachable code
-  visibleSvg.vcxproj -> C:\Users\sak\source\repos\wysiwyc\visibleSvg\build\build\visibleSvg.exe
+  c:\local\eigen-git-mirror-master\eigen\src\core\util\forwarddeclarations.h(114): note: see reference to class template instantiation 'Eigen::internal::accessors_level<Derived>' being compiled
+          with
+          [
+              Derived=Eigen::Map<const Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\sparsecore\sparsecompressedbase.h(65): note: see reference to class template instantiation 'Eigen::Map<const Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>' being compiled
+  c:\local\eigen-git-mirror-master\eigen\src\sparsecore\sparsecompressedbase.h(57): note: while compiling class template member function 'Eigen::EigenBase<Derived>::Index Eigen::SparseCompressedBase<Derived>::nonZeros(void) const'
+          with
+          [
+              Derived=Eigen::SparseMatrix<int,1,int>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\sparsecore\sparsecompressedbase.h(163): note: see reference to function template instantiation 'Eigen::EigenBase<Derived>::Index Eigen::SparseCompressedBase<Derived>::nonZeros(void) const' being compiled
+          with
+          [
+              Derived=Eigen::SparseMatrix<int,1,int>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\sparsecore\sparsematrix.h(98): note: see reference to class template instantiation 'Eigen::SparseCompressedBase<Eigen::SparseMatrix<int,1,int>>' being compiled
+  c:\local\eigen-git-mirror-master\eigen\src\sparsecore\sparsematrixbase.h(260): note: see reference to class template instantiation 'Eigen::SparseMatrix<int,1,int>' being compiled
+  c:\local\eigen-git-mirror-master\eigen\src\sparsecore\sparsematrixbase.h(219): note: while compiling class template member function 'std::ostream &Eigen::operator <<(std::ostream &,const Eigen::SparseMatrixBase<Eigen::Block<Derived,1,-1,false>> &)'
+          with
+          [
+              Derived=Eigen::SparseMatrix<int,0,int>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\sparsecore\sparseblock.h(334): note: see reference to class template instantiation 'Eigen::SparseMatrixBase<Eigen::Block<Derived,1,-1,false>>' being compiled
+          with
+          [
+              Derived=Eigen::SparseMatrix<int,0,int>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\block.h(105): note: see reference to class template instantiation 'Eigen::BlockImpl<XprType,1,-1,false,Eigen::internal::traits<Derived>::StorageKind>' being compiled
+          with
+          [
+              XprType=Eigen::SparseMatrix<int,0,int>,
+              Derived=Eigen::SparseMatrix<int,0,int>
+          ]
+  c:\users\sak\source\repos\wysiwyc\flattening\visiblesvg\src\flatten.cpp(210): note: see reference to class template instantiation 'Eigen::Block<Derived,1,-1,false>' being compiled
+          with
+          [
+              Derived=Eigen::SparseMatrix<int,0,int>
+          ]
+c:\local\eigen-git-mirror-master\eigen\src\core\plainobjectbase.h(316): warning C4127: conditional expression is constant
+  c:\local\eigen-git-mirror-master\eigen\src\core\plainobjectbase.h(316): note: consider using 'if constexpr' statement instead
+  c:\local\eigen-git-mirror-master\eigen\src\core\plainobjectbase.h(310): note: while compiling class template member function 'void Eigen::PlainObjectBase<Eigen::Matrix<int,-1,1,0,-1,1>>::resize(Eigen::EigenBase<Derived>::Index)'
+          with
+          [
+              Derived=Eigen::Matrix<int,-1,1,0,-1,1>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\plainobjectbase.h(780): note: see reference to function template instantiation 'void Eigen::PlainObjectBase<Eigen::Matrix<int,-1,1,0,-1,1>>::resize(Eigen::EigenBase<Derived>::Index)' being compiled
+          with
+          [
+              Derived=Eigen::Matrix<int,-1,1,0,-1,1>
+          ]
+c:\local\eigen-git-mirror-master\eigen\src\core\genericpacketmath.h(471): warning C4127: conditional expression is constant
+  c:\local\eigen-git-mirror-master\eigen\src\core\genericpacketmath.h(471): note: consider using 'if constexpr' statement instead
+  c:\local\eigen-git-mirror-master\eigen\src\core\coreevaluators.h(926): note: see reference to function template instantiation 'Packet Eigen::internal::ploadt<PacketType,0>(const Eigen::internal::unpacket_traits<Eigen::internal::Packet4i>::type *)' being compiled
+          with
+          [
+              Packet=__m128i,
+              PacketType=__m128i
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\redux.h(377): note: see reference to function template instantiation 'PacketType Eigen::internal::mapbase_evaluator<Eigen::Map<const Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>,PlainObjectType>::packet<0,PacketType>(Eigen::Index) const' being compiled
+          with
+          [
+              PacketType=__m128i,
+              PlainObjectType=const Eigen::Matrix<int,-1,1,0,-1,1>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\redux.h(377): note: see reference to function template instantiation 'PacketType Eigen::internal::mapbase_evaluator<Eigen::Map<const Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>,PlainObjectType>::packet<0,PacketType>(Eigen::Index) const' being compiled
+          with
+          [
+              PacketType=__m128i,
+              PlainObjectType=const Eigen::Matrix<int,-1,1,0,-1,1>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\redux.h(233): note: see reference to function template instantiation 'PacketType Eigen::internal::redux_evaluator<Derived>::packet<0,__m128i>(Eigen::Index) const' being compiled
+          with
+          [
+              PacketType=__m128i,
+              Derived=Eigen::Map<const Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\redux.h(233): note: see reference to function template instantiation 'PacketType Eigen::internal::redux_evaluator<Derived>::packet<0,__m128i>(Eigen::Index) const' being compiled
+          with
+          [
+              PacketType=__m128i,
+              Derived=Eigen::Map<const Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\redux.h(216): note: while compiling class template member function 'int Eigen::internal::redux_impl<Func,ThisEvaluator,3,0>::run(const Derived &,const Func &)'
+          with
+          [
+              Func=Eigen::internal::scalar_sum_op<int,int>,
+              Derived=ThisEvaluator
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\redux.h(418): note: see reference to function template instantiation 'int Eigen::internal::redux_impl<Func,ThisEvaluator,3,0>::run(const Derived &,const Func &)' being compiled
+          with
+          [
+              Func=Eigen::internal::scalar_sum_op<int,int>,
+              Derived=ThisEvaluator
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\redux.h(418): note: see reference to class template instantiation 'Eigen::internal::redux_impl<Func,ThisEvaluator,3,0>' being compiled
+          with
+          [
+              Func=Eigen::internal::scalar_sum_op<int,int>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\redux.h(453): note: see reference to function template instantiation 'int Eigen::DenseBase<Derived>::redux<Eigen::internal::scalar_sum_op<int,int>>(const Func &) const' being compiled
+          with
+          [
+              Derived=Eigen::Map<const Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>,
+              Func=Eigen::internal::scalar_sum_op<int,int>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\redux.h(453): note: see reference to function template instantiation 'int Eigen::DenseBase<Derived>::redux<Eigen::internal::scalar_sum_op<int,int>>(const Func &) const' being compiled
+          with
+          [
+              Derived=Eigen::Map<const Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>,
+              Func=Eigen::internal::scalar_sum_op<int,int>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\redux.h(450): note: while compiling class template member function 'int Eigen::DenseBase<Derived>::sum(void) const'
+          with
+          [
+              Derived=Eigen::Map<const Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\sparsecore\sparsecompressedbase.h(65): note: see reference to function template instantiation 'int Eigen::DenseBase<Derived>::sum(void) const' being compiled
+          with
+          [
+              Derived=Eigen::Map<const Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\matrixbase.h(50): note: see reference to class template instantiation 'Eigen::DenseBase<Derived>' being compiled
+          with
+          [
+              Derived=Eigen::Map<const Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\mapbase.h(39): note: see reference to class template instantiation 'Eigen::MatrixBase<Derived>' being compiled
+          with
+          [
+              Derived=Eigen::Map<const Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\map.h(96): note: see reference to class template instantiation 'Eigen::MapBase<Eigen::Map<const Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>,0>' being compiled
+c:\local\eigen-git-mirror-master\eigen\src\core\util\memory.h(445): warning C4127: conditional expression is constant
+  c:\local\eigen-git-mirror-master\eigen\src\core\util\memory.h(445): note: consider using 'if constexpr' statement instead
+  c:\local\eigen-git-mirror-master\eigen\src\core\densecoeffsbase.h(627): note: see reference to function template instantiation 'Index Eigen::internal::first_aligned<16,int,Eigen::EigenBase<Derived>::Index>(const Scalar *,Index)' being compiled
+          with
+          [
+              Index=Eigen::EigenBase<Eigen::Map<const Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>>::Index,
+              Derived=Eigen::Map<const Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>,
+              Scalar=int
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\densecoeffsbase.h(626): note: while compiling class template member function 'Eigen::Index Eigen::internal::first_aligned_impl<16,Derived,false>::run(const Derived &)'
+          with
+          [
+              Derived=Eigen::Map<const Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\densecoeffsbase.h(642): note: see reference to function template instantiation 'Eigen::Index Eigen::internal::first_aligned_impl<16,Derived,false>::run(const Derived &)' being compiled
+          with
+          [
+              Derived=Eigen::Map<const Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\densecoeffsbase.h(642): note: see reference to class template instantiation 'Eigen::internal::first_aligned_impl<16,Derived,false>' being compiled
+          with
+          [
+              Derived=Eigen::Map<const Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\densecoeffsbase.h(650): note: see reference to function template instantiation 'Eigen::Index Eigen::internal::first_aligned<16,Derived>(const Eigen::DenseBase<Derived> &)' being compiled
+          with
+          [
+              Derived=Eigen::Map<const Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\redux.h(225): note: see reference to function template instantiation 'Eigen::Index Eigen::internal::first_default_aligned<Derived>(const Eigen::DenseBase<Derived> &)' being compiled
+          with
+          [
+              Derived=Eigen::Map<const Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>
+          ]
+c:\local\eigen-git-mirror-master\eigen\src\core\util\memory.h(375): warning C4127: conditional expression is constant
+  c:\local\eigen-git-mirror-master\eigen\src\core\util\memory.h(375): note: consider using 'if constexpr' statement instead
+  c:\local\eigen-git-mirror-master\eigen\src\core\densestorage.h(557): note: see reference to function template instantiation 'T *Eigen::internal::conditional_aligned_new_auto<T,true>(::size_t)' being compiled
+          with
+          [
+              T=int
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\densestorage.h(552): note: while compiling class template member function 'void Eigen::DenseStorage<int,-1,-1,1,0>::resize(Eigen::Index,Eigen::Index,Eigen::Index)'
+  c:\local\eigen-git-mirror-master\eigen\src\core\plainobjectbase.h(317): note: see reference to function template instantiation 'void Eigen::DenseStorage<int,-1,-1,1,0>::resize(Eigen::Index,Eigen::Index,Eigen::Index)' being compiled
+c:\local\eigen-git-mirror-master\eigen\src\core\genericpacketmath.h(482): warning C4127: conditional expression is constant
+  c:\local\eigen-git-mirror-master\eigen\src\core\genericpacketmath.h(482): note: consider using 'if constexpr' statement instead
+  c:\local\eigen-git-mirror-master\eigen\src\core\functors\assignmentfunctors.h(28): note: see reference to function template instantiation 'void Eigen::internal::pstoret<DstScalar,Packet,16>(Scalar *,const Packet &)' being compiled
+          with
+          [
+              DstScalar=int,
+              Packet=PacketType,
+              Scalar=int
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\assignevaluator.h(658): note: see reference to function template instantiation 'void Eigen::internal::assign_op<int,int>::assignPacket<16,PacketType>(DstScalar *,const Packet &) const' being compiled
+          with
+          [
+              PacketType=PacketType,
+              DstScalar=int,
+              Packet=PacketType
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\assignevaluator.h(658): note: see reference to function template instantiation 'void Eigen::internal::assign_op<int,int>::assignPacket<16,PacketType>(DstScalar *,const Packet &) const' being compiled
+          with
+          [
+              PacketType=PacketType,
+              DstScalar=int,
+              Packet=PacketType
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\assignevaluator.h(416): note: see reference to function template instantiation 'void Eigen::internal::generic_dense_assignment_kernel<DstEvaluatorType,SrcEvaluatorType,Functor,0>::assignPacket<16,0,PacketType>(Eigen::Index)' being compiled
+          with
+          [
+              Functor=Eigen::internal::assign_op<int,int>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\assignevaluator.h(416): note: see reference to function template instantiation 'void Eigen::internal::generic_dense_assignment_kernel<DstEvaluatorType,SrcEvaluatorType,Functor,0>::assignPacket<16,0,PacketType>(Eigen::Index)' being compiled
+          with
+          [
+              Functor=Eigen::internal::assign_op<int,int>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\assignevaluator.h(398): note: while compiling class template member function 'void Eigen::internal::dense_assignment_loop<Kernel,3,0>::run(Kernel &)'
+          with
+          [
+              Kernel=Kernel
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\assignevaluator.h(741): note: see reference to function template instantiation 'void Eigen::internal::dense_assignment_loop<Kernel,3,0>::run(Kernel &)' being compiled
+          with
+          [
+              Kernel=Kernel
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\assignevaluator.h(741): note: see reference to class template instantiation 'Eigen::internal::dense_assignment_loop<Kernel,3,0>' being compiled
+  c:\local\eigen-git-mirror-master\eigen\src\core\assignevaluator.h(879): note: see reference to function template instantiation 'void Eigen::internal::call_dense_assignment_loop<DstXprType,SrcXprType,Functor>(DstXprType &,const SrcXprType &,const Functor &)' being compiled
+          with
+          [
+              DstXprType=ActualDstTypeCleaned,
+              SrcXprType=Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<int>,Eigen::Matrix<int,-1,1,0,-1,1>>,
+              Functor=Eigen::internal::assign_op<int,int>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\assignevaluator.h(874): note: while compiling class template member function 'void Eigen::internal::Assignment<ActualDstTypeCleaned,Src,Func,Eigen::internal::AssignmentKind<Eigen::DenseShape,Eigen::DenseShape>::Kind,void>::run(DstXprType &,const SrcXprType &,const Functor &)'
+          with
+          [
+              Src=Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<int>,Eigen::Matrix<int,-1,1,0,-1,1>>,
+              Func=Eigen::internal::assign_op<int,int>,
+              DstXprType=ActualDstTypeCleaned,
+              SrcXprType=Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<int>,Eigen::Matrix<int,-1,1,0,-1,1>>,
+              Functor=Eigen::internal::assign_op<int,int>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\assignevaluator.h(836): note: see reference to function template instantiation 'void Eigen::internal::Assignment<ActualDstTypeCleaned,Src,Func,Eigen::internal::AssignmentKind<Eigen::DenseShape,Eigen::DenseShape>::Kind,void>::run(DstXprType &,const SrcXprType &,const Functor &)' being compiled
+          with
+          [
+              Src=Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<int>,Eigen::Matrix<int,-1,1,0,-1,1>>,
+              Func=Eigen::internal::assign_op<int,int>,
+              DstXprType=ActualDstTypeCleaned,
+              SrcXprType=Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<int>,Eigen::Matrix<int,-1,1,0,-1,1>>,
+              Functor=Eigen::internal::assign_op<int,int>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\assignevaluator.h(836): note: see reference to class template instantiation 'Eigen::internal::Assignment<ActualDstTypeCleaned,Src,Func,Eigen::internal::AssignmentKind<Eigen::DenseShape,Eigen::DenseShape>::Kind,void>' being compiled
+          with
+          [
+              Src=Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<int>,Eigen::Matrix<int,-1,1,0,-1,1>>,
+              Func=Eigen::internal::assign_op<int,int>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\assignevaluator.h(804): note: see reference to function template instantiation 'void Eigen::internal::call_assignment_no_alias<Dst,Src,Func>(Dst &,const Src &,const Func &)' being compiled
+          with
+          [
+              Dst=Eigen::Map<Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>,
+              Src=Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<int>,Eigen::Matrix<int,-1,1,0,-1,1>>,
+              Func=Eigen::internal::assign_op<int,int>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\assignevaluator.h(782): note: see reference to function template instantiation 'void Eigen::internal::call_assignment<Dst,Src,Eigen::internal::assign_op<int,int>>(Dst &,const Src &,const Func &,void *)' being compiled
+          with
+          [
+              Dst=Eigen::Map<Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>,
+              Src=Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<int>,Eigen::Matrix<int,-1,1,0,-1,1>>,
+              Func=Eigen::internal::assign_op<int,int>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\assign.h(66): note: see reference to function template instantiation 'void Eigen::internal::call_assignment<Derived,Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<int>,Eigen::Matrix<int,-1,1,0,-1,1>>>(Dst &,const Src &)' being compiled
+          with
+          [
+              Derived=Eigen::Map<Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>,
+              Dst=Eigen::Map<Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>,
+              Src=Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<int>,Eigen::Matrix<int,-1,1,0,-1,1>>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\cwisenullaryop.h(327): note: see reference to function template instantiation 'Derived &Eigen::MatrixBase<Derived>::operator =<Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<int>,Eigen::Matrix<int,-1,1,0,-1,1>>>(const Eigen::DenseBase<Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<int>,Eigen::Matrix<int,-1,1,0,-1,1>>> &)' being compiled
+          with
+          [
+              Derived=Eigen::Map<Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\cwisenullaryop.h(327): note: see reference to function template instantiation 'Derived &Eigen::MatrixBase<Derived>::operator =<Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<int>,Eigen::Matrix<int,-1,1,0,-1,1>>>(const Eigen::DenseBase<Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<int>,Eigen::Matrix<int,-1,1,0,-1,1>>> &)' being compiled
+          with
+          [
+              Derived=Eigen::Map<Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\cwisenullaryop.h(326): note: while compiling class template member function 'Eigen::Map<Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>> &Eigen::DenseBase<Derived>::setConstant(const int &)'
+          with
+          [
+              Derived=Eigen::Map<Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\cwisenullaryop.h(501): note: see reference to function template instantiation 'Eigen::Map<Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>> &Eigen::DenseBase<Derived>::setConstant(const int &)' being compiled
+          with
+          [
+              Derived=Eigen::Map<Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\cwisenullaryop.h(500): note: while compiling class template member function 'Eigen::Map<Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>> &Eigen::DenseBase<Derived>::setZero(void)'
+          with
+          [
+              Derived=Eigen::Map<Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\sparsecore\sparsematrix.h(1083): note: see reference to function template instantiation 'Eigen::Map<Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>> &Eigen::DenseBase<Derived>::setZero(void)' being compiled
+          with
+          [
+              Derived=Eigen::Map<Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\matrixbase.h(50): note: see reference to class template instantiation 'Eigen::DenseBase<Derived>' being compiled
+          with
+          [
+              Derived=Eigen::Map<Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\mapbase.h(39): note: see reference to class template instantiation 'Eigen::MatrixBase<Derived>' being compiled
+          with
+          [
+              Derived=Eigen::Map<Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\mapbase.h(217): note: see reference to class template instantiation 'Eigen::MapBase<Derived,0>' being compiled
+          with
+          [
+              Derived=Eigen::Map<Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\core\map.h(96): note: see reference to class template instantiation 'Eigen::MapBase<Eigen::Map<Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>,1>' being compiled
+  c:\local\eigen-git-mirror-master\eigen\src\sparsecore\sparsematrix.h(1083): note: see reference to class template instantiation 'Eigen::Map<Eigen::Matrix<int,-1,1,0,-1,1>,0,Eigen::Stride<0,0>>' being compiled
+  c:\local\eigen-git-mirror-master\eigen\src\sparsecore\sparsematrix.h(684): note: see reference to function template instantiation 'Eigen::SparseMatrix<int,1,int> &Eigen::SparseMatrix<int,1,int>::operator =<Eigen::Block<Derived,1,-1,false>>(const Eigen::SparseMatrixBase<Eigen::Block<Derived,1,-1,false>> &)' being compiled
+          with
+          [
+              Derived=Eigen::SparseMatrix<int,0,int>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\sparsecore\sparsematrix.h(684): note: see reference to function template instantiation 'Eigen::SparseMatrix<int,1,int> &Eigen::SparseMatrix<int,1,int>::operator =<Eigen::Block<Derived,1,-1,false>>(const Eigen::SparseMatrixBase<Eigen::Block<Derived,1,-1,false>> &)' being compiled
+          with
+          [
+              Derived=Eigen::SparseMatrix<int,0,int>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\sparsecore\sparsematrixbase.h(260): note: see reference to function template instantiation 'Eigen::SparseMatrix<int,1,int>::SparseMatrix<Eigen::Block<Derived,1,-1,false>>(const Eigen::SparseMatrixBase<Eigen::Block<Derived,1,-1,false>> &)' being compiled
+          with
+          [
+              Derived=Eigen::SparseMatrix<int,0,int>
+          ]
+  c:\local\eigen-git-mirror-master\eigen\src\sparsecore\sparsematrixbase.h(260): note: see reference to function template instantiation 'Eigen::SparseMatrix<int,1,int>::SparseMatrix<Eigen::Block<Derived,1,-1,false>>(const Eigen::SparseMatrixBase<Eigen::Block<Derived,1,-1,false>> &)' being compiled
+          with
+          [
+              Derived=Eigen::SparseMatrix<int,0,int>
+          ]
+  visibleSvg.vcxproj -> C:\Users\sak\source\repos\wysiwyc\flattening\visibleSvg\build\build\visibleSvg.exe
