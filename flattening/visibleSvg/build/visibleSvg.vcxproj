@@ -234,6 +234,7 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\assign_winding_number.h" />
     <ClInclude Include="..\include\flatten.h" />
     <ClInclude Include="..\include\helper.h" />
     <ClInclude Include="..\include\intersect_bezier.h" />
@@ -247,6 +248,7 @@
     <ClInclude Include="..\include\read_svg.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\assign_winding_number.cpp" />
     <ClCompile Include="..\src\intersect_bezier.cpp" />
     <ClCompile Include="..\src\make_arrangement.cpp" />
     <ClCompile Include="..\src\make_monotone.cpp" />
