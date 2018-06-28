@@ -14,15 +14,13 @@
 #include "read_svg.h"
 #include "make_arrangement.h"
 #include "print_arrangement.h"
-//#include "make_monotone.h"
-#include "compute_subcurves.h"
 #include "flatten.h"
 
 
 int main(int argc, char *argv[])
 {
 
-	const char* filename = (argc > 1) ? argv[1] : "C:/Users/sak/source/repos/wysiwyc/flattening/visibleSvg/files/svg-shapes-two-rectangles.svg"; //"svg-shapes-filled.svg";
+	const char* filename = (argc > 1) ? argv[1] : "C:/Users/sak/source/repos/wysiwyc/flattening/visibleSvg/files/svg-overlap-lines-vertical.svg"; //"svg-shapes-filled.svg";
 
 	// Each NSVGshape in the Shape_set has a corresponding (index-wise) 
 	// Bezier_shape in a Bezier_set

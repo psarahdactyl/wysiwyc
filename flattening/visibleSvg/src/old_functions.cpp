@@ -1,3 +1,44 @@
+void find_comparable_shapes(const Vertex_handle& first,
+	const Vertex_handle& second,
+	const Arrangement_2::Curve_iterator& cit,
+	const Shape_indices& indices,
+	Arrangement_2& arr,
+	Shape_indices& source_comparable_indices,
+	Shape_indices& target_comparable_indices)
+{
+	Edge_circulator ec_from_source = first->incident_halfedges();
+	Edge_circulator ec_from_target = second->incident_halfedges();
+	Edge_container source_edges(ec_from_source);
+	Edge_container target_edges(ec_from_target);
+	Edge_container::iterator iheit;
+	
+	auto find_adjacent = [&] (auto edges, Shape_indices& comparable_indices)
+	{
+		for (iheit = edges.begin(); iheit != edges.end(); ++iheit)
+		{
+			X_monotone_curve_2 curve = iheit->curve();
+			Bezier_curve_2 b_curve = curve.supporting_curve();
+
+			Arrangement_2::Curve_iterator begin = arr.curves_begin();
+			Arrangement_2::Curve_iterator end = arr.curves_end();
+			Arrangement_2::Curve_const_iterator found;
+
+			found = find_curve(begin, end, b_curve);
+
+			int incident_curve_index = get_index_in_arrangement<Arrangement_2::Curve_const_iterator>(found, cit) % (arr.number_of_curves()-1);
+			int shape_index = indices[incident_curve_index];
+			comparable_indices.push_back(shape_index);
+		}
+	};
+
+	// adjacent shapes to source vertex of edge
+	find_adjacent(source_edges, source_comparable_indices);
+
+	// adjacent shapes to target vertex of edge
+	find_adjacent(target_edges, target_comparable_indices);
+	
+}
+
 
 bool should_remove_compare_shapes(const int& shape_index, const int& c_index, const Shape_set& shapes, Arrangement_2 arr)
 {
