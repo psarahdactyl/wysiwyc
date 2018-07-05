@@ -254,6 +254,7 @@
     <ClCompile Include="..\include\tinyxml2.cpp" />
     <ClCompile Include="..\src\assign_winding_number.cpp" />
     <ClCompile Include="..\src\face_index_observer.cpp" />
+    <ClCompile Include="..\src\helper.cpp" />
     <ClCompile Include="..\src\intersect_bezier.cpp" />
     <ClCompile Include="..\src\make_arrangement.cpp" />
     <ClCompile Include="..\src\make_monotone.cpp" />
@@ -263,7 +264,6 @@
     <ClCompile Include="..\src\compute_subcurves.cpp" />
     <ClCompile Include="..\main.cpp" />
     <ClCompile Include="..\src\write_svg.cpp" />
-    <ClCompile Include="helper.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
