@@ -1,21 +1,5 @@
 #include "assign_winding_number.h"
 
-void find_shape_index_from_edge(Arrangement_2& arr,
-	const Arrangement_2::Halfedge_const_handle& edge,
-	const Shape_set& shapes,
-	const Shape_indices& indices,
-	int& shape_index)
-{
-	Arrangement_2::Curve_const_iterator begin_curves = arr.curves_begin();
-	Arrangement_2::Curve_const_iterator end_curves = arr.curves_end();
-	Arrangement_2::Curve_const_iterator found_curve;
-	found_curve = find_curve(arr.curves_begin(), arr.curves_end(), edge->curve().supporting_curve());
-
-	int curve_index = get_index_in_arrangement<Arrangement_2::Curve_const_iterator>(found_curve, begin_curves);
-
-	shape_index = indices[curve_index];
-}
-
 void mark_as_visited(const int& index, std::vector<int>& visited)
 {
 	visited[index] = 1;
@@ -35,22 +19,22 @@ void assign_winding_numbers(Arrangement_2& arr,
 	std::vector<int>& visited,
 	Eigen::SparseMatrix<int, Eigen::RowMajor>& winding_numbers)
 {
-	std::stack<Arrangement_2::Face_const_iterator> stack;
-	std::stack<int> parents; // ints are indices to faces in arrangement
+	std::queue<Arrangement_2::Face_const_iterator> queue;
+	std::queue<int> parents; // ints are indices to faces in arrangement
 
 	Arrangement_2::Hole_const_iterator inner_ccb;
 	Arrangement_2::Face_const_iterator fit = arr.unbounded_face();
 
-	stack.push(fit);
+	queue.push(fit);
 	parents.push(-1);
 
-	while (!stack.empty())
+	while (!queue.empty())
 	{
 		std::cout << "-------" << std::endl;
 
-		Arrangement_2::Face_const_iterator current_face = stack.top();
-		stack.pop();
-		int parent_face_index = parents.top();
+		Arrangement_2::Face_const_iterator current_face = queue.front();
+		queue.pop();
+		int parent_face_index = parents.front();
 		parents.pop();
 
 		int first_face_index = current_face->data();
@@ -77,9 +61,9 @@ void assign_winding_numbers(Arrangement_2& arr,
 
 						if (!has_been_visited(face_index, visited))
 						{
-							// add face to stack
+							// add face to queue
 							std::cout << "pushing face " << face_index << std::endl;
-							stack.push(face);
+							queue.push(face);
 							parents.push(first_face_index);
 						}
 
@@ -111,7 +95,7 @@ void assign_winding_numbers(Arrangement_2& arr,
 						if (!has_been_visited(edge_face_index, visited))
 						{
 							std::cout << "pushing face " << edge_face_index << std::endl;
-							stack.push(edge_twin->face());
+							queue.push(edge_twin->face());
 							parents.push(face_index);
 						}
 					}

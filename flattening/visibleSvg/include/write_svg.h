@@ -12,6 +12,9 @@
 
 
 #include "helper.h"
-#include "face_index_observer.h"
 
-void make_arrangement(Arrangement_2& arr, Face_index_observer& obs, Bezier_set& curves, Handle_set& handles);
+void write_svg(const char* filename, 
+	const Shape_set& shapes, 
+	const Bezier_set& curves, 
+	const Shape_indices& indices, 
+	Arrangement_2& arr);

@@ -9,7 +9,6 @@ bool make_geometry(float* p, Bezier_curve_2& c, bool& closed)
 	Traits_2 tr;
 	Rat_kernel ker;
 	auto equal = ker.equal_2_object();
-	bool first = true;
 
 	// Read the current curve.
 	const std::vector<Rat_point_2> points = { Rat_point_2(p[0], p[1]), 

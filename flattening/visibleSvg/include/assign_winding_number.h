@@ -12,13 +12,7 @@
 
 
 #include "helper.h"
-
-
-void find_shape_index_from_edge(Arrangement_2& arr,
-	const Arrangement_2::Halfedge_const_handle& edge,
-	const Shape_set& shapes,
-	const Shape_indices& indices,
-	int& shape_index);
+//#include "face_index_observer.h"
 
 void mark_as_visited(const int& index, std::vector<int>& visited);
 

@@ -100,3 +100,19 @@ bool vertex_is_intersection(const Point& p, Arrangement_2& arr)
 
 	return find_point(intersections.begin(), intersections.end(), p) != intersections.end();
 }
+
+void find_shape_index_from_edge(Arrangement_2& arr,
+	const Arrangement_2::Halfedge_const_handle& edge,
+	const Shape_set& shapes,
+	const Shape_indices& indices,
+	int& shape_index)
+{
+	Arrangement_2::Curve_const_iterator begin_curves = arr.curves_begin();
+	Arrangement_2::Curve_const_iterator end_curves = arr.curves_end();
+	Arrangement_2::Curve_const_iterator found_curve;
+	found_curve = find_curve(arr.curves_begin(), arr.curves_end(), edge->curve().supporting_curve());
+
+	int curve_index = get_index_in_arrangement<Arrangement_2::Curve_const_iterator>(found_curve, begin_curves);
+
+	shape_index = indices[curve_index];
+}

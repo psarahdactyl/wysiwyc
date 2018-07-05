@@ -8,7 +8,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-//#define NANOSVG_IMPLEMENTATION
 #include "nanosvg.h"
 
 // CGAL includes
@@ -34,6 +33,9 @@
 // Eigen includes
 #include <Eigen/Dense>
 #include <Eigen/Sparse>
+
+// tinyxml includes
+#include "tinyxml2.h"
 
 // CGAL typedefs
 typedef CGAL::CORE_algebraic_number_traits					Nt_traits;
@@ -72,30 +74,6 @@ typedef std::vector<Curve_handle>							Handle_set;
 typedef std::vector<Edge_handle>							Edge_handle_set;
 typedef std::vector<Point>									Point_set;
 
-// An arrangement observer, used to receive notifications of face splits and
-// to update the indices of the newly created faces.
-class Face_index_observer : public CGAL::Arr_observer<Arrangement_2>
-{
-private:
-	int n_faces;          // The current number of faces.
-public:
-	Face_index_observer(Arrangement_2& arr) :
-		CGAL::Arr_observer<Arrangement_2>(arr),
-		n_faces(0)
-	{
-		CGAL_precondition(arr.is_empty());
-		arr.unbounded_face()->set_data(0);
-		n_faces++;
-	}
-	virtual void after_split_face(Face_handle /* old_face */,
-		Face_handle new_face, bool)
-	{
-		// Assign index to the new face.
-		new_face->set_data(n_faces);
-		n_faces++;
-	}
-};
-
 // my typedefs
 typedef std::vector<NSVGshape*>		Shape_set;
 typedef std::vector<int>			Shape_indices;
@@ -107,7 +85,6 @@ void remove_duplicate(std::vector<Type> vec) {
 	vec.erase(unique(vec.begin(), vec.end()), vec.end());
 }
 
-
 // finds the index of a given iterator in its list
 template <class Iterator>
 int get_index_in_arrangement(Iterator object, Iterator begin)
@@ -116,6 +93,7 @@ int get_index_in_arrangement(Iterator object, Iterator begin)
 	return std::abs(std::distance(object, begin));
 }
 
+// cgal find functions
 typedef std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<Point>>> Point_const_iterator;
 
 Point_const_iterator find_point(Point_const_iterator& first,
@@ -131,3 +109,9 @@ Arrangement_2::Face_iterator find_face(Arrangement_2::Face_iterator& first,
 	const Arrangement_2::Face_const_handle& f);
 
 bool vertex_is_intersection(const Point& p, Arrangement_2& arr);
+
+void find_shape_index_from_edge(Arrangement_2& arr,
+	const Arrangement_2::Halfedge_const_handle& edge,
+	const Shape_set& shapes,
+	const Shape_indices& indices,
+	int& shape_index);

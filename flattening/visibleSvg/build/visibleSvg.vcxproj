@@ -235,6 +235,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\include\assign_winding_number.h" />
+    <ClInclude Include="..\include\face_index_observer.h" />
     <ClInclude Include="..\include\flatten.h" />
     <ClInclude Include="..\include\helper.h" />
     <ClInclude Include="..\include\intersect_bezier.h" />
@@ -246,9 +247,13 @@
     <ClInclude Include="..\include\nanosvgrast.h" />
     <ClInclude Include="..\include\compute_subcurves.h" />
     <ClInclude Include="..\include\read_svg.h" />
+    <ClInclude Include="..\include\tinyxml2.h" />
+    <ClInclude Include="..\include\write_svg.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\include\tinyxml2.cpp" />
     <ClCompile Include="..\src\assign_winding_number.cpp" />
+    <ClCompile Include="..\src\face_index_observer.cpp" />
     <ClCompile Include="..\src\intersect_bezier.cpp" />
     <ClCompile Include="..\src\make_arrangement.cpp" />
     <ClCompile Include="..\src\make_monotone.cpp" />
@@ -257,6 +262,7 @@
     <ClCompile Include="..\src\read_svg.cpp" />
     <ClCompile Include="..\src\compute_subcurves.cpp" />
     <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="..\src\write_svg.cpp" />
     <ClCompile Include="helper.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
