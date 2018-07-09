@@ -1,0 +1,13 @@
+<svg xmlns:ns0="http://www.inkscape.org/namespaces/inkscape" xmlns:ns1="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" height="1000px" id="svg2" style="enable-background:new 0 0 1000 1000;" version="1.0" viewBox="0 0 1000 1000" width="1000px" x="0px" y="0px" ns1:docname="drawing.svg" ns0:version="0.48.2 r9819" xml:space="preserve">
+<namedview bordercolor="#666666" borderopacity="1.0" id="base" pagecolor="#ffffff" showgrid="false" ns0:current-layer="layer1" ns0:cx="375" ns0:cy="520" ns0:document-units="px" ns0:pageopacity="0.0" ns0:pageshadow="2" ns0:window-height="578" ns0:window-maximized="0" ns0:window-width="751" ns0:window-x="0" ns0:window-y="22" ns0:zoom="0.35">
+	</namedview>
+<g id="layer1" transform="translate(0,-52.362183)" ns0:groupmode="layer" ns0:label="Layer 1">
+	<path d="M131.7,422   c0,146.9,43.8,215.4,201.6,142s188.4-107.7,355,78.3s210.3,244.8,162.1-122.4S846,554.2,719,495.4   C591.9,436.7,732.1,191.9,543.7,187c-188.4-4.9,30.7,78.3-8.8,181.1S355.2,627.6,311.4,475.9S193.1,333.9,131.7,422z" id="path2985" style="fill:none;stroke:#000000;stroke-width:10.6211;" ns0:connector-curvature="0" />
+	<rect height="200.7" id="rect2987" style="fill:none;stroke:#000000;stroke-width:10.6211;" width="390" x="228.1" y="539.5" />
+	
+		<path d="   M402.9,306.6c0,48.9-25.6,88.6-57.1,88.6c-31.6,0-57.1-39.6-57.2-88.6c0,0,0,0,0,0c0-48.9,25.6-88.6,57.1-88.6   S402.9,257.7,402.9,306.6C402.9,306.6,402.9,306.6,402.9,306.6z" id="path3008" style="fill:none;" ns1:cx="157.14285" ns1:cy="168.57143" ns1:rx="57.142857" ns1:ry="88.571426" ns1:type="arc" />
+	<path d="M595.3,798.4l254.9-84.7c27-9,56.1,5.6,65,32.6l13.5,40.7c9,27-5.6,56.1-32.6,65   l-254.9,84.7c-27,9-56.1-5.6-65-32.6l-13.5-40.7C553.8,836.5,568.3,807.4,595.3,798.4z" id="rect3010" style="fill:none;" />
+	
+		<path d="   M254.3,229.5c0,30-24.3,54.3-54.3,54.3c-30,0-54.3-24.3-54.3-54.3c0,0,0,0,0-0.1c0-30,24.3-54.3,54.3-54.3S254.3,199.5,254.3,229.5   C254.3,229.5,254.3,229.5,254.3,229.5z" id="path3038" style="fill:none;" ns1:cx="200" ns1:cy="177.14285" ns1:rx="54.285713" ns1:ry="54.285713" ns1:type="arc" />
+</g>
+</svg>
