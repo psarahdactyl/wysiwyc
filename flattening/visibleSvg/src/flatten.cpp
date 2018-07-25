@@ -26,7 +26,7 @@ void flatten(Arrangement_2& arr, Shape_set& shapes, Handle_set& handles, Shape_i
 	// winding number matrix is the size (number of faces x number of shapes), all zeros, flips under certain con
 	Eigen::SparseMatrix<int, Eigen::RowMajor> winding_numbers(arr.number_of_faces(), shapes.size());
 
-	assign_winding_numbers(arr, shapes, indices, visited, winding_numbers);
+	assign_winding_numbers(arr, shapes, handles, indices, visited, winding_numbers);
 	
 
 	/*

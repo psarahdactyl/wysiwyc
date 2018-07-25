@@ -15,6 +15,7 @@ Point_const_iterator find_point(Point_const_iterator& first,
 	return last;
 }
 
+/*
 Arrangement_2::Curve_iterator find_curve(Arrangement_2::Curve_iterator& first,
 	Arrangement_2::Curve_iterator& last,
 	const Bezier_curve_2& c)
@@ -26,6 +27,21 @@ Arrangement_2::Curve_iterator find_curve(Arrangement_2::Curve_iterator& first,
 		++first;
 	}
 	return last;
+}
+*/
+
+int find_handle(Handle_set handles,
+	const Bezier_curve_2& c)
+{
+	for (int i = 0; i < handles.size(); i++)
+	{
+		Bezier_curve_2 b = *(handles[i]);
+		if (b.is_same(c))
+		{
+			return i;
+		}
+	}
+	return -1;
 }
 
 Arrangement_2::Face_iterator find_face(Arrangement_2::Face_iterator& first,
@@ -104,15 +120,22 @@ bool vertex_is_intersection(const Point& p, Arrangement_2& arr)
 void find_shape_index_from_edge(Arrangement_2& arr,
 	const Arrangement_2::Halfedge_const_handle& edge,
 	const Shape_set& shapes,
+	const Handle_set& handles,
 	const Shape_indices& indices,
 	int& shape_index)
 {
-	Arrangement_2::Curve_const_iterator begin_curves = arr.curves_begin();
-	Arrangement_2::Curve_const_iterator end_curves = arr.curves_end();
-	Arrangement_2::Curve_const_iterator found_curve;
-	found_curve = find_curve(arr.curves_begin(), arr.curves_end(), edge->curve().supporting_curve());
+	Handle_set::iterator found_curve;
 
-	int curve_index = get_index_in_arrangement<Arrangement_2::Curve_const_iterator>(found_curve, begin_curves);
+	Arrangement_2::Originating_curve_iterator originating = arr.originating_curves_begin(edge);
+	int curve_index = find_handle(handles, *originating);
 
-	shape_index = indices[curve_index];
+	if (curve_index == indices.size())
+	{
+		shape_index = -1;
+	}
+	else
+	{
+		shape_index = indices[curve_index];
+	}
+
 }

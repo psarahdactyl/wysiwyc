@@ -15,6 +15,6 @@
 
 void write_svg(const char* filename, 
 	const Shape_set& shapes, 
-	const Bezier_set& curves, 
+	const Handle_set& handles,
 	const Shape_indices& indices, 
 	Arrangement_2& arr);

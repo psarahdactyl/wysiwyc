@@ -15,7 +15,7 @@ inline bool is_a_line(Bezier_curve_2 b)
 
 void write_svg(const char* filename,
 	const Shape_set& shapes,
-	const Bezier_set& curves,
+	const Handle_set& handles,
 	const Shape_indices& indices,
 	Arrangement_2& arr)
 {
@@ -41,7 +41,7 @@ void write_svg(const char* filename,
 		std::pair<double, double> parameter_range = edge_curve.parameter_range();
 
 		int shape_index;
-		find_shape_index_from_edge(arr, it, shapes, indices, shape_index);
+		find_shape_index_from_edge(arr, it, shapes, handles, indices, shape_index);
 
 		double t0 = parameter_range.first;
 		double t1 = parameter_range.second;

@@ -74,6 +74,8 @@ typedef std::vector<Curve_handle>							Handle_set;
 typedef std::vector<Edge_handle>							Edge_handle_set;
 typedef std::vector<Point>									Point_set;
 
+typedef CGAL::CommonKernelFunctors::Equal_2<CGAL::Cartesian<Rational>> Equal_2;
+
 // my typedefs
 typedef std::vector<NSVGshape*>		Shape_set;
 typedef std::vector<int>			Shape_indices;
@@ -92,6 +94,23 @@ int get_index_in_arrangement(Iterator object, Iterator begin)
 	typedef typename Iterator::value_type T;
 	return std::abs(std::distance(object, begin));
 }
+
+/*
+// finds the given curve
+template <class Iterator>
+Iterator find_curve(Iterator& first,
+	Iterator& last,
+	const Bezier_curve_2& c)
+{
+	while (first != last)
+	{
+		if ((*first).is_same(c))
+			return first;
+		++first;
+	}
+	return last;
+}
+*/
 
 // cgal find functions
 typedef std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<Point>>> Point_const_iterator;
@@ -113,5 +132,6 @@ bool vertex_is_intersection(const Point& p, Arrangement_2& arr);
 void find_shape_index_from_edge(Arrangement_2& arr,
 	const Arrangement_2::Halfedge_const_handle& edge,
 	const Shape_set& shapes,
+	const Handle_set& handles,
 	const Shape_indices& indices,
 	int& shape_index);

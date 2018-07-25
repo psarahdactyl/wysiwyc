@@ -15,10 +15,12 @@ bool has_been_visited(const int& index, std::vector<int>& visited)
 
 void assign_winding_numbers(Arrangement_2& arr,
 	const Shape_set& shapes,
+	const Handle_set& handles,
 	const Shape_indices& indices,
 	std::vector<int>& visited,
 	Eigen::SparseMatrix<int, Eigen::RowMajor>& winding_numbers)
 {
+
 	std::queue<Arrangement_2::Face_const_iterator> queue;
 	std::queue<int> parents; // ints are indices to faces in arrangement
 
@@ -81,6 +83,7 @@ void assign_winding_numbers(Arrangement_2& arr,
 
 				// face index
 				int face_index = edge->face()->data();
+				std::cout << "FACE NUMBER " << face_index << std::endl;
 
 				// for edges in face
 				for (edge = face_edges.begin(); edge != face_edges.end(); ++edge)
@@ -109,7 +112,7 @@ void assign_winding_numbers(Arrangement_2& arr,
 					if (parent_face_index == edge_face_index)
 					{
 						int shape_index;
-						find_shape_index_from_edge(arr, edge_twin, shapes, indices, shape_index);
+						find_shape_index_from_edge(arr, edge_twin, shapes, handles, indices, shape_index);
 
 						// copy row from parent_face's row to current face's row
 						winding_numbers.row(face_index) = winding_numbers.row(parent_face_index);
