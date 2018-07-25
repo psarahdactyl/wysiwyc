@@ -4,19 +4,77 @@
 import os, sys
 import xml.etree.ElementTree as et
 import re
+import copy
 
 file = sys.argv[1]
-LINEWIDTH = float(sys.argv[2])
 XML_FILE = os.path.abspath(__file__)
 XML_FILE = os.path.dirname(XML_FILE)
 XML_FILE = os.path.join(XML_FILE, file)
 
-def garbage_stroke(XML_FILE):
+def duplicate(XML_FILE):
+    NAME_SPACE = "http://www.w3.org/2000/svg" #The XML namespace.
+    et.register_namespace(' ', NAME_SPACE)
+    tree = et.parse(XML_FILE)
+    root = tree.getroot()
+    for el in tree.getiterator():
+        no_fill = copy.deepcopy(el)
+        no_stroke = copy.deepcopy(el)
+        if el.tag[-3:] != 'svg':
+            if 'style' in el.attrib:
+                parent = root.findall(".//{0}/..".format(el.tag))
+                style_nofill = no_fill.get('style')
+                style_nostroke = no_stroke.get('style')
+                if no_stroke.get('done') == None:
+                    style_nostroke = style_nostroke.split(';')
+                    out = ''
+                    found = False
+                    for i in style_nostroke:
+                        if i[0:12] == 'stroke-width':
+                            out += 'stroke-width:0.00;'
+                            found = True
+                        else:
+                            out += i + ';'
+                    out = out[:-1]
+                    if found == False:
+                        out += 'stroke-width:0.00;'
+                    no_stroke.set('style', out)
+                    no_stroke.set('done', 'True')
+                
+                if no_fill.get('done') == None:
+                    style_nofill = style_nofill.split(';')
+                    out = ''
+                    found = False
+                    for i in style_nofill:
+                        if i[0:4] == 'fill':
+                            out += 'fill:none;'
+                            found = True
+                        else:
+                            out += i + ';'
+                    out = out[:-1]
+                    if found == False:
+                        out += 'fill:none;'
+                    no_fill.set('style', out)
+                    no_fill.set('done', 'True')
+                el.attrib = no_stroke.attrib
+                et.SubElement(parent[0], el.tag, attrib = no_fill.attrib)
+    
+    for el in tree.getiterator():
+        match = re.match("^(?:\{.*?\})?(.*)$", el.tag)
+        if match:
+            el.tag = match.group(1)
+
+    XML_FILE_2 = XML_FILE[:-4] + ('-exploded.svg')
+    tree.write(XML_FILE_2, encoding="utf-8")
+    print('success')
+
+#Only the strokes, if ever needed
+def stroke(XML_FILE):
     NAME_SPACE = "http://www.w3.org/2000/svg" #The XML namespace.
     et.register_namespace(' ', NAME_SPACE)
     tree = et.parse(XML_FILE)
     for group in tree.iter('{%s}svg' % NAME_SPACE):
         for child in group.iter('{%s}g' % NAME_SPACE):
+            print(child.tag)
             for elementwise in child:
                 if 'style' in elementwise.attrib:
                     style_attributes = elementwise.get('style')
@@ -42,13 +100,13 @@ def garbage_stroke(XML_FILE):
         match = re.match("^(?:\{.*?\})?(.*)$", el.tag)
         if match:
             el.tag = match.group(1)
-    
+        
     XML_FILE_2 = XML_FILE[:-4] + ('-strokes.svg')
     tree.write(XML_FILE_2, encoding="utf-8")
     print('success')
 
-
-def garbage_fill(XML_FILE):
+#Only the fills, if ever needed
+def fill(XML_FILE):
     NAME_SPACE = "http://www.w3.org/2000/svg" #The XML namespace.
     et.register_namespace(' ', NAME_SPACE)
     tree = et.parse(XML_FILE)
@@ -78,10 +136,10 @@ def garbage_fill(XML_FILE):
         match = re.match("^(?:\{.*?\})?(.*)$", el.tag)
         if match:
             el.tag = match.group(1)
-    
+        
     XML_FILE_2 = XML_FILE[:-4] + ('-fills.svg')
     tree.write(XML_FILE_2, encoding="utf-8")
     print('success')
 
-garbage_stroke(XML_FILE)
-garbage_fill(XML_FILE)
+duplicate(XML_FILE)
+
