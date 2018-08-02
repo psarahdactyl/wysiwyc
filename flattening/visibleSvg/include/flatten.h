@@ -14,4 +14,6 @@
 #include "helper.h"
 
 
-void flatten(Arrangement_2& arr, Shape_set& shapes, Handle_set& handles, Shape_indices& indices);
+//void flatten(Arrangement_2& arr, Shape_set& shapes, Handle_set& handles, Shape_indices& indices);
+
+void flatten(Arrangement_2& arr, Shape_set& shapes, Handle_set& handles, Shape_indices& indices, Eigen::SparseMatrix<int, Eigen::RowMajor>& winding_numbers);

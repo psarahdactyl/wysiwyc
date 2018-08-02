@@ -13,4 +13,4 @@
 
 #include "helper.h"
 
-void read_svg(const char* filename, Shape_set& shapes, Bezier_set& curves, Shape_indices& indices);
+void read_svg(const char* filename, Shape_set& shapes, Bezier_set& curves, Shape_indices& indices, int& w, int& h);
