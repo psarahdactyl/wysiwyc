@@ -98,11 +98,13 @@ void make_curves(NSVGimage* image, Shape_set& shapes, Bezier_set& curves, Shape_
 	}
 }
 
-void read_svg(const char* filename, std::vector<NSVGshape*>& shapes, Bezier_set& curves, Shape_indices& indices)
+void read_svg(const char* filename, std::vector<NSVGshape*>& shapes, Bezier_set& curves, Shape_indices& indices, int& w, int& h)
 {
 	NSVGimage* g_image = NULL;
 
 	g_image = nsvgParseFromFile(filename, "px", 96.0f);
+	w = (int)g_image->width;
+	h = (int)g_image->height;
 	std::cout << "parsed original svg" << std::endl;
 	
 	make_curves(g_image, shapes, curves, indices);

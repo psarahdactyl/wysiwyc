@@ -18,6 +18,27 @@ void handle_isolated_vertices(Arrangement_2& arr)
 
 
 
+void flatten(Arrangement_2& arr, Shape_set& shapes, Handle_set& handles, Shape_indices& indices, Eigen::SparseMatrix<int, Eigen::RowMajor>& winding_numbers)
+{
+
+	// visited vector is the size (number of faces), all zeros -- changes to one if visited 
+	std::vector<int> visited(arr.number_of_faces(), 0);
+	// winding number matrix is the size (number of faces x number of shapes), all zeros, flips under certain con
+	winding_numbers.resize(arr.number_of_faces(), shapes.size());
+
+	assign_winding_numbers(arr, shapes, handles, indices, visited, winding_numbers);
+	
+
+	/*
+	std::cout << "-------" << std::endl;
+
+	std::cout << "cleaning up isolated vertices" << std::endl;
+	handle_isolated_vertices(arr);
+
+	std::cout << "-------" << std::endl;
+	*/
+}
+
 void flatten(Arrangement_2& arr, Shape_set& shapes, Handle_set& handles, Shape_indices& indices)
 {
 
@@ -27,7 +48,7 @@ void flatten(Arrangement_2& arr, Shape_set& shapes, Handle_set& handles, Shape_i
 	Eigen::SparseMatrix<int, Eigen::RowMajor> winding_numbers(arr.number_of_faces(), shapes.size());
 
 	assign_winding_numbers(arr, shapes, handles, indices, visited, winding_numbers);
-	
+
 
 	/*
 	std::cout << "-------" << std::endl;

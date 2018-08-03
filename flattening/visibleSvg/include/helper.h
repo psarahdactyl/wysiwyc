@@ -3,6 +3,7 @@
 // regular STL includes
 #include <algorithm>
 #include <vector>
+#include <string>
 
 // c and nanoSVG includes
 #include <stdio.h>
@@ -50,6 +51,7 @@ typedef Rat_kernel::Point_2									Rat_point_2;
 typedef Alg_kernel::Point_2									Alg_point_2;
 typedef Traits_2::Curve_2									Bezier_curve_2;
 typedef Traits_2::X_monotone_curve_2						X_monotone_curve_2;
+typedef CGAL::Point_2<CGAL::Cartesian<Rational>>			Control_point;
 
 typedef CGAL::Arr_face_extended_dcel<Traits_2, int>			Dcel;
 typedef CGAL::Arrangement_with_history_2<Traits_2, Dcel>	Arrangement_2;
