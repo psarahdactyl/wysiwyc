@@ -39,6 +39,8 @@ void write_svg(const char* filename,
 	const Eigen::SparseMatrix<int, Eigen::RowMajor>& winding_numbers,
 	Arrangement_2& arr)
 {
+	std::cout << "writing out new svg" << std::endl;
+
 	// initialize document
 	tinyxml2::XMLDocument doc;
 	tinyxml2::XMLDeclaration* decl = doc.NewDeclaration();
@@ -132,7 +134,7 @@ void write_svg(const char* filename,
 		}
 			
 	}
-
+	/*
 	// faces for fills
 	Arrangement_2::Face_const_iterator face;
 	for (face = arr.faces_begin(); face != arr.faces_end(); ++face)
@@ -197,7 +199,7 @@ void write_svg(const char* filename,
 			svg_root->InsertEndChild(transparent_edge);
 		}
 	}
-
+	*/
 	doc.SaveFile(filename);
 }
 

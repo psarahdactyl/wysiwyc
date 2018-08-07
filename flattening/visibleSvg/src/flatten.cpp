@@ -1,5 +1,6 @@
 #include "flatten.h"
 #include "assign_winding_number.h"
+#include "extract_edges.h"
 
 void handle_isolated_vertices(Arrangement_2& arr)
 {
@@ -28,7 +29,7 @@ void flatten(Arrangement_2& arr, Shape_set& shapes, Handle_set& handles, Shape_i
 
 	assign_winding_numbers(arr, shapes, handles, indices, visited, winding_numbers);
 	
-
+	extract_edges(arr, shapes, handles, indices, winding_numbers);
 	/*
 	std::cout << "-------" << std::endl;
 
@@ -49,7 +50,7 @@ void flatten(Arrangement_2& arr, Shape_set& shapes, Handle_set& handles, Shape_i
 
 	assign_winding_numbers(arr, shapes, handles, indices, visited, winding_numbers);
 
-
+	
 	/*
 	std::cout << "-------" << std::endl;
 
