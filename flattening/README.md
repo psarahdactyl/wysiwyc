@@ -8,8 +8,12 @@ Using CGAL's Epeck, we are able to remove unnecessary curves/lines/geometry in a
 * CGAL 4.12
 * Boost 6.7
 * tinyxml2
-* Eigen 3
+* Eigen 3.3
 * NanoSVG (a header only library, which is already included in this repository)
+
+## Operating Systems
+Will test on Linux.
+We only support Windows 64-bit. If you are using Windows, you will need Visual Studio to build.
 
 ## Prerequisite installation:
 This assumes you have at least CMake 3.9.4.
@@ -27,17 +31,20 @@ There are example SVG files in `visible_strokes/files`.
 ## Compilation
 
 This and all following assignments will follow a typical cmake/make build
-routine. Starting in this directory, issue:
+routine. Starting in this directory, change to the build directory:
 
     cd visible_strokes/build
-    cmake ../..
+    
+If you are using Windows, issue:
+
+    cmake ../.. -T "host=x64" -A x64
+    
+Then, open the resulting Visual Studio solution file and build from there.
 
 If you are using Mac or Linux, then issue:
 
+    cmake ../..
     make
-
-If you are using Windows, then running `cmake ..` should have created a Visual Studio solution file
-called `flattening.sln` that you can open and build from there. Building the project will generate an .exe file.
 
 ## Usage
 
