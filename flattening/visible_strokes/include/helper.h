@@ -26,8 +26,8 @@
 #include <CGAL/Polygon_2.h>
 
 // Eigen includes
-#include <Eigen/Dense>
-#include <Eigen/Sparse>
+//#include <Eigen/Dense>
+//#include <Eigen/Sparse>
 
 // tinyxml includes
 #include "tinyxml2.h"

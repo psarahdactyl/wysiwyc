@@ -52,20 +52,24 @@ int in_on_out(const Segment& seg, const Segment_set& intersecting_segs, const Po
 				shape_points.push_back(s.target());
 		}
 		Polygon shape_polygon(shape_points.begin(), shape_points.end());
-
-		// find if centroid is inside shape
-		Point_set triangle_points = { intersection, proj, centroid };
-		Polygon centroid_triangle(triangle_points.begin(), triangle_points.end());
-
-		std::cout << "triangle area " << centroid_triangle.area() << std::endl;
-		std::cout << "polygon area " << shape_polygon.area() << std::endl;
-		CGAL::Lazy_exact_nt<CGAL::Gmpq> tri_area = centroid_triangle.area();
-		CGAL::Lazy_exact_nt<CGAL::Gmpq> poly_area = shape_polygon.area();
 		
+		CGAL::Lazy_exact_nt<CGAL::Gmpq> tri_area;
+		CGAL::Lazy_exact_nt<CGAL::Gmpq> poly_area;
+
 		// if the projection is not equal to the intersection point
 		// will check if the slopes have the same sign
+		std::cout << "intersection point: " << intersection << " projection: " << proj << std::endl;
 		if (intersection != proj)
 		{
+			// find if centroid is inside shape
+			Point_set triangle_points = { intersection, proj, centroid };
+			Polygon centroid_triangle(triangle_points.begin(), triangle_points.end());
+
+			std::cout << "triangle area " << centroid_triangle.area() << std::endl;
+			std::cout << "polygon area " << shape_polygon.area() << std::endl;
+			tri_area = centroid_triangle.area();
+			poly_area = shape_polygon.area();
+
 			Ray int_proj(intersection, proj);
 			// horizontal case
 			if (int_proj.is_horizontal())
@@ -116,7 +120,8 @@ int in_on_out(const Segment& seg, const Segment_set& intersecting_segs, const Po
 		}
 		else
 		{
-			triangle_points = { intersection, i_seg.target(), centroid };
+			// find if centroid is inside shape
+			Point_set triangle_points = { intersection, i_seg.target(), centroid };
 			Polygon centroid_triangle(triangle_points.begin(), triangle_points.end());
 			tri_area = centroid_triangle.area();
 			poly_area = shape_polygon.area();
@@ -208,8 +213,8 @@ void compare_2_shapes(Segment_set& s1,
 	Shape shape = shapes[shape_number];
 	bool intersected = false;
 	// if new shape fill is not transparent
-	//if (shape->fill.color != 0)
-	//{
+	if (shape->fill.color != 0)
+	{
 		// go through each segment of old shape
 		for (int i = 0; i < s1.size(); i++)
 		{
@@ -228,6 +233,8 @@ void compare_2_shapes(Segment_set& s1,
 					if (const Segment* s = boost::get<Segment>(&*result))
 					{
 						std::cout << "segment " << *s << std::endl;
+						intersections.push_back(Intersection(s->source(), new_seg));
+						intersections.push_back(Intersection(s->target(), new_seg));
 					}
 					else
 					{
@@ -243,7 +250,7 @@ void compare_2_shapes(Segment_set& s1,
 					visible_segments.push_back(new_seg);
 					indices.push_back(shape_number);
 				}
-				
+
 			}
 			if (intersected)
 			{
@@ -268,13 +275,14 @@ void compare_2_shapes(Segment_set& s1,
 			}
 			else
 			{
-				if(!(std::find(visible_segments.begin(), visible_segments.end(), old_seg) != visible_segments.end()))
+				if (!(std::find(visible_segments.begin(), visible_segments.end(), old_seg) != visible_segments.end()))
 				{
 					visible_segments.push_back(old_seg);
 					indices.push_back(shape_number - 1);
 				}
 			}
 		}
+	}
 }
 
 void flatten(const Shape_set& shapes,
@@ -289,9 +297,17 @@ void flatten(const Shape_set& shapes,
 		if (shape_number == 0)
 		{
 			boost::range::push_back(build, shape);
+			boost::range::push_back(visible_segments, shape);
+			Shape_indices first_shape_indices(shape.size(), 0);
+			boost::range::push_back(indices, first_shape_indices);
 		}
 		else
 		{
+			if (shape_number < segments.size() - 1)
+			{
+				visible_segments.clear();
+			}
+
 			compare_2_shapes(build, shape, visible_segments, shapes, shape_number, indices);
 			build.clear();
 
@@ -303,10 +319,6 @@ void flatten(const Shape_set& shapes,
 
 			boost::range::push_back(build, visible_segments);
 
-			if (shape_number < segments.size()-1)
-			{
-				visible_segments.clear();
-			}
 		}
 
 		shape_number++;
