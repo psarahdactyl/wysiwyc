@@ -1,30 +1,28 @@
 # flattening
 Retrieving what you actually want to cut based on what you see. Takes a given SVG and output a new SVG where only the visible strokes/fills are present.
 
-## Project:
+## Project
 Using CGAL's Epeck, we are able to remove unnecessary curves/lines/geometry in a 2D vector graphic design.
 
-## Dependencies:
+## Dependencies
 * CGAL 4.12
 * Boost 6.7
-* tinyxml2
 * Eigen 3.3
-* NanoSVG (a header only library, which is already included in this repository)
+* tinyxml2 (a header only library, which is already included in this repository)
+* NanoSVG (also a header only library, which is already included in this repository)
 
 ## Operating Systems
 Will test on Linux.
 We only support Windows 64-bit. If you are using Windows, you will need Visual Studio to build.
 
-## Prerequisite installation:
+## Prerequisite installation
 This assumes you have at least CMake 3.9.4.
 
 Install the above dependecies. Follow the [CGAL installation instructions](https://doc.cgal.org/latest/Manual/installation.html) exactly. As part of this installation, you should have installed Boost. 
 
-When you download TinyXML2, [clone/download the repository](https://github.com/leethomason/tinyxml2) to the same place where you installed Boost. On Windows, this is `C:\local\`. On Mac or Linux, this will probably be `/usr/include` or `/usr/local/include`.
+When you download Eigen, [clone/download the repository](https://github.com/eigenteam/eigen-git-mirror) to the same place where you installed Boost. On Mac or Linux, this will probably be `/usr/include` or `/usr/local/include`. On Windows, this is `C:\local\`. If you are using Windows, make a new environment variable called `EIGEN3_DIR` and set it to `C:\local\[where you cloned Eigen]`.
 
-When you download Eigen ([clone/download the repository](https://github.com/eigenteam/eigen-git-mirror)), also put this in the same directory where Boost and TinyXML2 now are. If you are using Windows, make a new environment variable called `EIGEN3_DIR` and set it to `C:\local\[where you cloned Eigen]`.
-
-## Included files: 
+## Included files
 The `CMakeLists.txt` file sets up the cmake build routine for the program.
 There are example SVG files in `visible_strokes/files`. 
 
