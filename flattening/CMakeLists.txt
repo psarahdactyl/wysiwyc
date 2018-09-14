@@ -23,8 +23,8 @@ find_package(CGAL QUIET COMPONENTS Core)
 include(${CGAL_USE_FILE})
 
 # tinyXML2
-find_package(TinyXML2 REQUIRED)
-include_directories(${TINYXML2_INCLUDE_DIR})
+#find_package(TinyXML2 REQUIRED)
+#include_directories(${TINYXML2_INCLUDE_DIR})
 
 # Eigen
 if(MSVC)
@@ -36,9 +36,9 @@ if(MSVC)
 	endif()
 else()
 	find_path(EIGEN3_INCLUDE_DIR
-        PATH_SUFFIXES include 
         /usr/include
-        /usr/local/include)
+        /usr/local/include
+        PATH_SUFFIXES eigen3 eigen include)
     if( NOT EIGEN3_INCLUDE_DIR )
     	MESSAGE( FATAL_ERROR "Eigen3 isntallation was not found.")
 	endif()
