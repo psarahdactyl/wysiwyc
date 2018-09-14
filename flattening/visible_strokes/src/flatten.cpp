@@ -213,8 +213,8 @@ void compare_2_shapes(Segment_set& s1,
 	Shape shape = shapes[shape_number];
 	bool intersected = false;
 	// if new shape fill is not transparent
-	if (shape->fill.color != 0)
-	{
+	//if (shape->fill.color != 0)
+	//{
 		// go through each segment of old shape
 		for (int i = 0; i < s1.size(); i++)
 		{
@@ -282,7 +282,7 @@ void compare_2_shapes(Segment_set& s1,
 				}
 			}
 		}
-	}
+	//}
 }
 
 void flatten(const Shape_set& shapes,
