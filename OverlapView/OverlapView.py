@@ -63,17 +63,17 @@ def cleanup(XML_FILE):
             dstring += ' L' + accum[0] + ',' + accum[1]
             f_f.set('d', dstring)
 
-for el in tree.getiterator():
-    match = re.match("^(?:\{.*?\})?(.*)$", el.tag)
-    if match:
-        el.tag = match.group(1)
+    for el in tree.getiterator():
+        match = re.match("^(?:\{.*?\})?(.*)$", el.tag)
+        if match:
+            el.tag = match.group(1)
 
-    XML_FILE_2 = XML_FILE[:-4] + ('-clean.svg')
+        XML_FILE_2 = XML_FILE[:-4] + ('-clean.svg')
 
-tree.write(XML_FILE_2, encoding="utf-8")
-pathlist, attlist, svgattrib = svg2paths2(XML_FILE_2)
-wsvg(pathlist, attributes=attlist, svg_attributes=svgattrib, filename=XML_FILE_2)
-return XML_FILE_2
+    tree.write(XML_FILE_2, encoding="utf-8")
+    pathlist, attlist, svgattrib = svg2paths2(XML_FILE_2)
+    wsvg(pathlist, attributes=attlist, svg_attributes=svgattrib, filename=XML_FILE_2)
+    return XML_FILE_2
 
 def clean_parse(XML_FILE):
     name_space = "http://www.w3.org/2000/svg" #The XML namespace.
@@ -151,42 +151,19 @@ def clean_parse(XML_FILE):
                 #print('He;;o',cairo_commands)
                 path_list.append(cairo_commands)
 
-#polygon
-for eachone in group.iter('{%s}polygon' % name_space):
-    polyline_d = eachone.get('points')
-    points = polyline_d.replace(', ', ',')
-    points = points.replace(' ,', ',')
-    points = points.split()
-    new_points = []
-    for i in points:
-        a,b = i.split(',')
-        a = str(float(a)*3.3)
-        b = str(float(b)*3.3)
-        i = a + ',' + b
+    #polygon
+    for eachone in group.iter('{%s}polygon' % name_space):
+        polyline_d = eachone.get('points')
+        points = polyline_d.replace(', ', ',')
+        points = points.replace(' ,', ',')
+        points = points.split()
+        new_points = []
+        for i in points:
+            a,b = i.split(',')
+            a = str(float(a)*3.3)
+            b = str(float(b)*3.3)
+            i = a + ',' + b
             new_points.append(i)
-            command = ""
-            if(len(new_points) < 4):
-                command = "ctx.move_to(0.0,0.0);ctx.line_to(0.0,0.0);"
-        else:
-            command += "ctx.move_to(%s);" % (new_points[0])
-            for i in range(1,len(new_points)):
-                command += "ctx.line_to(%s);" % (new_points[i])
-                command += "ctx.line_to(%s);" % (new_points[0])
-            path_list.append(command)
-        
-        #polyline
-        for eachone in group.iter('{%s}polyline' % name_space):
-            polyline_d = eachone.get('points')
-            points = polyline_d.replace(', ', ',')
-            points = points.replace(' ,', ',')
-            points = points.split()
-            new_points = []
-            for i in points:
-                a,b = i.split(',')
-                a = str(float(a)*3.3)
-                b = str(float(b)*3.3)
-                i = a + ',' + b
-                new_points.append(i)
             command = ""
             if(len(new_points) < 4):
                 command = "ctx.move_to(0.0,0.0);ctx.line_to(0.0,0.0);"
@@ -194,11 +171,34 @@ for eachone in group.iter('{%s}polygon' % name_space):
                 command += "ctx.move_to(%s);" % (new_points[0])
                 for i in range(1,len(new_points)):
                     command += "ctx.line_to(%s);" % (new_points[i])
-                command += "ctx.line_to(%s);" % (new_points[0])
-            path_list.append(command)
+                    command += "ctx.line_to(%s);" % (new_points[0])
+                path_list.append(command)
+            
+            #polyline
+            for eachone in group.iter('{%s}polyline' % name_space):
+                polyline_d = eachone.get('points')
+                points = polyline_d.replace(', ', ',')
+                points = points.replace(' ,', ',')
+                points = points.split()
+                new_points = []
+                for i in points:
+                    a,b = i.split(',')
+                    a = str(float(a)*3.3)
+                    b = str(float(b)*3.3)
+                    i = a + ',' + b
+                    new_points.append(i)
+                command = ""
+                if(len(new_points) < 4):
+                    command = "ctx.move_to(0.0,0.0);ctx.line_to(0.0,0.0);"
+                else:
+                    command += "ctx.move_to(%s);" % (new_points[0])
+                    for i in range(1,len(new_points)):
+                        command += "ctx.line_to(%s);" % (new_points[i])
+                    command += "ctx.line_to(%s);" % (new_points[0])
+                path_list.append(command)
 
-#print(path_list)
-return path_list
+    #print(path_list)
+    return path_list
 
 def get_commands(XML_FILE_2):
     #parsing commands
@@ -225,7 +225,7 @@ def get_commands(XML_FILE_2):
             tokens = phrase.parseString(phrase_toparse.upper())
             paths.append(tokens) # paths is a global var.
 
-cairo_commands = ""
+    cairo_commands = ""
     command_list = []
     for tokens in paths:
         for command, couples in tokens: #looks weird, but it works :)
@@ -243,7 +243,7 @@ cairo_commands = ""
         command_list.append(cairo_commands) #Add them to the list
     cairo_commands = ""
 
-return command_list, rval2
+    return command_list, rval2
 
 def render_this(command_list, linewidth):
     img = cairo.ImageSurface(cairo.FORMAT_ARGB32, 1600, 1600)
