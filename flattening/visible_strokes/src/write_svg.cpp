@@ -112,6 +112,7 @@ void write_svg(const char* filename,
 	{
 		tinyxml2::XMLElement* edge = doc.NewElement("line");
 		int shape_index = indices[i];
+		std::cout << "index " << shape_index << std::endl;
 		Shape shape = shapes[shape_index];
 
 		Segment segment = segments[i];
@@ -119,6 +120,8 @@ void write_svg(const char* filename,
 		unsigned int c = shape->stroke.color;
 		unsigned int color = ((c & 0xff0000) >> 16) | (c & 0x00ff00) | ((c & 0x0000ff) << 16);
 		color &= 0x00ffffff;
+
+		float alpha = shape->opacity;
 
 		std::stringstream stream;
 		stream << "#" << std::setfill('0') << std::setw(6) << std::hex << color;
@@ -132,13 +135,17 @@ void write_svg(const char* filename,
 		std::string x2 = std::to_string(p1.x().exact().to_double());
 		std::string y2 = std::to_string(p1.y().exact().to_double());
 
+		std::string stroke_width = std::to_string(shape->strokeWidth);
+		std::string opacity = std::to_string(alpha);
+
 		edge->SetAttribute("x1", x1.c_str());
 		edge->SetAttribute("y1", y1.c_str());
 		edge->SetAttribute("x2", x2.c_str());
 		edge->SetAttribute("y2", y2.c_str());
 		edge->SetAttribute("stroke", hex_color.c_str());
-		edge->SetAttribute("width", "2");
+		edge->SetAttribute("stroke-width", stroke_width.c_str());
 		edge->SetAttribute("fill", "none");
+		edge->SetAttribute("opacity", opacity.c_str());
 		svg_root->InsertEndChild(edge);
 
 		
