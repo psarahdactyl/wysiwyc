@@ -69,3 +69,14 @@ struct Segment_w_intersection
 	Segment s;
 	Point intersection;
 };
+
+
+template<typename O>
+bool already_in_set(std::vector<O>& set, O& object)
+{
+	if (!(std::find(set.begin(), set.end(), object) != set.end()))
+	{
+		return false;
+	}
+	return true;
+}
