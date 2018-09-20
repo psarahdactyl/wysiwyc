@@ -74,7 +74,7 @@ struct Segment_w_intersection
 template<typename O>
 bool already_in_set(std::vector<O>& set, O& object)
 {
-	if (std::find(set.begin(), set.end(), object) != set.end()))
+	if (std::find(set.begin(), set.end(), object) != set.end())
 	{
 		return true;
 	}
