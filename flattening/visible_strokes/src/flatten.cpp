@@ -28,9 +28,6 @@ struct Intersector {
 // outside = 2
 int in_on_out(const Segment& seg, const Segment_set& intersecting_segs, const Point& intersection, const Segment_set& shape)
 {
-	std::cout << "INSIDE OUTSIDE TESTING" << std::endl;
-	std::cout << "testing segment " << seg << std::endl;
-
 	// find bounding box of shape
 	CGAL::Bbox_2 bounds = bbox_2(shape.begin(), shape.end());
 
@@ -42,7 +39,6 @@ int in_on_out(const Segment& seg, const Segment_set& intersecting_segs, const Po
 	{
 		// find closest point to the centroid on the shape
 		Segment i_seg = intersecting_segs[0];
-		std::cout << "intersecting segment " << i_seg << std::endl;
 		K::Construct_projected_point_2 project;
 		Point proj = project(i_seg.supporting_line(), centroid);
 
@@ -50,9 +46,9 @@ int in_on_out(const Segment& seg, const Segment_set& intersecting_segs, const Po
 		std::vector<Point> shape_points;
 		for (Segment s : shape)
 		{
-			if (!already_in_set(shape_points, s.source()))
+			if (!(std::find(shape_points.begin(), shape_points.end(), s.source()) != shape_points.end()))
 				shape_points.push_back(s.source());
-			if (!already_in_set(shape_points, s.target()))
+			if (!(std::find(shape_points.begin(), shape_points.end(), s.target()) != shape_points.end()))
 				shape_points.push_back(s.target());
 		}
 		Polygon shape_polygon(shape_points.begin(), shape_points.end());
@@ -69,13 +65,10 @@ int in_on_out(const Segment& seg, const Segment_set& intersecting_segs, const Po
 			Point_set triangle_points = { intersection, proj, centroid };
 			Polygon centroid_triangle(triangle_points.begin(), triangle_points.end());
 
-			//std::cout << "triangle area " << centroid_triangle.area() << std::endl;
-			//std::cout << "polygon area " << shape_polygon.area() << std::endl;
+			std::cout << "triangle area " << centroid_triangle.area() << std::endl;
+			std::cout << "polygon area " << shape_polygon.area() << std::endl;
 			tri_area = centroid_triangle.area();
 			poly_area = shape_polygon.area();
-
-			std::cout << "triangle area sign " << CGAL::sign(tri_area) << std::endl;
-			std::cout << "polygon area sign " << CGAL::sign(poly_area) << std::endl;
 
 			Ray int_proj(intersection, proj);
 			// horizontal case
@@ -84,7 +77,7 @@ int in_on_out(const Segment& seg, const Segment_set& intersecting_segs, const Po
 				std::cout << "horizontal" << std::endl;
 
 				CGAL::Lazy_exact_nt<CGAL::Gmpq> int_proj_slope = int_proj.direction().dx();
-				CGAL::Lazy_exact_nt<CGAL::Gmpq> seg_slope = i_seg.direction().dx();
+				CGAL::Lazy_exact_nt<CGAL::Gmpq> seg_slope = i_seg.direction().dx();;
 				if (!(CGAL::sign(int_proj_slope) == CGAL::sign(seg_slope)))
 				{
 					tri_area *= -1;
@@ -171,16 +164,13 @@ void split_segment(const Segment& old_seg, Intersection_set& intersections, Spli
 		{
 			segs.push_back(intersections[i].second);
 			Segment s = Segment(old_seg.source(), intersections[i].first);
-			//if (!(s.is_degenerate()) && !(old_seg == s))
-			if (!s.is_degenerate())
-				splits.push_back(Split_intersection(s, segs));
+			splits.push_back(Split_intersection(s, segs));
 		}
 		else if (i == intersections.size())
 		{
 			segs.push_back(intersections[i - 1].second);
 			Segment s = Segment(intersections[i - 1].first, old_seg.target());
-			if (!s.is_degenerate())
-				splits.push_back(Split_intersection(s, segs));
+			splits.push_back(Split_intersection(s, segs));
 		}
 		else
 		{
@@ -188,8 +178,7 @@ void split_segment(const Segment& old_seg, Intersection_set& intersections, Spli
 			segs.push_back(intersections[i].second);
 			segs.push_back(intersections[i - 1].second);
 			Segment s = Segment(intersections[i - 1].first, intersections[i].first);
-			if (!s.is_degenerate())
-				splits.push_back(Split_intersection(s, segs));
+			splits.push_back(Split_intersection(s, segs));
 		}
 		segs.clear();
 	}
@@ -210,7 +199,7 @@ void decide_to_keep(const Split_intersection_set& splits,
 		{
 			decisions.push_back(in_on_out(splits[i].first, splits[i].second, intersections[i].first, shape));
 		}
-		std::cout << "DECISION (0 means it will be removed) " << decisions[i] << std::endl;
+		std::cout << decisions[i] << std::endl;
 	}
 }
 
@@ -223,82 +212,74 @@ void compare_2_shapes(Segment_set& s1,
 {
 	Shape shape = shapes[shape_number];
 	bool intersected = false;
-
-	// go through each segment of old shape
-	for (int i = 0; i < s1.size(); i++)
+	// if new shape fill is not transparent
+	if (shape->fill.color != 0)
 	{
-		Segment old_seg = s1[i];
-		Intersection_set intersections;
-		Segment new_seg;
-		intersected = false;
-		// go through each segment in the new shape
-		for (int j = 0; j < s2.size(); j++)
+		// go through each segment of old shape
+		for (int i = 0; i < s1.size(); i++)
 		{
-			new_seg = s2[j];
-			// if new shape fill is not transparent
-			if (shape->fill.color != 0 || shape->stroke.color != 0)
+			Segment old_seg = s1[i];
+			Intersection_set intersections;
+			Segment new_seg;
+			intersected = false;
+			// go through each segment in the new shape
+			for (int j = 0; j < s2.size(); j++)
 			{
+				new_seg = s2[j];
 				if (CGAL::do_intersect(old_seg, new_seg))
 				{
 					intersected = true;
 					auto result = intersection(old_seg, new_seg);
 					if (const Segment* s = boost::get<Segment>(&*result))
 					{
-						//std::cout << "segment " << *s << std::endl;
+						std::cout << "segment " << *s << std::endl;
 						intersections.push_back(Intersection(s->source(), new_seg));
 						intersections.push_back(Intersection(s->target(), new_seg));
 					}
 					else
 					{
 						const Point* p = boost::get<Point>(&*result);
-						//std::cout << "point " << *p << std::endl;
-						if (!already_in_set(intersections, Intersection(*p, new_seg)))
-						{
-							intersections.push_back(Intersection(*p, new_seg));
-						}
+						std::cout << "point " << *p << std::endl;
+						intersections.push_back(Intersection(*p, new_seg));
 					}
 				}
-			}
-			// add NEW segments 
-			if (!already_in_set(visible_segments, new_seg))
-			{
-				std::cout << "ADDING SEGMENT " << new_seg << std::endl;
-				visible_segments.push_back(new_seg);
-				indices.push_back(shape_number);
-			}
-
-		}
-		if (intersected)
-		{
-			//std::cout << "INTERSECTED " << intersections.size() << std::endl;
-			Split_intersection_set splits;
-			split_segment(old_seg, intersections, splits);
-
-			std::vector<int> decisions;
-			decide_to_keep(splits, intersections, s2, decisions);
-
-			intersections.clear();
-
-			for (int k = 0; k < decisions.size(); k++)
-			{
-				int d = decisions[k];
-				//std::cout << d << std::endl;
-				if (d != 0)
+				// add NEW segments 
+				if (!(std::find(visible_segments.begin(), visible_segments.end(), new_seg) != visible_segments.end()))
 				{
-					if (!already_in_set(visible_segments, splits[k].first))
+					std::cout << "ADDING SEGMENT " << new_seg << std::endl;
+					visible_segments.push_back(new_seg);
+					indices.push_back(shape_number);
+				}
+
+			}
+			if (intersected)
+			{
+				Split_intersection_set splits;
+				split_segment(old_seg, intersections, splits);
+
+				std::vector<int> decisions;
+				decide_to_keep(splits, intersections, s2, decisions);
+
+				intersections.clear();
+
+				for (int k = 0; k < decisions.size(); k++)
+				{
+					int d = decisions[k];
+					//std::cout << d << std::endl;
+					if (d != 0)
 					{
 						visible_segments.push_back(splits[k].first);
 						indices.push_back(shape_number - 1);
 					}
 				}
 			}
-		}
-		else
-		{ 
-			if (!already_in_set(visible_segments, old_seg))
+			else
 			{
-				visible_segments.push_back(old_seg);
-				indices.push_back(shape_number - 1);
+				if (!(std::find(visible_segments.begin(), visible_segments.end(), old_seg) != visible_segments.end()))
+				{
+					visible_segments.push_back(old_seg);
+					indices.push_back(shape_number - 1);
+				}
 			}
 		}
 	}
