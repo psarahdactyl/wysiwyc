@@ -21,3 +21,5 @@ A Laser Cutting Visualization Prototype, and many experiments.
 :warning: Trotec Speedy 400 flex <br/>
 :warning: Universal Laser Systems Versalaser
 
+## To do
+ - batch convert to SVG 1.0 with "CSS Properties: Style Attributes"
