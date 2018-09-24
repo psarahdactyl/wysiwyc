@@ -26,24 +26,7 @@ include(${CGAL_USE_FILE})
 #find_package(TinyXML2 REQUIRED)
 #include_directories(${TINYXML2_INCLUDE_DIR})
 
-# Eigen
-if(MSVC)
-	if(EXISTS "$ENV{EIGEN3_INCLUDE_DIR}")
-		set( EIGEN3_INCLUDE_DIR "$ENV{EIGEN3_INCLUDE_DIR}" )
-	endif()
-	if( NOT EIGEN3_INCLUDE_DIR )
-    	MESSAGE( FATAL_ERROR "Please point the environment variable EIGEN3_DIR to the include directory of your Eigen3 installation.")
-	endif()
-else()
-	find_path(EIGEN3_INCLUDE_DIR
-        /usr/include
-        /usr/local/include
-        PATH_SUFFIXES eigen3 eigen include)
-    if( NOT EIGEN3_INCLUDE_DIR )
-    	MESSAGE( FATAL_ERROR "Eigen3 isntallation was not found.")
-	endif()
-endif()
-
+set(EIGEN3_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/eigen/")
 INCLUDE_DIRECTORIES ( "${EIGEN3_INCLUDE_DIR}" )
 
 

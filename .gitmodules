@@ -1,0 +1,3 @@
+[submodule "flattening/eigen"]
+	path = flattening/eigen
+	url = https://github.com/eigenteam/eigen-git-mirror.git
