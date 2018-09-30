@@ -7,14 +7,18 @@ import re
 import copy
 
 file = sys.argv[1]
-XML_FILE = os.path.abspath(__file__)
-XML_FILE = os.path.dirname(XML_FILE)
-XML_FILE = os.path.join(XML_FILE, file)
+OUPUT_XML_FILE = os.path.dirname(os.path.abspath(__file__))
+OUTPUT_XML_FILE, script = os.path.split(OUPUT_XML_FILE)
+path, filename = os.path.split(file)
+OUTPUT_XML_FILE = os.path.join(OUPUT_XML_FILE, filename)
+
+INPUT_XML_FILE = os.getcwd()
+INPUT_XML_FILE = os.path.join(INPUT_XML_FILE, file)
 
 def duplicate(XML_FILE):
     NAME_SPACE = "http://www.w3.org/2000/svg" #The XML namespace.
     et.register_namespace('', NAME_SPACE)
-    tree = et.parse(XML_FILE)
+    tree = et.parse(INPUT_XML_FILE)
     root = tree.getroot()
     for el in tree.getiterator():
         no_fill = copy.deepcopy(el)
@@ -73,7 +77,7 @@ def duplicate(XML_FILE):
 def stroke(XML_FILE):
     NAME_SPACE = "http://www.w3.org/2000/svg" #The XML namespace.
     et.register_namespace(' ', NAME_SPACE)
-    tree = et.parse(XML_FILE)
+    tree = et.parse(INPUT_XML_FILE)
     for group in tree.iter('{%s}svg' % NAME_SPACE):
         for child in group.iter('{%s}g' % NAME_SPACE):
             print(child.tag)
@@ -103,7 +107,7 @@ def stroke(XML_FILE):
         if match:
             el.tag = match.group(1)
         
-    XML_FILE_2 = XML_FILE[:-4] + ('-strokes.svg')
+    XML_FILE_2 = OUTPUT_XML_FILE[:-4] + ('-strokes.svg')
     tree.write(XML_FILE_2, encoding="utf-8")
     print('success')
 
@@ -111,7 +115,7 @@ def stroke(XML_FILE):
 def fill(XML_FILE):
     NAME_SPACE = "http://www.w3.org/2000/svg" #The XML namespace.
     et.register_namespace(' ', NAME_SPACE)
-    tree = et.parse(XML_FILE)
+    tree = et.parse(INPUT_XML_FILE)
     for group in tree.iter('{%s}svg' % NAME_SPACE):
         for child in group.iter('{%s}g' % NAME_SPACE):
             for elementwise in child:
@@ -139,9 +143,9 @@ def fill(XML_FILE):
         if match:
             el.tag = match.group(1)
         
-    XML_FILE_2 = XML_FILE[:-4] + ('-fills.svg')
+    XML_FILE_2 = OUTPUT_XML_FILE[:-4] + ('-fills.svg')
     tree.write(XML_FILE_2, encoding="utf-8")
     print('success')
 
-duplicate(XML_FILE)
+duplicate(INPUT_XML_FILE)
 
