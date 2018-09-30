@@ -13,7 +13,7 @@ XML_FILE = os.path.join(XML_FILE, file)
 
 def duplicate(XML_FILE):
     NAME_SPACE = "http://www.w3.org/2000/svg" #The XML namespace.
-    et.register_namespace(' ', NAME_SPACE)
+    et.register_namespace('', NAME_SPACE)
     tree = et.parse(XML_FILE)
     root = tree.getroot()
     for el in tree.getiterator():
@@ -58,13 +58,15 @@ def duplicate(XML_FILE):
                 el.attrib = no_stroke.attrib
                 et.SubElement(parent[0], el.tag, attrib = no_fill.attrib)
     
+    ''' #Removed to fix browser issue since it takes the ns out
     for el in tree.getiterator():
         match = re.match("^(?:\{.*?\})?(.*)$", el.tag)
         if match:
             el.tag = match.group(1)
+    '''
 
     XML_FILE_2 = XML_FILE[:-4] + ('-exploded.svg')
-    tree.write(XML_FILE_2, encoding="utf-8")
+    tree.write(XML_FILE_2, encoding="utf-8", xml_declaration = True, method = 'xml')
     print('success')
 
 #Only the strokes, if ever needed
