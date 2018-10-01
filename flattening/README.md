@@ -1,5 +1,5 @@
 # flattening
-Retrieving what you actually want to cut based on what you see. Takes a given SVG and output a new SVG where only the visible strokes/fills are present.
+Retrieving what you actually want to cut based on what you see. Takes a given SVG and outputs a new SVG where only the visible strokes/fills are present.
 
 ## Project
 Using CGAL's Epeck, we are able to remove unnecessary curves/lines/geometry in a 2D vector graphic design.
@@ -7,7 +7,7 @@ Using CGAL's Epeck, we are able to remove unnecessary curves/lines/geometry in a
 ## Dependencies
 * CGAL 4.12
 * Boost 6.7
-* Eigen 3.3 (a header only library, which is included using git submodules)
+* Eigen 3.2.10 (a header only library, which is included using git submodules)
 * tinyxml2 (a header only library, which is already included in this repository)
 * NanoSVG (also a header only library, which is already included in this repository)
 
