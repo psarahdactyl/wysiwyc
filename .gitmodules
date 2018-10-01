@@ -7,3 +7,6 @@
 [submodule "flattening/tinyxml2"]
 	path = flattening/tinyxml2
 	url = https://github.com/leethomason/tinyxml2.git
+[submodule "flattening/cgal"]
+	path = flattening/cgal
+	url = https://github.com/CGAL/cgal.git
