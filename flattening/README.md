@@ -18,7 +18,7 @@ We only support Windows 64-bit. If you are using Windows, you will need Visual S
 ## Prerequisite installation
 This assumes you have at least CMake 3.9.4.
 
-Install the above dependecies. Follow the [CGAL installation instructions](https://doc.cgal.org/latest/Manual/installation.html) exactly. As part of this installation, you should have installed Boost. 
+Install the above dependecies. Follow the [CGAL installation instructions](https://doc.cgal.org/latest/Manual/installation.html) **exactly**. (This [webpage](https://www.cgal.org/download/windows.html) is somehow better for the Windows installation instructions. In fact, here is the [link](https://github.com/CGAL/cgal/releases) to where you can download the CGAL setup exe for Windows.) As part of this installation, you should have installed Boost. 
 
 When you download Eigen, [clone/download the repository](https://github.com/eigenteam/eigen-git-mirror) to the same place where you installed Boost. On Mac or Linux, this will probably be `/usr/include` or `/usr/local/include`. On Windows, this is `C:\local\`. If you are using Windows, make a new environment variable called `EIGEN3_DIR` and set it to `C:\local\[where you cloned Eigen]`.
 
@@ -27,8 +27,9 @@ The `CMakeLists.txt` file sets up the cmake build routine for the program.
 There are example SVG files in `visible_strokes/files`. 
 
 ## Compilation
-Clone this repository using the following command:
-`git clone --recursive http://github.com/psarahdactyl/wysiwyc.git`
+Clone this repository using the following command
+
+    git clone --recursive http://github.com/psarahdactyl/wysiwyc.git
 
 This follows a typical cmake/make build
 routine. Starting in this directory, change to the build directory:
