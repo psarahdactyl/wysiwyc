@@ -27,7 +27,7 @@ The `CMakeLists.txt` file sets up the cmake build routine for the program.
 There are example SVG files in `visible_strokes/files`. 
 
 ## Compilation
-Clone this repository using the following command
+Clone this repository using the following command:
 
     git clone --recursive http://github.com/psarahdactyl/wysiwyc.git
 
