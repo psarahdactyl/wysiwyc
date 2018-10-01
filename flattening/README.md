@@ -7,7 +7,7 @@ Using CGAL's Epeck, we are able to remove unnecessary curves/lines/geometry in a
 ## Dependencies
 * CGAL 4.12
 * Boost 6.7
-* Eigen 3.3
+* Eigen 3.3 (a header only library, which is included using git submodules)
 * tinyxml2 (a header only library, which is already included in this repository)
 * NanoSVG (also a header only library, which is already included in this repository)
 
@@ -27,8 +27,10 @@ The `CMakeLists.txt` file sets up the cmake build routine for the program.
 There are example SVG files in `visible_strokes/files`. 
 
 ## Compilation
+Clone this repository using the following command:
+`git clone --recursive http://github.com/psarahdactyl/wysiwyc.git`
 
-This and all following assignments will follow a typical cmake/make build
+This follows a typical cmake/make build
 routine. Starting in this directory, change to the build directory:
 
     cd visible_strokes/build
