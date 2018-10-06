@@ -38,7 +38,7 @@ routine. Starting in this directory, change to the build directory:
     
 If you are using Windows, issue:
 
-    cmake ../.. -T "host=x64" -A x64
+    cmake ../.. -T host=x64 -A x64
     
 Then, open the resulting Visual Studio solution file and build from there.
 
