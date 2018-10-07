@@ -16,4 +16,5 @@
 void decide_to_keep(const Split_intersection_set& splits,
 	const Intersection_set& intersections,
 	const Segment_set& shape,
-	std::vector<int>& decisions);
+	std::vector<int>& decisions,
+	front_shape_type type);

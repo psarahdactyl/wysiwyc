@@ -64,12 +64,15 @@ typedef std::pair<Segment, Segment_set>						Split_intersection; // (segment pie
 typedef std::vector<Intersection>							Intersection_set;
 typedef std::vector<Split_intersection>						Split_intersection_set;
 
+enum front_shape_type {STROKE, FILL};
+
+/*
 struct Segment_w_intersection
 {
 	Segment s;
 	Point intersection;
 };
-
+*/
 
 template<typename O>
 bool already_in_set(std::vector<O>& set, O& object)

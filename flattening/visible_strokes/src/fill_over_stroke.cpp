@@ -55,7 +55,7 @@ void fill_over_stroke(
 			split_segments(seg_behind, intersections, splits);
 
 			std::vector<int> decisions;
-			decide_to_keep(splits, intersections, front, decisions);
+			decide_to_keep(splits, intersections, front, decisions, FILL);
 
 			intersections.clear();
 

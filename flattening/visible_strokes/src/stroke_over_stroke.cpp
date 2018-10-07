@@ -26,7 +26,7 @@ void stroke_over_stroke(
 		for (int j = 0; j < front.size(); j++)
 		{
 			new_seg = front[j];
-			std::cout << "NEW SEG " << new_seg << std::endl;
+			//std::cout << "NEW SEG " << new_seg << std::endl;
 			if (CGAL::do_intersect(old_seg, new_seg))
 			{
 				intersected = true;
@@ -61,7 +61,7 @@ void stroke_over_stroke(
 			split_segments(old_seg, intersections, splits);
 
 			std::vector<int> decisions;
-			decide_to_keep(splits, intersections, front, decisions);
+			decide_to_keep(splits, intersections, front, decisions, STROKE);
 
 			intersections.clear();
 
