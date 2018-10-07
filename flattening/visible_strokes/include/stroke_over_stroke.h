@@ -1,6 +1,6 @@
 //
 // Sarah Kushner
-// May 2018
+// October 2018
 // 
 // a C++ program for reading in and parsing an SVG
 // and outputting two SVGs:
@@ -13,9 +13,10 @@
 
 #include "helper.h"
 
-
-void flatten(
+void stroke_over_stroke(
+	const Segment_set& back,
+	const Segment_set& front,
 	const Shape_set& shapes,
-	const Shape_segment_set& segments,
+	const int shape_number,
 	Segment_set& visible_segments,
 	Shape_indices& visible_indices);

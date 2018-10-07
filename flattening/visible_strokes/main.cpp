@@ -17,7 +17,7 @@
 int main(int argc, char *argv[])
 {
 
-	const char* filename = (argc > 1) ? argv[1] : "C:/Users/sak/source/repos/wysiwyc/flattening/visible_strokes/files/svg-overlap-edges-exact.svg";
+	const char* filename = (argc > 1) ? argv[1] : "C:/Users/sak/Documents/wysiwyc/flattening/visible_strokes/files/art.svg";
 	//from-the-wild/wedding-invitation-front.svg";
 	//svg-polyline.svg";
 	//svg-TEST1.svg";
