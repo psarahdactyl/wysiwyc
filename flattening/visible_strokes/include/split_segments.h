@@ -13,4 +13,4 @@
 
 #include "helper.h"
 
-void split_segment(const Segment& old_seg, Intersection_set& intersections, Split_intersection_set& splits);
+void split_segments(const Segment& old_seg, Intersection_set& intersections, Split_intersection_set& splits);

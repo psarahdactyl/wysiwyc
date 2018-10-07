@@ -15,18 +15,15 @@ void compare_2_shapes(
 	Shape shape = shapes[shape_number];
 	bool is_fill = shape->fill.color != 0;
 
-	if (!background_shape.empty())
+	// if new shape is a fill
+	if (is_fill)
 	{
-		// if new shape is a fill
-		if (is_fill)
-		{
-			fill_over_stroke(background_shape, shape_to_add, shapes, shape_number, visible_segments, visible_indices);
-		}
-		// if new shape is a stroke
-		else
-		{
-			stroke_over_stroke(background_shape, shape_to_add, shapes, shape_number, visible_segments, visible_indices);
-		}
+		fill_over_stroke(background_shape, shape_to_add, shapes, shape_number, visible_segments, visible_indices);
+	}
+	// if new shape is a stroke
+	else
+	{
+		stroke_over_stroke(background_shape, shape_to_add, shapes, shape_number, visible_segments, visible_indices);
 	}
 }
 
@@ -43,10 +40,18 @@ void flatten(
 		if (shape_number == 0)
 		{
 			bool is_fill = shapes[shape_number]->fill.color != 0;
-
-			boost::range::push_back(build, shape);
-			Shape_indices first_shape_indices(shape.size(), 0);
-			boost::range::push_back(visible_indices, first_shape_indices);
+			if (is_fill)
+			{
+				Segment origin(Point(0.0, 0.0), Point(0.0, 0.0));
+				build.push_back(origin);
+				visible_indices.push_back(0);
+			}
+			else
+			{
+				boost::range::push_back(build, shape);
+				Shape_indices first_shape_indices(shape.size(), 0);
+				boost::range::push_back(visible_indices, first_shape_indices);
+			}
 
 		}
 		else

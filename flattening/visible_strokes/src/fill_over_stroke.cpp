@@ -10,59 +10,49 @@ void fill_over_stroke(
 	Segment_set& visible_segments,
 	Shape_indices& visible_indices)
 {
+	std::cout << "FILL OVER STROKE" << std::endl << "----" << std::endl;
+
 	Shape shape = shapes[shape_number];
 	bool intersected = false;
 
-	Intersection_set intersections;
-	Segment new_seg;
-	intersected = false;
-
-	// go through each segment of old shape
+	// go through each segment of background
 	for (int i = 0; i < back.size(); i++)
 	{
-		Segment old_seg = back[i];
-		// go through each segment in the new shape
+		Segment seg_behind = back[i];
+		Intersection_set intersections;
+		Segment new_seg;
+		intersected = false;
+		// go through each segment of shape to add
 		for (int j = 0; j < front.size(); j++)
 		{
-			new_seg = front[j];
+			Segment seg_to_add = front[j];
 
-			if (CGAL::do_intersect(old_seg, new_seg))
+			if (CGAL::do_intersect(seg_to_add, seg_behind))
 			{
 				intersected = true;
-				auto result = intersection(old_seg, new_seg);
+				auto result = intersection(seg_to_add, seg_behind);
 				if (const Segment* s = boost::get<Segment>(&*result))
 				{
 					//std::cout << "segment " << *s << std::endl;
-					intersections.push_back(Intersection(s->source(), new_seg));
-					intersections.push_back(Intersection(s->target(), new_seg));
+					intersections.push_back(Intersection(s->source(), seg_to_add));
+					intersections.push_back(Intersection(s->target(), seg_to_add));
 				}
 				else
 				{
 					const Point* p = boost::get<Point>(&*result);
 					//std::cout << "point " << *p << std::endl;
-					if (!already_in_set(intersections, Intersection(*p, new_seg)))
+					if (!already_in_set(intersections, Intersection(*p, seg_to_add)))
 					{
-						intersections.push_back(Intersection(*p, new_seg));
+						intersections.push_back(Intersection(*p, seg_to_add));
 					}
 				}
 			}
-			// add NEW segments 
-			else
-			{
-				if (!already_in_set(visible_segments, new_seg))
-				{
-					std::cout << "ADDING SEGMENT " << new_seg << std::endl;
-					visible_segments.push_back(new_seg);
-					visible_indices.push_back(shape_number);
-				}
-			}
-
 		}
 		if (intersected)
 		{
 			//std::cout << "INTERSECTED " << intersections.size() << std::endl;
 			Split_intersection_set splits;
-			split_segment(old_seg, intersections, splits);
+			split_segments(seg_behind, intersections, splits);
 
 			std::vector<int> decisions;
 			decide_to_keep(splits, intersections, front, decisions);
@@ -85,9 +75,9 @@ void fill_over_stroke(
 		}
 		else
 		{
-			if (!already_in_set(visible_segments, old_seg))
+			if (!already_in_set(visible_segments, seg_behind))
 			{
-				visible_segments.push_back(old_seg);
+				visible_segments.push_back(seg_behind);
 				visible_indices.push_back(shape_number - 1);
 			}
 		}

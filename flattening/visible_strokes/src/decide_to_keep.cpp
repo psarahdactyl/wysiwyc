@@ -16,6 +16,7 @@ void decide_to_keep(const Split_intersection_set& splits,
 		{
 			decisions.push_back(in_on_out(splits[i].first, splits[i].second, intersections[i].first, shape));
 		}
+		std::cout << splits[i].first << std::endl;
 		std::cout << "DECISION (0 means it will be removed) " << decisions[i] << std::endl;
 	}
 }
