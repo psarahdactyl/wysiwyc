@@ -11,7 +11,7 @@ void stroke_over_stroke(
 	Segment_set& visible_segments,
 	Shape_indices& visible_indices)
 {
-	std::cout << "STROKE OVER STROKE" << std::endl;
+	std::cout << "STROKE OVER STROKE" << std::endl << "----" << std::endl;
 
 	Shape shape = shapes[shape_number];
 	bool intersected = false;

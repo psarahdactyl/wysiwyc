@@ -66,6 +66,7 @@ void flatten(
 
 			compare_2_shapes(build, shape, build_indices, shapes, shape_number, visible_segments, visible_indices);
 			build.clear();
+			build_indices.clear();
 
 			std::string filename = "C:/Users/sak/Documents/wysiwyc/flattening/visible_strokes/files/intermediate";
 			filename += std::to_string(shape_number);
