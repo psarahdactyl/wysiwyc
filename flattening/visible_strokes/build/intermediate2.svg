@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 620 620" enable-background="new 0 0 620 620" xml:space="preserve">
-    <line x1="122.699997" y1="186.600006" x2="198.600006" y2="186.600006" stroke="#231f20" width="2" fill="none"/>
-    <line x1="198.600006" y1="186.600006" x2="198.600006" y2="320.299988" stroke="#231f20" width="2" fill="none"/>
-    <line x1="198.600006" y1="320.299988" x2="122.699997" y2="320.299988" stroke="#231f20" width="2" fill="none"/>
-    <line x1="122.699997" y1="320.299988" x2="122.699997" y2="186.600006" stroke="#231f20" width="2" fill="none"/>
-    <line x1="122.699997" y1="266.286480" x2="483.799988" y2="271.100006" stroke="#231f20" width="2" fill="none"/>
-    <line x1="122.699997" y1="266.286480" x2="411.500000" y2="270.136235" stroke="#231f20" width="2" fill="none"/>
-</svg>
