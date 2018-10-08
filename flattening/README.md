@@ -31,10 +31,14 @@ Clone this repository using the following command:
 
     git clone --recursive http://github.com/psarahdactyl/wysiwyc.git
 
-This follows a typical cmake/make build
-routine. Starting in this directory, change to the build directory:
+This follows a typical cmake/make build routine. Make a build directory inside of `visible_strokes/`:
 
-    cd visible_strokes/build
+    cd flattening/visible_strokes
+    mkdir build
+
+Change to the build directory:
+
+    cd build
     
 If you are using Windows, issue:
 
