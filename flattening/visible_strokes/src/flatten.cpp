@@ -76,6 +76,9 @@ void flatten(
 
 			boost::range::push_back(build, visible_segments);
 			boost::range::push_back(build_indices, visible_indices);
+
+			std::reverse(visible_segments.begin(), visible_segments.end());
+			std::reverse(visible_indices.begin(), visible_indices.end());
 		}
 
 		shape_number++;

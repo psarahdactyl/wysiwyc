@@ -3,7 +3,7 @@
 <svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 239.8 144" style="enable-background:new 0 0 239.8 144;" xml:space="preserve">
 <rect x="47.5" y="31" style="fill:#D0CF00;" width="62.3" height="66.2"/>
-<!--<polyline style="fill:none;stroke:#00158B;stroke-miterlimit:10;" points="37.4,75.4 52.2,55.2 96.4,62 135.2,74.6 152.9,31 "/>-->
+<polyline style="fill:none;stroke:#00158B;stroke-miterlimit:10;" points="37.4,75.4 52.2,55.2 96.4,62 135.2,74.6 152.9,31 "/>
 <ellipse style="fill:#009F8B;" cx="128.3" cy="74.8" rx="15.6" ry="8.2"/>
 <polyline style="fill:none;stroke:#7BD968;stroke-miterlimit:10;" points="127.1,28.8 154.1,55.8 156.2,81 124.2,117.7 83.6,88.4 
 	33,39.9 "/>
