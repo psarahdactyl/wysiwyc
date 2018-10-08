@@ -5,6 +5,7 @@
 void fill_over_stroke(
 	const Segment_set& back,
 	const Segment_set& front,
+	const Shape_indices& background_indices,
 	const Shape_set& shapes,
 	const int shape_number,
 	Segment_set& visible_segments,
@@ -20,7 +21,6 @@ void fill_over_stroke(
 	{
 		Segment seg_behind = back[i];
 		Intersection_set intersections;
-		Segment new_seg;
 		intersected = false;
 		// go through each segment of shape to add
 		for (int j = 0; j < front.size(); j++)
@@ -68,7 +68,7 @@ void fill_over_stroke(
 					if (!already_in_set(visible_segments, splits[k].first))
 					{
 						visible_segments.push_back(splits[k].first);
-						visible_indices.push_back(shape_number - 1);
+						visible_indices.push_back(background_indices[i]);
 					}
 				}
 			}
@@ -78,7 +78,7 @@ void fill_over_stroke(
 			if (!already_in_set(visible_segments, seg_behind))
 			{
 				visible_segments.push_back(seg_behind);
-				visible_indices.push_back(shape_number - 1);
+				visible_indices.push_back(background_indices[i]);
 			}
 		}
 	}

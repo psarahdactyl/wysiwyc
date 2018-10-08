@@ -16,6 +16,7 @@
 void stroke_over_stroke(
 	const Segment_set& back,
 	const Segment_set& front,
+	const Shape_indices& background_indices,
 	const Shape_set& shapes,
 	const int shape_number,
 	Segment_set& visible_segments,

@@ -126,6 +126,7 @@ void write_svg(const char* filename,
 		Shape shape = shapes[shape_index];
 
 		Segment segment = segments[i];
+		std::cout << "segment " << segment << std::endl;
 
 		unsigned int c = shape->stroke.color;
 		unsigned int color = ((c & 0xff0000) >> 16) | (c & 0x00ff00) | ((c & 0x0000ff) << 16);

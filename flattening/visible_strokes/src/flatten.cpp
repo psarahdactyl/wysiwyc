@@ -6,7 +6,8 @@
 
 void compare_2_shapes(
 	const Segment_set& background_shape, 
-	const Segment_set& shape_to_add, 
+	const Segment_set& shape_to_add,
+	const Shape_indices& background_indices,
 	const Shape_set& shapes, 
 	const int shape_number,
 	Segment_set& visible_segments,
@@ -18,12 +19,12 @@ void compare_2_shapes(
 	// if new shape is a fill
 	if (is_fill)
 	{
-		fill_over_stroke(background_shape, shape_to_add, shapes, shape_number, visible_segments, visible_indices);
+		fill_over_stroke(background_shape, shape_to_add, background_indices, shapes, shape_number, visible_segments, visible_indices);
 	}
 	// if new shape is a stroke
 	else
 	{
-		stroke_over_stroke(background_shape, shape_to_add, shapes, shape_number, visible_segments, visible_indices);
+		stroke_over_stroke(background_shape, shape_to_add, background_indices, shapes, shape_number, visible_segments, visible_indices);
 	}
 }
 
@@ -34,6 +35,7 @@ void flatten(
 	Shape_indices& visible_indices)
 {
 	Segment_set build;
+	Shape_indices build_indices;
 	int shape_number = 0;
 	for (Segment_set shape : segments)
 	{
@@ -44,13 +46,13 @@ void flatten(
 			{
 				Segment origin(Point(0.0, 0.0), Point(0.0, 0.0));
 				build.push_back(origin);
-				visible_indices.push_back(0);
+				build_indices.push_back(0);
 			}
 			else
 			{
 				boost::range::push_back(build, shape);
 				Shape_indices first_shape_indices(shape.size(), 0);
-				boost::range::push_back(visible_indices, first_shape_indices);
+				boost::range::push_back(build_indices, first_shape_indices);
 			}
 
 		}
@@ -59,9 +61,10 @@ void flatten(
 			if (shape_number < segments.size())
 			{
 				visible_segments.clear();
+				visible_indices.clear();
 			}
 
-			compare_2_shapes(build, shape, shapes, shape_number, visible_segments, visible_indices);
+			compare_2_shapes(build, shape, build_indices, shapes, shape_number, visible_segments, visible_indices);
 			build.clear();
 
 			std::string filename = "C:/Users/sak/Documents/wysiwyc/flattening/visible_strokes/files/intermediate";
@@ -71,7 +74,7 @@ void flatten(
 			write_svg(filename.c_str(), 620, 620, shapes, visible_segments, visible_indices);
 
 			boost::range::push_back(build, visible_segments);
-
+			boost::range::push_back(build_indices, visible_indices);
 		}
 
 		shape_number++;
