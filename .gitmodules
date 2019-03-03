@@ -1,3 +1,12 @@
 [submodule "flattening/eigen"]
 	path = flattening/eigen
 	url = https://github.com/eigenteam/eigen-git-mirror.git
+[submodule "flattening/nanosvg"]
+	path = flattening/nanosvg
+	url = https://github.com/memononen/nanosvg.git
+[submodule "flattening/tinyxml2"]
+	path = flattening/tinyxml2
+	url = https://github.com/leethomason/tinyxml2.git
+[submodule "flattening/cgal"]
+	path = flattening/cgal
+	url = https://github.com/CGAL/cgal.git

@@ -31,6 +31,12 @@ void write_svg(const char* filename,
 	svg_root->SetAttribute("version", "1.0");
 	svg_root->SetAttribute("xmlns", "http://www.w3.org/2000/svg");
 	svg_root->SetAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
+	// x="0px" y="0px"
+	// width = "620px" height = "620px"
+	svg_root->SetAttribute("x", "0px");
+	svg_root->SetAttribute("y", "0px");
+	svg_root->SetAttribute("width", (std::to_string(width) +"px").c_str());
+	svg_root->SetAttribute("height", (std::to_string(height) + "px").c_str());
 	svg_root->SetAttribute("viewBox", view_box.c_str());
 	svg_root->SetAttribute("enable-background", enable.c_str());
 	svg_root->SetAttribute("xml:space", "preserve");
@@ -102,6 +108,10 @@ void write_svg(const char* filename,
 	svg_root->SetAttribute("version", "1.0");
 	svg_root->SetAttribute("xmlns", "http://www.w3.org/2000/svg");
 	svg_root->SetAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
+	svg_root->SetAttribute("x", "0px");
+	svg_root->SetAttribute("y", "0px");
+	svg_root->SetAttribute("width", (std::to_string(width) + "px").c_str());
+	svg_root->SetAttribute("height", (std::to_string(height) + "px").c_str());
 	svg_root->SetAttribute("viewBox", view_box.c_str());
 	svg_root->SetAttribute("enable-background", enable.c_str());
 	svg_root->SetAttribute("xml:space", "preserve");
@@ -116,6 +126,7 @@ void write_svg(const char* filename,
 		Shape shape = shapes[shape_index];
 
 		Segment segment = segments[i];
+		std::cout << "segment " << segment << std::endl;
 
 		unsigned int c = shape->stroke.color;
 		unsigned int color = ((c & 0xff0000) >> 16) | (c & 0x00ff00) | ((c & 0x0000ff) << 16);
